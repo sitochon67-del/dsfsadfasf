@@ -320,7 +320,7 @@ app.get("/test", (req, res) => {
 });
 
 // Fallback para React Router: cualquier ruta no manejada por la API devuelve index.html
-app.get("*", (req, res, next) => {
+app.get("/{*splat}", (req, res, next) => {
   if (req.path.startsWith("/api")) return next();
   const indexFile = path.join(buildPath, "index.html");
   const fs = require("fs");
