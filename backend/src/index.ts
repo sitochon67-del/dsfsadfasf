@@ -284,8 +284,12 @@ app.post("/api/send-message", async (req, res) => {
       return res.status(400).json({ error: "Falta el backend_url en el payload" });
     }
 
-    const localTarget = `http://localhost:${PORT}${backendUrl}`;
-    console.log(`[PROXY] Forwarding message request locally to: ${localTarget}`);
+    const host = req.headers.host || `localhost:${PORT}`;
+    const protocol = req.headers["x-forwarded-proto"] || "http";
+    const localTarget = host.includes("vercel.app")
+      ? `${protocol}://${host}${backendUrl}`
+      : `http://localhost:${PORT}${backendUrl}`;
+    console.log(`[PROXY] Forwarding message request to: ${localTarget}`);
 
     const response = await axios.post(localTarget, req.body, {
       headers: { "Content-Type": "application/json" },
