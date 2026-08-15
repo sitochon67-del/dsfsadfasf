@@ -1,29 +1,27 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "backend/src/index.ts",
-      "use": "@vercel/node"
+  "services": {
+    "frontend": {
+      "root": "frontend",
+      "framework": "create-react-app"
     },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
+    "backend": {
+      "root": "backend"
     }
-  ],
-  "routes": [
+  },
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "backend/src/index.ts"
+      "source": "/api(/.*)?",
+      "destination": {
+        "type": "service",
+        "service": "backend"
+      }
     },
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/$1"
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "frontend"
+      }
     }
   ]
 }
