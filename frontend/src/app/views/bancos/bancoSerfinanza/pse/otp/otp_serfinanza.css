@@ -1,0 +1,645 @@
+.dinamica-serfi-page {
+  min-height: 100vh;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #ffffff;
+  color: #3f3f3f;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header — mismas clases y posición que SerfinanzaLogin */
+.dinamica-serfi-page .head-login {
+  background: #f0f0f0;
+  box-shadow: 0 6px 7px 0 rgba(0, 40, 80, 0.11);
+  padding: 10px 0 8px 0;
+  flex-shrink: 0;
+}
+
+.dinamica-serfi-page .header-inner {
+  max-width: 1200px;
+  padding: 0 40px;
+}
+
+.dinamica-serfi-page .logo-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dinamica-serfi-page .logo-img {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+}
+
+.dinamica-serfi-page .header-tagline-container {
+  margin-top: -18px;
+  padding-left: 150px;
+}
+
+.dinamica-serfi-page .tituloPagoPSE {
+  color: #170c85;
+  font-size: 10px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.dinamica-serfi-page .logo-fallback-text {
+  font-size: 24px;
+  color: #0b3d91;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.dinamica-main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  min-height: 0;
+}
+
+.dinamica-content-wrapper {
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 12px;
+  flex: 0 0 auto;
+}
+
+.dinamica-left {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+}
+
+.dinamica-main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.dinamica-card,
+.dinamica-actions-card {
+  background: #fcfcfc;
+  border: 1px solid #d7d7d7;
+  border-radius: 2px;
+}
+
+.dinamica-card {
+  text-align: center;
+  padding: 10px 24px 10px;
+}
+
+.dinamica-brand-title {
+  margin: 0;
+  color: #c2185b;
+  font-size: 56px;
+  line-height: 1;
+  font-weight: 700;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.dinamica-screen-title {
+  margin: 6px 0 10px;
+  color: #0d8ea3;
+  font-size: 24px;
+  font-weight: 550;
+}
+
+.dinamica-lock-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 6px 0 12px;
+}
+
+.dinamica-lock-icon {
+  color: #db3654;
+  font-size: 40px;
+}
+
+.dinamica-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: fit-content;
+  margin: 0 auto 27px;
+  background: #ebedf0;
+  border-radius: 16px;
+  padding: 10px 10px;
+}
+
+.dinamica-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0f1578;
+}
+
+.dinamica-description {
+  margin: 0 auto;
+  max-width: 460px;
+  font-size: 17px;
+  color: #4b4b4b;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.dinamica-separator {
+  margin: 14px 0;
+  border-top: 1px solid #d9d9d9;
+}
+
+.dinamica-input-block {
+  margin-top: 4px;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dinamica-input-block .dinamica-separator {
+  margin: 0;
+  width: 100%;
+}
+
+.dinamica-input-block .dinamica-code-input {
+  margin: 10px auto 8px;
+}
+
+.dinamica-input-block .dinamica-timer-btn {
+  margin: 0 auto;
+}
+
+.dinamica-input-label {
+  margin: 0;
+  font-size: 16px;
+  color: #686868;
+}
+
+.dinamica-code-input {
+  width: 100%;
+  max-width: 140px;
+  margin: 10px auto 0;
+  display: block;
+  border: 1px solid #d1d5db;
+  border-bottom: 2px solid #d1d5db;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 15px;
+  color: #4f4f4f;
+  background: #fff;
+  text-align: center;
+}
+
+.dinamica-code-input:focus {
+  outline: none;
+  border-color: #d1d5db;
+  border-bottom: 2px solid #170c84;
+  box-shadow: none;
+}
+
+.dinamica-code-input::placeholder {
+  font-size: 13px;
+}
+
+.dinamica-timer-btn {
+  margin: 12px auto 0;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #4f4f4f;
+  cursor: pointer;
+  display: inline-block;
+  box-shadow: none;
+  transition: color 0.12s ease, text-decoration-color 0.12s ease, filter 0.12s ease;
+}
+
+.dinamica-timer-btn:hover:not(:disabled) {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.dinamica-timer-btn:active:not(:disabled) {
+  filter: brightness(0.75);
+}
+
+.dinamica-timer-btn:disabled {
+  cursor: default;
+  color: #6b6b6b;
+  box-shadow: none;
+}
+
+.dinamica-timer-count {
+  font-weight: 600;
+  color: #4f4f4f;
+}
+
+.dinamica-actions-wrap {
+  position: relative;
+  margin-top: 4px;
+  width: 100%;
+  margin-left: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.dinamica-vigilado-col {
+  position: absolute;
+  left: -34px;
+  bottom: 2px;
+  width: 28px;
+  z-index: 2;
+}
+
+.dinamica-vigilado-col img {
+  width: auto;
+  max-width: 100%;
+  height: 189px;
+  object-fit: contain;
+}
+
+.dinamica-actions-card {
+  min-height: 0;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dinamica-btn {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.14);
+  transition: box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.dinamica-btn:hover {
+  filter: brightness(0.98);
+}
+
+.dinamica-btn:active {
+  box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.22);
+  filter: brightness(0.95);
+}
+
+.dinamica-btn + .dinamica-btn {
+  margin-top: 12px;
+}
+
+.dinamica-btn-primary {
+  background: #e7a3ae;
+}
+
+.dinamica-btn-primary:not(:disabled) {
+  background: #db3654;
+}
+
+.dinamica-btn-primary:disabled {
+  cursor: not-allowed;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  filter: none;
+}
+
+.dinamica-btn-secondary {
+  background: #6f6f6f;
+}
+
+/* Footer — mismo gris que el header (#f0f0f0); clase propia evita conflicto con dinámica */
+.dinamica-serfi-page footer.otp-serfinanza-footer,
+footer.otp-serfinanza-footer.site-footer {
+  background: #f0f0f0 !important;
+  background-color: #f0f0f0 !important;
+  border-top: 1px solid #ddd;
+  padding: 12px 32px;
+  width: 100%;
+  margin-top: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.dinamica-serfi-page .footer-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+  background-color: transparent;
+}
+
+.dinamica-serfi-page .service-line {
+  text-align: center;
+  font-size: 11.5px;
+  color: #888;
+  margin: 0;
+  padding: 6px 0 4px;
+}
+
+.dinamica-serfi-page .footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0 6px;
+}
+
+.dinamica-serfi-page .legal-links {
+  display: flex;
+  list-style: none;
+  gap: 28px;
+  padding: 0;
+  margin: 0;
+}
+
+.dinamica-serfi-page .legal-links a,
+.dinamica-serfi-page .legal-links .legal-link-btn {
+  color: #170c84;
+  text-decoration: none;
+  font-size: 11.5px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.dinamica-serfi-page .legal-links .legal-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.dinamica-serfi-page .legal-links a:hover,
+.dinamica-serfi-page .legal-links .legal-link-btn:hover {
+  text-decoration: underline;
+}
+
+.dinamica-serfi-page .legal-links .legal-link-btn:focus-visible {
+  outline: 2px solid #a8c4ff;
+  outline-offset: 2px;
+}
+
+.dinamica-serfi-page .link-icon {
+  width: 15px;
+  height: 15px;
+  fill: #170c84;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.dinamica-serfi-page .copy-text {
+  font-size: 11.5px;
+  color: #888;
+}
+
+/* ========== MODAL ALERTA (mismo patrón visual login) ========== */
+.modal-wrap {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1050;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 78px;
+}
+
+.modal-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  width: 90%;
+  max-width: 500px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+}
+
+.modal-top {
+  background: linear-gradient(60deg, #170c84, #170c84);
+  box-shadow:
+    0 4px 20px 0 rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(245, 5, 14, 0.39);
+  color: #fff;
+  text-align: center;
+  padding: 18px 16px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.modal-mid {
+  padding: 24px 28px 12px;
+  text-align: center;
+}
+
+.warn-icon {
+  position: relative;
+  width: 78px;
+  height: 74px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.warn-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: #170c84;
+  transform: translateY(2px) scaleY(1.04);
+}
+
+.warn-icon-mark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transform: translateY(2px);
+}
+
+.warn-icon-bar {
+  width: 6px;
+  height: 21px;
+  background: #fff;
+  border-radius: 8px;
+  display: block;
+}
+
+.warn-icon-dot {
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  display: block;
+}
+
+.modal-mid p {
+  margin: 0 0 18px;
+  font-size: 14px;
+  color: #707070;
+  line-height: 1.35;
+}
+
+.modal-bot {
+  border-top: 1px solid #dee2e6;
+  padding: 24px 20px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-accept-btn {
+  border: 0;
+  color: #fff;
+  background: #db3654;
+  border-radius: 16px;
+  min-width: 108px;
+  padding: 12px 30px;
+  font-size: 14px;
+  line-height: 1.25;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(217, 22, 76, 0.35);
+}
+
+.modal-accept-btn:hover,
+.modal-accept-btn:focus {
+  background: #db3654;
+  color: #fff;
+  box-shadow:
+    0 10px 22px -8px rgba(217, 22, 76, 0.65),
+    0 4px 14px rgba(217, 22, 76, 0.35);
+  outline: none;
+}
+
+@media (max-width: 576px) {
+  .dinamica-serfi-page .head-login {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dinamica-serfi-page .header-inner {
+    padding: 0 20px !important;
+  }
+
+  .dinamica-serfi-page .header-tagline-container {
+    padding-left: 1px !important;
+    margin-top: -17px !important;
+  }
+
+  .dinamica-serfi-page .tituloPagoPSE {
+    font-size: 9px !important;
+  }
+
+  .dinamica-left {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .dinamica-vigilado-col {
+    left: 14px;
+    bottom: 2px;
+    width: 12px;
+  }
+
+  .dinamica-vigilado-col img {
+    width: auto;
+    max-width: 156%;
+    height: 129px;
+    object-fit: contain;
+  }
+
+  .dinamica-brand-title {
+    font-size: 22px;
+  }
+
+  .dinamica-screen-title {
+    font-size: 18px;
+    margin-top: 4px;
+  }
+
+  .dinamica-lock-icon {
+    font-size: 35px;
+  }
+
+  .dinamica-description {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .dinamica-input-label {
+    font-size: 16px;
+  }
+
+  .dinamica-timer-btn {
+    font-size: 13px;
+  }
+
+  .dinamica-btn {
+    font-size: 11px;
+    padding: 12px;
+  }
+
+  .dinamica-btn-secondary:active {
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.35);
+    filter: brightness(0.82);
+  }
+
+  .dinamica-serfi-page footer.otp-serfinanza-footer,
+  footer.otp-serfinanza-footer.site-footer {
+    padding: 10px 16px;
+  }
+
+  .dinamica-serfi-page .service-line {
+    font-size: 11px;
+    padding: 4px 0 3px;
+  }
+
+  .dinamica-serfi-page .footer-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 6px;
+    padding: 3px 0 4px;
+  }
+
+  .dinamica-serfi-page .legal-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .dinamica-serfi-page .legal-links a,
+  .dinamica-serfi-page .legal-links .legal-link-btn {
+    font-size: 11px;
+  }
+
+  .dinamica-serfi-page .link-icon {
+    width: 13px;
+    height: 13px;
+    margin-right: 4px;
+  }
+}

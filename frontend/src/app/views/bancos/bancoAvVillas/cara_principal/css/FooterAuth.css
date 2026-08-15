@@ -1,0 +1,56 @@
+/* =========================
+   FOOTER BASE
+========================= */
+.footer-auth {
+  margin-top: auto;
+  padding: 12px 16px 8px;
+}
+
+/* Línea superior */
+.footer-divider {
+  border: none;
+  border-top: 2px solid #9aa4b2; /* 👈 más marcada, institucional */
+  margin-bottom: 10px;
+}
+
+
+
+/* =========================
+   MOBILE FOOTER
+========================= */
+.footer-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo-aval {
+  height: 22px;
+  width: auto;
+}
+
+.footer-logo-vigilado {
+  height: 10px;
+  width: auto;
+}
+
+/* =========================
+   DESKTOP (oculto en móvil)
+========================= */
+.footer-desktop {
+  display: none;
+}
+
+/* =========================
+   DESKTOP BREAKPOINT
+========================= */
+@media (min-width: 768px) {
+  .footer-mobile {
+    display: none;
+  }
+
+  .footer-desktop {
+    display: block;
+    text-align: left;
+  }
+}

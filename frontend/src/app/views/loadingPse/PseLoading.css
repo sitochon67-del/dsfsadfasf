@@ -1,0 +1,500 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --pse-blue: #065EA6;
+  --pse-yellow: #FDB813;
+  --pse-gray: rgba(217, 217, 217, 0.4);
+  --text-dark: #323153;
+  --text-muted: #231F20;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Dentro de la app pasarela: anular fondo oscuro global en móvil */
+body.pse-loading-active,
+body.pse-loading-active::after {
+  background-color: #ffffff !important;
+}
+
+body.pse-loading-active::after {
+  display: none !important;
+}
+
+.pse-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: 100%;
+  background-color: #ffffff;
+  color-scheme: light;
+  overflow-x: hidden;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Header Styles */
+.pse-header {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+}
+
+.pse-header-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.pse-logo-left {
+  margin-left: 50px;
+  flex: 0 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.pse-logo-right {
+  flex: 0 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.pse-logo-left img,
+.pse-logo-right img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.pse-logo-left img {
+  height: 85px;
+  max-height: 88px;
+  aspect-ratio: 308 / 88;
+}
+
+.pse-logo-right img {
+  height: 100px;
+  max-height: 104px;
+  aspect-ratio: 186 / 104;
+}
+
+/* Main Content Styles */
+.pse-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.processing-box {
+  text-align: center;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.processing-text {
+  font-family: 'Red Hat Display', sans-serif;
+  color: #065ea6;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+
+.loader-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Loader central — tamaño oficial PSE: 175×175 (registro.pse.com.co) */
+.pse-loader-gif,
+.pse-loader-flip {
+  --pse-loader-size: 175px;
+  width: var(--pse-loader-size);
+  height: var(--pse-loader-size);
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+/* GIF oficial: cuadrado 175px, sin recorte circular (como el original) */
+.pse-loader-gif__img {
+  display: block;
+  width: var(--pse-loader-size);
+  height: var(--pse-loader-size);
+  max-width: var(--pse-loader-size);
+  max-height: var(--pse-loader-size);
+  object-fit: contain;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Volteo con PNG en img/loader-frames/ */
+.pse-loader-flip {
+  width: var(--pse-loader-size);
+  height: var(--pse-loader-size);
+}
+
+.pse-loader-flip__stage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ffffff;
+  perspective: 640px;
+  -webkit-perspective: 640px;
+  box-shadow: 0 0 0 1px rgba(6, 94, 166, 0.08);
+}
+
+.pse-loader-flip__card {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.pse-loader-flip__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: var(--pse-loader-size);
+  max-height: var(--pse-loader-size);
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Footer Styles */
+.pse-footer {
+  padding: 40px;
+  background: #fff;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.footer-logo {
+  flex-shrink: 0;
+}
+
+.footer-logo img {
+  display: block;
+  width: auto;
+  height: 120px;
+  max-width: 148px;
+  object-fit: contain;
+  aspect-ratio: 148 / 124;
+}
+
+.contact-bar-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.accent-bar {
+  width: 27px;
+  height: 68px;
+  background-color: var(--pse-yellow);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.contact-bar {
+  flex: 1;
+  height: 68px;
+  background-color: var(--pse-gray);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.contact-col {
+  padding: 0 15px;
+}
+
+.persona-icon img {
+  height: 34px;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-label {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.info-sublabel {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.method {
+  display: flex;
+  align-items: center;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.method-icon {
+  width: 11px;
+  margin-right: 10px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 12px;
+  color: var(--text-dark);
+}
+
+.detail a {
+  text-decoration: none;
+  color: var(--text-dark);
+  transition: color 0.2s;
+}
+
+.detail a:hover {
+  color: var(--pse-blue);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .footer-content {
+    display: flex;
+    flex-direction: column-reverse;
+    /* Esto baja la imagen y sube la tarjeta */
+    align-items: baseline;
+    gap: 30px;
+    padding: 15px;
+  }
+
+  .contact-bar-wrapper {
+    max-width: 100%;
+  }
+
+  .contact-bar {
+    height: auto;
+    padding: 8px 10px;
+    /* Reducimos el acolchado superior/inferior */
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 10px;
+    /* Reducimos el espacio entre filas y columnas */
+    align-items: center;
+  }
+
+  /* Forzamos que los contenedores hijos dejen pasar a sus elementos al grid principal */
+  .contact-methods,
+  .contact-details {
+    display: contents;
+  }
+
+  .persona-icon {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .info-text {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+  }
+
+  /* Los métodos (iconos + En Bogotá/Escríbenos) van a la izquierda */
+  .method {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px !important;
+    white-space: nowrap;
+  }
+
+  /* Los detalles (Número/URL) van a la derecha */
+  .detail {
+    grid-column: 2;
+    font-size: 11px !important;
+    text-align: left;
+  }
+
+  .accent-bar {
+    width: 15px;
+    /* Línea amarilla más delgada */
+    height: auto;
+    min-height: 100%;
+  }
+
+  .persona-icon img {
+    height: 45px;
+    /* Icono un poco más pequeño para ahorrar espacio */
+  }
+}
+
+@media (max-width: 768px) {
+  .pse-header-content {
+    padding: 10px 12px 8px;
+  }
+
+  .pse-logo-left {
+    margin-left: 0;
+  }
+
+  .pse-logo-left img {
+    height: auto;
+    max-height: 58px;
+    max-width: min(52vw, 220px);
+  }
+
+  .pse-logo-right img {
+    height: auto;
+    max-height: 64px;
+    max-width: min(42vw, 160px);
+  }
+
+  .pse-main {
+    padding: 28px 16px;
+  }
+
+  .processing-box {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .processing-text {
+    font-size: 18px;
+    line-height: 1.35;
+    padding: 0 4px;
+  }
+
+  /* Mismo 175px que PSE; en pantallas muy angostas escala solo hacia abajo */
+  .pse-loader-gif,
+  .pse-loader-flip {
+    --pse-loader-size: min(175px, 46vw);
+  }
+
+  .pse-footer {
+    padding: 16px 12px 20px;
+  }
+
+  .footer-content {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .footer-logo {
+    width: auto;
+    align-self: flex-start;
+  }
+
+  .footer-logo img {
+    height: 72px;
+    width: auto;
+    max-width: 148px;
+    margin-right: 0;
+    object-fit: contain;
+  }
+
+  .contact-bar-wrapper {
+    width: 100%;
+  }
+
+  .detail a {
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 600px) {
+  .pse-logo-left img {
+    max-height: 52px;
+    max-width: min(50vw, 200px);
+  }
+
+  .pse-logo-right img {
+    max-height: 58px;
+    max-width: min(40vw, 140px);
+  }
+
+  .pse-footer {
+    padding: 0;
+    background: #fff;
+  }
+
+  .footer-logo img {
+    height: 79px;
+    max-width: 148px;
+    margin-right: 0;
+  }
+}

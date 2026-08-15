@@ -1,0 +1,1072 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  background-color: #2C2A29;
+}
+
+html {
+  background-color: #2C2A29;
+}
+
+body {
+  background-color: #2C2A29;
+  min-height: 100dvh;
+}
+
+@media (max-width: 768px) {
+  body {
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: #2C2A29;
+    z-index: -1;
+  }
+}
+
+/* Estado normal */
+.vp-header-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.vp-navbar {
+  width: 100%;
+  background: #ffffff;
+  z-index: 1000;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Cuando se fija (compatibilidad) */
+.vp-navbar.is-fixed {
+  background: #fff;
+}
+
+/* OCULTA */
+.vp-header-wrapper.is-hidden {
+  // Se agrega un pequeño margen para evitar que el contenido salte al ocultar el header
+  transition: transform 0.25s ease, top 0.25s ease;
+  transform: translateY(-100%);
+}
+
+/* VISIBLE */
+.vp-header-wrapper.is-visible {
+  transition: transform 0.25s ease, top 0.25s ease;
+  transform: translateY(0);
+}
+
+/* SOLO MOBILE */
+@media (max-width: 768px) {
+  .vp-header-wrapper {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    transition: transform 0.25s ease, top 0.25s ease;
+  }
+
+  .vp-header-wrapper.is-visible {
+    transform: translateY(0);
+  }
+}
+
+.main-header {
+  position: fixed;
+  width: 100%;
+  height: $topbar-height;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: $background;
+  z-index: 100;
+
+  .menu-toggle {
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 12px;
+
+    div {
+      width: 24px;
+      height: 1px;
+      background: $foreground;
+      margin: 3px 0;
+    }
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background: $gray-100;
+    border: 1px solid $gray-200;
+    border-radius: 20px;
+    position: relative;
+    width: 230px;
+    height: 40px;
+
+    input {
+      background: transparent;
+      border: 0;
+      color: #212121;
+      font-size: 0.8rem;
+      line-height: 2;
+      height: 100%;
+      outline: initial !important;
+      padding: 0.5rem 1rem;
+      width: calc(100% - 32px);
+    }
+
+    .search-icon {
+      font-size: 18px;
+      width: 24px;
+      display: inline-block;
+    }
+  }
+
+  .logo {
+    width: $sidebar-left-width;
+
+    img {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+
+  .header-icon {
+    font-size: 19px;
+    cursor: pointer;
+    height: 36px;
+    width: 36px;
+    line-height: 36px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 8px;
+    margin: 0 2px;
+
+    &:hover {
+      background: $gray-100;
+    }
+  }
+}
+
+/* ================= LOGIN ================= */
+.general-title {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-weight: 200;
+  line-height: 40px;
+  letter-spacing: 0px;
+  font-size: 22.5px;
+  /* móvil */
+  font-synthesis: none;
+  transform: scaleY(1.07);
+  transform-origin: center;
+}
+
+/* Escritorio */
+@media (min-width: 768px) {
+  .general-title {
+    font-size: 35.5px;
+  }
+}
+
+.login-page {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.login-page-footer {
+  width: 100%;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  flex-wrap: wrap;
+  /* importante para mobile */
+  gap: 6px;
+  font-size: 14px;
+  color: #ffffff;
+  opacity: 0.9;
+  text-align: right;
+  gap: 15px;
+  /* ← AQUÍ la separación real */
+}
+
+.footer-links span {
+  text-decoration: none !important;
+  color: #ffffff;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover: un poco más claro */
+.footer-links span:hover {
+  opacity: 0.85;
+}
+
+/* Los puntos no deben cambiar */
+.footer-links .dot {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.footer-links .dot:hover {
+  opacity: 0.6;
+}
+
+.login-page-footer hr {
+  margin-top: 20px;
+  border: none;
+  border-top: 1px solid #aaadaf;
+}
+
+.login-page-footer hr {
+  margin-top: 12px;
+  margin: 12px 20px 0;
+  /* top | left-right | bottom */
+  border: none;
+  border-top: 1.5px solid #c4c8ca;
+}
+
+.footer-final {
+  width: 100%;
+  // background-color: #2b2b2b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+/* IZQUIERDA */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  /* 👈 uno debajo del otro */
+  align-items: flex-start;
+  /* o center si los quieres centrados */
+  gap: 8px;
+  /* separación vertical */
+}
+
+@media (max-width: 768px) {
+  .footer-links .dot {
+    display: none;
+    /* 👈 oculta los separadores en mobile */
+  }
+
+  .footer-links {
+    font-size: 14px;
+    justify-content: center;
+    /* opcional, se ve mejor en mobile */
+    text-align: center;
+    gap: 14px;
+    /* separación entre textos */
+  }
+}
+
+.footer-left .logo {
+  height: 22px;
+}
+
+.vigilado {
+  font-size: 10px;
+  line-height: 1.1;
+  opacity: 0.85;
+}
+
+/* DERECHA */
+.footer-right {
+  text-align: right;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .footer-final {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .footer-right {
+    text-align: center;
+    font-size: 11px;
+  }
+}
+
+.login-box {
+  width: 100%;
+  max-width: 610px;
+  background-color: #454648;
+  border-radius: 8px;
+  padding: 40px 36px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.login-title {
+  color: #fff;
+  font-family: "CIB Sans bold", "Segoe UI Bold", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 24px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.login-subtitle {
+  color: #fff;
+  font-family: "CIB Sans bold", "Segoe UI Bold", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 24px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.bc-card-auth-title {
+  color: #fff;
+  font-family: "CIB Sans bold", "Segoe UI Bold", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 24px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.5rem;
+}
+
+.bc-cibsans-font-style-5-bold {
+  color: #fff;
+  font-family: "CIB Sans bold", "Segoe UI Bold", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 26px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bc-card-auth-body {
+  color: #fff;
+  font-family: "Open Sans", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 24px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bc-card-auth-description {
+  color: #fff;
+  font-family: "Open Sans", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 24px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bc-opensans-font-style-1-bold {
+  color: #fff;
+  font-family: "Open Sans Bold", "Segoe UI Bold", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 16px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.link-underline {
+  color: #fff;
+  font-family: "Open Sans Bold", "Segoe UI Bold", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 20px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  align-items: center;
+  text-decoration: none;
+}
+
+.link-default {
+  color: #fff;
+  font-family: "Open Sans", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 20px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: none;
+  outline-color: #3455db;
+}
+
+.bc-link {
+  color: #fff;
+  font-family: "CIB Sans", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 20px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.bc-button-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+  border-style: none;
+  cursor: pointer;
+  padding: 12px 24px;
+  outline: 0 none;
+  text-transform: none;
+  text-decoration: none;
+  border-radius: 100px 100px 100px 100px;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  min-height: 32px;
+  white-space: initial;
+  font-family: "CIB Sans bold", "Segoe UI Bold", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 700;
+  font-size: 1.075rem;
+  line-height: 26px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 26px;
+}
+
+/* ================= INPUT FLOATING ================= */
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* BOTÓN LIMPIAR (X) */
+.clear-btn {
+  position: absolute;
+  right: 0;
+  top: 35%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.85;
+  padding: 0;
+}
+
+/* HOVER */
+.clear-btn:hover {
+  opacity: 1;
+}
+
+/* EVITA SELECCIÓN */
+.clear-btn:focus {
+  outline: none;
+}
+
+/* CONTENEDOR */
+.input-group-custom {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ffffff;
+  transition: border-color 0.25s ease;
+}
+
+/* FOCO */
+.input-group-custom:focus-within {
+  border-bottom-color: #fdda24;
+  border-bottom: 1.5px solid #fdda24;
+}
+
+/* ERROR */
+.input-group-custom.has-error {
+  border-bottom-color: #ff8389;
+  border-bottom: 1.5px solid #ff8389;
+}
+
+/* ICONO */
+.input-icon {
+  color: #ffffff;
+  margin-right: 10px;
+  font-size: 18px;
+  transition: color 0.25s ease;
+}
+
+/* INPUT */
+.input-line {
+  // padding-right: 28px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  width: 100%;
+  font-size: 16px;
+  padding: 0px 0px 5px;
+}
+
+/* LABEL */
+.input-wrapper label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffffff;
+  font-size: 16px;
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+/* LABEL ACTIVO */
+.input-line:focus+label,
+.input-line:valid+label {
+  top: -8px;
+  left: -25px;
+  font-size: 12px;
+  // color: #fdda24;
+  opacity: 1;
+}
+
+/* ERROR TEXTO */
+.input-error {
+  color: #ff8389;
+  font-size: 11.5px;
+  position: absolute;
+}
+
+.input-link {
+  color: #ffffff;
+  font-weight: 12.5px;
+  font-weight: bold;
+  font-size: 13px;
+  margin-top: 13.5px;
+  display: block;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+/* FORZAR underline en hover / focus */
+.input-link:hover,
+.input-link:focus,
+.input-link:active {
+  color: #eaeaea;
+  text-decoration: underline !important;
+}
+
+/* BOTÓN DESHABILITADO */
+.login-btn-borrar {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #ffffff;
+  /* borde blanco */
+  border-radius: 25px;
+  background-color: #454648;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  /* 📱 móvil */
+  cursor: pointer;
+}
+
+/* BOTÓN DESHABILITADO */
+.login-btn-borrar:disabled {
+  width: 100%;
+  height: 48px;
+  border-radius: 25px;
+  border: 1px solid #97999B;
+  background-color: rgb(69, 70, 72);
+  color: #97999B;
+  /* texto blanco */
+  font-weight: 600;
+  font-size: 16px;
+  /* 📱 móvil */
+  cursor: not-allowed !important;
+}
+
+.login-btn-borrar:hover:not(:disabled) {
+  // Se coloca un color de fondo más claro al pasar el cursor
+  background-color: #5a5b5d;
+  color: #ffffff;
+  font-size: 16px;
+  /* 📱 móvil */
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    flex-direction: column;
+    /* 👈 CLAVE */
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer-links .dot {
+    display: none;
+  }
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* 2 por fila */
+  gap: 16px;
+  margin-top: 45px;
+}
+
+/* BOTÓN DESHABILITADO */
+.login-btn {
+  width: 100%;
+  border-radius: 25px;
+  border: none;
+  background-color: #7a7a7a;
+  color: #353537;
+  cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+  .login-btn {
+    font-size: 18px;
+    /* 🖥️ escritorio */
+  }
+}
+
+/* BOTÓN HABILITADO */
+.login-btn:not(:disabled) {
+  background-color: #fdda24;
+  color: #2c2a29;
+  cursor: pointer;
+}
+
+/* HOVER SOLO SI ESTÁ HABILITADO */
+.login-btn:not(:disabled):hover {
+  background-color: #fee66c;
+}
+
+/* CLICK */
+.login-btn:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+.login-btn:focus {
+  outline: none;
+}
+
+.login-btn:focus-visible {
+  outline: none;
+}
+
+.login-btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .login-page {
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-box {
+    margin: 0 19px;
+    padding: 27.5px 17.5px;
+    border-radius: 10px;
+  }
+}
+
+/* ================= PANTALLAS GRANDES ================= */
+@media (min-width: 1200px) {
+  .login-page {
+    padding-top: 15px;
+  }
+}
+
+/* ================= CAPTCHA VISUAL ================= */
+.visual-captcha {
+  position: fixed;
+  right: 0;
+  /* pegado al borde derecho real */
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  border-radius: 8px 0 0 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.visual-captcha .check {
+  width: 26px;
+  height: 26px;
+  border: 2px solid #454648;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visual-captcha .check::after {
+  content: "✓";
+  font-size: 16px;
+  color: #454648;
+}
+
+.visual-captcha span {
+  font-size: 9px;
+  font-weight: 600;
+  color: #454648;
+  text-align: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* ================= CAPTCHA VISUAL - MOBILE ================= */
+@media (max-width: 768px) {
+  .visual-captcha {
+    transform: translateY(10%) scale(0.40);
+    transform-origin: right center;
+  }
+
+  .visual-captcha img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.otp-input {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 24px;
+  text-align: center;
+  outline: none;
+}
+
+/* FOCO */
+.otp-input:focus {
+  border-bottom: 2px solid #FDDA24;
+}
+
+/* ERROR (por defecto) */
+.otp-error {
+  border-bottom: 2px solid #ff8389;
+}
+
+/* 🔑 CLAVE: si algún input tiene foco, quitar TODOS los errores */
+.otp-container:focus-within .otp-error {
+  border-bottom-color: #ffffff;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  /* uno debajo del otro */
+  gap: 14px;
+  text-align: justify;
+}
+
+.line-height {
+  line-height: 10px !important;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.info-item img {
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+}
+
+.info-text {
+  font-size: 14px;
+  line-height: 1;
+  margin: 0;
+  color: #ffffff;
+  text-align-last: left;
+}
+
+.camera-container {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.webcam {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.face-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.face-circle {
+  width: 220px;
+  height: 220px;
+  border: 6px solid #1f2a44;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.face-dashed {
+  width: 180px;
+  height: 240px;
+  border-radius: 50%;
+  border: 3px dashed #fdda24;
+}
+
+.step-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.step.bar {
+  width: 55px;
+  height: 6px;
+  border-radius: 6px;
+  background-color: #6b6b6b;
+}
+
+.step.bar.active {
+  background-color: #fdda24;
+}
+
+.step.circle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.step,
+.step.circle {
+  transition: all 0.3s ease;
+}
+
+.face-dashed-container {
+  width: 180px;
+  height: 180px;
+  /* 👈 MISMO VALOR */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.face-dashed {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  /* 👈 círculo real */
+  border: 4px dashed #dcbe1e;
+  box-sizing: border-box;
+  /* 👈 evita deformaciones */
+}
+
+@keyframes dashMove {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.oval-spin {
+  animation: dashMove 15s linear infinite;
+}
+
+.bc-mt-4 {
+  margin-top: 1.5rem;
+}
+
+.typegraphy-bold {
+  font-family: "CIB Sans Light", "Segoe UI Light", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+}
+
+.bc-text-center {
+  text-align: center;
+}
+
+.bc-cibsans-font-style-9-extralight {
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "CIB Sans Light", "Segoe UI Light", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+  font-weight: 200;
+  font-size: 2.25rem;
+  line-height: 40px;
+  letter-spacing: 0px;
+  font-synthesis: none;
+}
+
+.bc-cibsans-font-style-9-extralight,
+.bc-cibsans-font-style-9-regular {
+  font-size: 1.77rem;
+  line-height: 40px;
+  letter-spacing: 0;
+  font-synthesis: none;
+}
+
+/* FIX DEFINITIVO SAFARI iOS */
+@supports (-webkit-touch-callout: none) {
+
+  html,
+  body {
+    background-color: #2C2A29 !important;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: #2C2A29;
+    z-index: -1;
+  }
+}
+
+body {
+  padding-top: 0 !important;
+}
+
+// ------------------------------------------------------------------------------
+@font-face {
+  font-family: "CIBFont Sans";
+  src: url("./fonts/seguro-tarjeta/CIBFontSansLight.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CIBFont Sans";
+  src: url("./fonts/seguro-tarjeta/CIBFontSansBold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("./fonts/seguro-tarjeta/OpenSans-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("./fonts/seguro-tarjeta/OpenSans-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("./fonts/seguro-tarjeta/OpenSans-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.screen-protected::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 9999999;
+}
+
+// // Hover para la clase .has-btc cuando este no esté deshabilitada
+// @media (hover: hover) and (pointer: fine) {
+//   .bc-button-primary:not(:disabled):hover {
+//     background-color: #fee66c;
+//     cursor: pointer;
+//   }
+// }

@@ -1,0 +1,161 @@
+.itau-otp-container {
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.itau-otp-card {
+  background-color: #fff;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+.itau-otp-close {
+  position: absolute;
+  top: -5px;
+  right: 6px;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-weight: 300;
+  z-index: 10;
+}
+
+.itau-otp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.itau-logo-img {
+  height: 40px;
+  width: auto;
+}
+
+.visa-logo-img {
+  height: 25px;
+  width: auto;
+}
+
+.itau-otp-body {
+  padding: 25px;
+}
+
+.itau-otp-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.itau-otp-description {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.itau-otp-description strong {
+  font-weight: 600;
+}
+
+.itau-otp-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.itau-otp-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.itau-otp-input {
+  width: 100%;
+  max-width: 280px;
+  height: 48px;
+  border: 1px solid #dcdcdc;
+  border-radius: 3px;
+  padding: 0 10px;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 12px;
+  outline: none;
+}
+
+.itau-otp-input:focus {
+  border-color: #003399;
+}
+
+.itau-otp-submit {
+  width: 100%;
+  max-width: 280px;
+  height: 45px;
+  background-color: #003399;
+  /* Itaú OTP Blue in screenshot */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+  transition: background-color 0.2s;
+}
+
+.itau-otp-submit:hover {
+  background-color: #002277;
+}
+
+.itau-otp-resend {
+  background: none;
+  border: none;
+  color: #003399;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 35px;
+  text-decoration: none;
+}
+
+.itau-otp-resend:hover {
+  text-decoration: underline;
+}
+
+.itau-otp-terms {
+  background: none;
+  border: none;
+  color: #003399;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  display: block;
+  width: 100%;
+  padding-left: 25px;
+}
+
+.itau-otp-terms:hover {
+  text-decoration: underline;
+}

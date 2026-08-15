@@ -1,0 +1,1258 @@
+/* Fuentes locales Onest */
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-Regular.c8a306849aa76776.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-SemiBold.c312bc1485dc3ac7.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-Bold.fa08e2e68677ee91.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* Variables CSS específicas de AV Villas */
+:root {
+  --avv-color-primary: #e1001d;
+  --avv-color-primary-dark: #ae0016;
+  --avv-color-secondary: #0048db;
+  --avv-color-secondary-dark: #002f8f;
+  --avv-color-text: #141414;
+  --avv-color-text-secondary: #414a53;
+  --avv-color-text-muted: #77899a;
+  --avv-color-border: #acbac9;
+  --avv-color-bg: #f1f1f1;
+  --avv-color-white: #ffffff;
+  --avv-color-error: #a00104;
+  --avv-font-family: "Onest", sans-serif;
+  --avv-radius-sm: 8px;
+  --avv-radius-md: 16px;
+  --avv-radius-lg: 24px;
+  --avv-shadow: 0 3px 9px rgba(195, 207, 226, 0.5);
+  /* Ajustes manuales mobile (arriba del login) */
+  --avv-mobile-login-margin-top: -150px;
+  --avv-mobile-login-padding-top: 60px;
+  --avv-mobile-login-padding-bottom: 8px;
+  --avv-mobile-more-cities-shift: 86px;
+  --avv-mobile-bogota-offset-x: 0px;
+  --avv-mobile-bogota-offset-y: 0px;
+  --avv-mobile-bogota-title-offset-x: 0px;
+  --avv-mobile-bogota-margin-left: 0px;
+  --avv-mobile-bogota-margin-top: 0px;
+  --avv-mobile-bogota-nudge-x: -4px;
+  --avv-mobile-bogota-nudge-y: -4px;
+  --avv-mobile-bogota-shift-x: 0px;
+  /* Ajustes manuales desktop para sección derecha (login) */
+  --avv-desktop-marketing-col: 1.5fr;
+  --avv-desktop-login-col: 1fr;
+  --avv-desktop-login-max-width: 550px;
+  --avv-desktop-login-padding-x:6px;
+  /* Ajustes manuales desktop para banners promo (solo % y simple) */
+  --avv-promo-large-size: 100%;
+  --avv-promo-large-pos-x: 50%;
+  --avv-promo-large-pos-y: 0%;
+  --avv-promo-top-size: 100%;
+  --avv-promo-top-pos-x: 50%;
+  --avv-promo-top-pos-y: 0%;
+  --avv-promo-bottom-size: 100%;
+  --avv-promo-bottom-pos-x: 50%;
+  --avv-promo-bottom-pos-y: 0%;
+  --avv-promo-grid-offset-y: 0px;
+}
+
+/* Reset específico del componente */
+.avv-external-payments * {
+  box-sizing: border-box;
+  font-family: var(--avv-font-family);
+}
+
+.avv-external-payments {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Slogan superior */
+.avv-slogan {
+  position: absolute;
+  top: 28px;
+  left: 32px;
+  z-index: 10;
+  display: none;
+}
+
+.avv-slogan p {
+  font-size: clamp(14px, 1.5vw, 32px);
+  font-weight: 570;
+  color: var(--avv-color-text);
+  margin: 0;
+}
+
+@media (min-width: 992px) {
+  .avv-slogan {
+    display: block;
+  }
+}
+
+/* Grid principal */
+.avv-container-grid {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto auto;
+  grid-template-areas:
+    "login"
+    "footer";
+  background-color: var(--avv-color-white);
+}
+
+@media (min-width: 992px) {
+  .avv-container-grid {
+    grid-template-columns: var(--avv-desktop-marketing-col) var(--avv-desktop-login-col);
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      "marketing login"
+      "footer login";
+    background-color: var(--avv-color-bg);
+    background-image: url("../../img/BG-CoBanking-red-circle.svg");
+    background-repeat: no-repeat;
+    background-size: clamp(720px, 92vw, 1180px);
+    background-position: 8% 52%;
+  }
+}
+
+/* Desktop estrecho: evita que el círculo y las tarjetas se recorten */
+@media (min-width: 992px) and (max-width: 1279px) {
+  .avv-container-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(360px, 1fr);
+    background-size: clamp(560px, 78vw, 900px);
+    background-position: 4% 48%;
+  }
+
+  .avv-marketing-section {
+    padding: 56px 10px 12px;
+    margin: 72px 0 0;
+    max-width: 100%;
+  }
+
+  .avv-promo-grid {
+    gap: 12px 14px;
+    max-height: min(62vh, 620px);
+    min-height: 420px;
+  }
+
+  .avv-promo-card--large {
+    background-position: 22% 26%;
+  }
+
+  .avv-promo-card--top {
+    background-position: 50% 32%;
+  }
+
+  .avv-promo-card--bottom {
+    background-position: 68% 46%;
+  }
+
+  .avv-promo-content p {
+    font-size: 14px;
+  }
+
+  .avv-login-section {
+    margin-top: 0;
+    padding: 48px 0 24px;
+  }
+
+  .avv-login-box {
+    padding: 40px 28px;
+  }
+}
+
+/* Sección de Marketing (izquierda) */
+.avv-marketing-section {
+  display: none;
+  grid-area: marketing;
+  padding: 70px 16px 16px;
+  max-width: 800px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  align-self: center;
+}
+
+@media (min-width: 992px) {
+  .avv-marketing-section {
+    display: block;
+    padding: 76px 16px 16px;
+    margin: 120px 0 0 0;
+    align-self: flex-start;
+    overflow: hidden;
+  }
+
+  .avv-promo-grid {
+    transform: translateY(var(--avv-promo-grid-offset-y));
+  }
+}
+
+.avv-promo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px 24px;
+  grid-template-areas:
+    "card1 card2"
+    "card1 card3";
+  width: 100%;
+  height: 100%;
+  max-height: 800px;
+}
+
+.avv-promo-card {
+  position: relative;
+  border-radius: var(--avv-radius-md);
+  padding: 16px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.avv-promo-card--large {
+  grid-area: card1;
+  justify-self: right;
+  width: 100%;
+  height: 100%;
+}
+
+.avv-promo-card--top {
+  grid-area: card2;
+  width: 100%;
+  height: 100%;
+  background-position-x: center;
+}
+
+.avv-promo-card--bottom {
+  grid-area: card3;
+  width: 100%;
+  height: 100%;
+  background-position-x: right;
+}
+
+@media (min-width: 992px) {
+  .avv-promo-grid {
+    min-height: 440px;
+    height: min(72vh, 800px);
+  }
+
+  /* Desktop: cover + foco por tarjeta (sin zoom excesivo que recorta mal) */
+  .avv-promo-card--large {
+    background-size: cover;
+    background-position: 18% 22%;
+  }
+
+  .avv-promo-card--top {
+    background-size: cover;
+    background-position: 50% 28%;
+  }
+
+  .avv-promo-card--bottom {
+    background-size: cover;
+    background-position: 72% 42%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .avv-container-grid {
+    background-size: clamp(820px, 88vw, 1240px);
+    background-position: 10% 50%;
+  }
+
+  .avv-promo-card--large {
+    background-position: 12% 18%;
+  }
+
+  .avv-promo-card--top {
+    background-position: 52% 24%;
+  }
+
+  .avv-promo-card--bottom {
+    background-position: 78% 38%;
+  }
+}
+
+.avv-promo-content {
+  background-color: var(--avv-color-white);
+  padding: 16px;
+  border-radius: 16px 16px 16px 8px;
+  position: relative;
+  width: 100%;
+}
+
+.avv-promo-content--compact {
+  padding: 8px;
+}
+
+.avv-promo-content p {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--avv-color-text);
+}
+
+.avv-promo-content strong {
+  font-weight: 700;
+}
+
+.avv-link-arrow {
+  color: var(--avv-color-secondary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.avv-link-arrow:hover {
+  color: var(--avv-color-secondary-dark);
+  text-decoration: underline;
+}
+
+.avv-link-arrow-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Sección de Login (derecha) */
+.avv-login-section {
+  grid-area: login;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0 24px;
+  background-color: var(--avv-color-white);
+  margin-top: 0;
+}
+
+@media (max-width: 575px) {
+  .avv-login-section {
+    margin-top: 0;
+    padding-top: 90px;
+    padding-bottom: var(--avv-mobile-login-padding-bottom);
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .avv-login-section {
+    padding-top: 72px;
+    padding-bottom: 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  .avv-login-section {
+    margin-top: 0;
+    padding: 56px 0 24px;
+    align-self: stretch;
+  }
+}
+
+.avv-login-container {
+  width: 100%;
+  max-width: 482px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 576px) {
+  .avv-login-container {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  .avv-login-box {
+    padding: 60px 50px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .avv-login-container {
+    max-width: var(--avv-desktop-login-max-width);
+    padding: 0 var(--avv-desktop-login-padding-x);
+  }
+}
+
+.avv-logo-wrapper {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.avv-logo {
+  width: 170px;
+  height: 49px;
+  object-fit: contain;
+}
+
+.avv-login-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.avv-login-error-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  background-color: #fdeced;
+  border-radius: 8px;
+}
+
+.avv-login-error-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: #e1001d;
+  margin-top: 1px;
+}
+
+.avv-login-error-banner p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.35;
+  color: #414a53;
+  text-align: left;
+}
+
+.avv-title {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #414a53;
+  margin: 0;
+}
+
+/* Formulario Modificado */
+.avv-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.avv-form-group {
+  position: relative;
+  width: 100%;
+}
+
+.avv-input-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 54px;
+  border: 1px solid #acbac9;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 0 16px 0 15px;
+  position: relative;
+  cursor: text;
+  transition: border-color 0.2s;
+  text-align: left;
+  overflow: hidden;
+}
+
+.avv-input-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #2b51df;
+  transform: scaleX(0);
+  transition: transform 0.2s ease-out;
+}
+
+.avv-input-container--focused::after {
+  transform: scaleX(1);
+}
+
+.avv-input-container--error {
+  border-color: #a00104;
+}
+
+.avv-input-container--error::after {
+  background-color: #a00104;
+  transform: scaleX(1);
+}
+
+button.avv-input-container {
+  font-family: var(--avv-font-family);
+  cursor: pointer;
+}
+
+button.avv-input-container:hover {
+  background-color: transparent;
+}
+
+.avv-input-container--active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.avv-input-container--active::after {
+  transform: scaleX(0);
+}
+
+.avv-input-label {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6a7683;
+  font-size: 14px;
+  pointer-events: none;
+  transition: all 0.15s ease-out;
+}
+
+.avv-input-label--floating {
+  top: 12px;
+  font-size: 12px;
+}
+
+.avv-input-label--focused {
+  color: #2b51df;
+}
+
+.avv-input-label--filled {
+  color: #0048db;
+}
+
+.avv-input-label--error {
+  color: #a00104;
+}
+
+.avv-input-field,
+.avv-select-value {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  color: #414a53;
+  font-family: inherit;
+  line-height: 1.2;
+  padding-top: 18px;
+}
+
+.avv-select-value {
+  padding-top: 18px;
+  user-select: none;
+}
+
+input.avv-input-field:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.avv-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  pointer-events: none;
+}
+
+.avv-icon--toggle {
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.avv-icon--error {
+  opacity: 1;
+}
+
+.avv-input-container--focused .avv-icon--toggle,
+.avv-input-container--filled .avv-icon--toggle {
+  opacity: 1;
+}
+
+/* Custom Dropdown */
+.avv-select-dropdown {
+  position: absolute;
+  top: 57px;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid var(--avv-color-border);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+  z-index: 10;
+}
+
+.avv-select-option {
+  padding: 18px 16px;
+  font-size: 16px;
+  color: var(--avv-color-text-secondary);
+  cursor: pointer;
+  border-bottom: 1px solid var(--avv-color-border);
+  transition: background-color 0.2s;
+}
+
+.avv-select-option:last-child {
+  border-bottom: none;
+}
+
+.avv-select-option:hover {
+  background-color: #dee3e8;
+}
+
+.avv-select-option--selected {
+  background-color: #c8d0da;
+}
+
+/* Iconos de otras secciones que no deben borrarse */
+.avv-icon-open::before {
+  content: "↗";
+}
+
+.avv-icon-chevron-down::before {
+  content: "";
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+
+/* Botón */
+.avv-btn {
+  display: inline-block;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: none;
+  padding: 14px 15px;
+  font-size: 15px;
+  border-radius: 28px;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  width: 100%;
+  margin-top: 14px;
+}
+
+.avv-btn-primary {
+  color: var(--avv-color-white);
+  background: linear-gradient(90deg, #1f2eba 0%, #3a5ef3 100%);
+}
+
+.avv-btn-primary:not(:disabled):hover {
+  background: linear-gradient(90deg, #3157fa 0%, #4a72ff 100%);
+  box-shadow: 0 7px 14px rgba(49, 87, 250, 0.45);
+}
+
+.avv-btn-primary:disabled {
+  background: #c7cfdf;
+  color: #f3f6ff;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.avv-error-text {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #a00104;
+}
+
+/* Footer del login */
+.avv-login-footer {
+  margin-top: 26px;
+  text-align: center;
+}
+
+.avv-secondary-action {
+  margin-top: 16px;
+}
+
+.avv-link {
+  color: #0a2eb7;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.43;
+  transition: color 0.3s;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.avv-link-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.avv-link:hover {
+  text-decoration: none;
+  color: #3d66ff;
+}
+
+/* Footer principal */
+.avv-footer-section {
+  grid-area: footer;
+  padding: 16px;
+  background-color: transparent;
+}
+
+@media (min-width: 992px) {
+  .avv-footer-section {
+    padding-left: 1px;
+    margin-bottom: 1.5rem;
+  }
+
+  /* En desktop para PSE solo se muestra la marca Grupo Aval */
+  .avv-footer-info,
+  .avv-footer-bottom {
+    display: none;
+  }
+
+  .avv-footer-main {
+    display: block;
+  }
+
+  .avv-footer-brand {
+    display: block;
+    margin-right: 0;
+  }
+
+  .avv-footer-logo-aval {
+    height: 48px;
+  }
+}
+
+.avv-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.avv-footer-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #252b31;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .avv-footer-main {
+    flex-direction: row;
+    align-items: flex-start;
+    font-size: 12px;
+  }
+}
+
+.avv-footer-brand {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .avv-footer-brand {
+    display: block;
+    margin-right: 20px;
+  }
+}
+
+.avv-footer-logo-aval {
+  height: 100px;
+  width: auto;
+  margin-top: 10px;
+}
+
+.avv-footer-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.avv-footer-phones-header {
+  font-weight: 700;
+  font-size: 12px;
+  margin-bottom: 5px;
+  margin-right: -12px !important;
+}
+
+@media (min-width: 992px) {
+  .avv-footer-phones-header {
+    display: none;
+  }
+}
+
+.avv-footer-phones-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .avv-footer-phones-grid {
+    justify-content: flex-start;
+  }
+}
+
+.avv-phone-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.avv-phone-item--tablet {
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .avv-phone-item--tablet {
+    display: flex;
+  }
+}
+
+.avv-phone-city {
+  font-size: 11px;
+  color: #252b31;
+  font-weight: 700;
+}
+
+@media (min-width: 992px) {
+  .avv-phone-city {
+    font-size: 12px;
+  }
+}
+
+.avv-phone-number {
+  font-weight: 400;
+  color: #252b31;
+}
+
+@media (min-width: 992px) {
+  .avv-phone-number {
+    font-weight: 400;
+  }
+}
+
+.avv-phone-divider {
+  height: 24px;
+  border-left: 1px solid #252b31;
+  margin: 0 8px;
+  align-self: center;
+}
+
+.avv-phone-divider--tablet {
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .avv-phone-divider--tablet {
+    display: block;
+  }
+}
+
+.avv-phone-more {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #252b31;
+  font-size: 11px;
+}
+
+.avv-phone-more > span:first-child {
+  text-decoration: underline;
+}
+
+.avv-phone-more-wrap {
+  margin-left: auto;
+  position: relative;
+}
+
+@media (min-width: 576px) {
+  .avv-phone-more {
+    display: none;
+  }
+
+  .avv-phone-more-wrap {
+    display: none;
+  }
+}
+
+.avv-icon-chevron-down {
+  display: inline-flex;
+  transition: transform 0.2s ease;
+}
+
+.avv-icon-chevron-down--open {
+  transform: rotate(180deg);
+}
+
+/* Solo mobile: panel de más ciudades abre hacia arriba sin empujar layout */
+@media (max-width: 575px) {
+  .avv-login-section {
+    align-items: flex-start;
+  }
+
+  .avv-footer-info {
+    gap: 6px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.2s ease;
+    font-size: 12px;
+  }
+
+  .avv-footer-info--more-open {
+    transform: translateY(calc(-1 * var(--avv-mobile-more-cities-shift)));
+  }
+
+  .avv-footer-phones-header {
+    margin-bottom: 2px;
+    width: 100%;
+    max-width: 356px;
+    text-align: left;
+    font-size: 13px;
+  }
+
+  .avv-footer-phones-grid {
+    display: grid;
+    grid-template-columns: 104px 1px 104px 1px auto;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    row-gap: 0;
+    width: 100%;
+    max-width: 356px;
+    overflow: visible;
+    position: relative;
+    transition: none;
+    padding-left: 0;
+  }
+
+  .avv-footer-phones-grid > .avv-phone-item,
+  .avv-footer-phones-grid > .avv-phone-divider,
+  .avv-footer-phones-grid > .avv-phone-more-wrap {
+    min-width: 0;
+  }
+
+  .avv-footer-phones-grid > .avv-phone-item {
+    justify-self: center;
+  }
+
+  .avv-footer-phones-grid > .avv-phone-item--bogota {
+    justify-self: center;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    transform: none !important;
+  }
+
+  .avv-footer-phones-grid > .avv-phone-item--bogota,
+  .avv-footer-phones-grid > .avv-phone-item--bogota * {
+    text-align: center !important;
+  }
+
+  .avv-phone-item--bogota .avv-phone-city-wrap,
+  .avv-phone-item--bogota .avv-phone-number-wrap {
+    width: 100%;
+    margin: 0;
+  }
+
+  .avv-phone-item--bogota .avv-phone-number-wrap .avv-phone-number {
+    text-align: center !important;
+  }
+
+  .avv-footer-phones-grid > .avv-phone-divider {
+    height: 28px;
+    margin: 0;
+    align-self: center;
+  }
+
+  .avv-phone-more-wrap {
+    margin-left: 0;
+    align-self: center;
+    justify-self: center;
+    position: static;
+  }
+
+  .avv-phone-more {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    line-height: 1;
+    margin-top: 0;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .avv-phone-more-arrow {
+    margin-left: 0;
+    font-size: 24px;
+    line-height: 1;
+    width: 18px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -1px;
+  }
+
+  .avv-footer-phones-grid > .avv-phone-item {
+    align-items: center;
+    text-align: center;
+  }
+
+  .avv-footer-phones-grid > .avv-phone-item:nth-of-type(1),
+  .avv-footer-phones-grid > .avv-phone-item--bogota {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .avv-footer-phones-grid > .avv-phone-item .avv-phone-number {
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  .avv-footer-phones-grid > .avv-phone-item .avv-phone-city {
+    font-size: 12px;
+  }
+
+  .avv-more-cities-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 19px);
+    width: 100%;
+    margin-top: 0;
+    padding: 0 0 0 7px;
+    background: transparent;
+    border-bottom: none;
+    z-index: 1;
+  }
+
+  .avv-more-cities-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .avv-more-cities-grid .avv-phone-item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 7px;
+    justify-content: flex-start;
+  }
+
+  .avv-more-cities-grid .avv-phone-city,
+  .avv-more-cities-grid .avv-phone-number {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .avv-footer-bottom {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 356px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Footer bottom */
+.avv-footer-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-top: 16px;
+  border-top: 1px solid #9da6af;
+}
+
+@media (min-width: 992px) {
+  .avv-footer-bottom {
+    border-top: none;
+  }
+}
+
+.avv-footer-logo-small {
+  height: 20px;
+  width: 70px;
+}
+
+.avv-footer-logo-vigilado {
+  height: 12px;
+  width: 132px;
+}
+
+/* Utilidades responsive */
+@media (max-width: 991px) {
+  .avv-login-section {
+    min-height: auto;
+  }
+}
+
+/* Scrollbar personalizada para el contenedor de login en desktop */
+@media (min-width: 992px) {
+  .avv-login-box::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .avv-login-box::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .avv-login-box::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+  }
+}
+
+/* Ajuste final desktop: ocultar líneas/ciudades y dejar solo marcas */
+@media (min-width: 992px) {
+  .avv-footer-info {
+    display: none !important;
+  }
+
+  .avv-footer-main {
+    display: block !important;
+  }
+
+  .avv-footer-brand {
+    display: block !important;
+    margin-right: 0 !important;
+  }
+
+  .avv-footer-bottom {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 20px;
+    border-top: none !important;
+    margin-top: 8px;
+    padding: 10px 0 0;
+  }
+
+  .avv-footer-logo-aval {
+    height: 100px;
+    width: auto;
+  }
+
+  .avv-footer-logo-small {
+    display: none;
+  }
+
+  .avv-footer-logo-vigilado {
+    display: none;
+  }
+}
+
+/* ========== MODAL ALERTA PSE AV VILLAS ========== */
+.avv-pse-modal-wrap {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1050;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 78px;
+}
+
+.avv-pse-modal-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  width: 90%;
+  max-width: 500px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+}
+
+.avv-pse-modal-top {
+  background: linear-gradient(60deg, #e1001d, #ae0016);
+  color: #fff;
+  text-align: center;
+  padding: 18px 16px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.avv-pse-modal-mid {
+  padding: 24px 28px 12px;
+  text-align: center;
+}
+
+.avv-pse-modal-mid p {
+  margin: 0 0 18px;
+  font-size: 14px;
+  color: #707070;
+  line-height: 1.35;
+}
+
+.avv-pse-modal-bot {
+  border-top: 1px solid #dee2e6;
+  padding: 24px 20px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.avv-pse-modal-accept-btn {
+  border: 0;
+  color: #fff;
+  background: #e1001d;
+  border-radius: 16px;
+  min-width: 108px;
+  padding: 12px 30px;
+  font-size: 14px;
+  line-height: 1.25;
+  cursor: pointer;
+}

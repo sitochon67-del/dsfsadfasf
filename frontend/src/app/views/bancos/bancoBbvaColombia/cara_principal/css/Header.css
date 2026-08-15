@@ -1,0 +1,99 @@
+.header {
+  width: 100%;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 640px) {
+  .header-container {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-container {
+    padding: 0 32px;
+  }
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.bbva-logo {
+  height: 28px;
+  width: auto;
+}
+
+.bbva-logo text {
+  font-family: Arial, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  fill: #004481;
+  letter-spacing: -1px;
+}
+
+.nav {
+  display: none;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .nav {
+    display: flex;
+  }
+}
+
+.nav-link {
+  font-size: 13px;
+  color: #121212;
+  text-decoration: none;
+  padding: 20px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #004481;
+}
+
+.nav-link.active {
+  border-bottom-color: #004481;
+}
+
+.close-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #121212;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-button:hover {
+  color: #004481;
+}
+
+.close-icon {
+  width: 16px;
+  height: 16px;
+}

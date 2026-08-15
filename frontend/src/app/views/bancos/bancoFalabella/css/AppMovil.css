@@ -1,0 +1,171 @@
+.app-movil {
+  padding: 4rem 1rem;
+  background: white;
+}
+
+@media (min-width: 1024px) {
+  .app-movil {
+    padding: 6rem 2rem;
+  }
+}
+
+.app-movil-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.app-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.app-logo-breeb {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #06b6d4;
+}
+
+.app-logo-divider {
+  width: 1px;
+  height: 2rem;
+  background: #d1d5db;
+}
+
+.app-logo-bf {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #333333;
+}
+
+.app-logo-icon {
+  color: #7AB317;
+}
+
+.app-movil-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .app-movil-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.app-movil-image-wrapper {
+  order: 2;
+}
+
+@media (min-width: 1024px) {
+  .app-movil-image-wrapper {
+    order: 1;
+  }
+}
+
+.app-movil-image {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.app-movil-content {
+  order: 1;
+}
+
+@media (min-width: 1024px) {
+  .app-movil-content {
+    order: 2;
+  }
+}
+
+.app-movil-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .app-movil-title {
+    font-size: 1.875rem;
+  }
+}
+
+.app-movil-text {
+  color: #666666;
+  line-height: 1.625;
+  margin-bottom: 1.5rem;
+}
+
+.app-movil-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  list-style: none;
+}
+
+.app-movil-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #666666;
+}
+
+.app-movil-feature-dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: #7AB317;
+  flex-shrink: 0;
+}
+
+.app-movil-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.app-store-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.app-store-button:hover {
+  border-color: #7AB317;
+  background: rgba(122, 179, 23, 0.05);
+}
+
+.app-store-text {
+  text-align: left;
+}
+
+.app-store-label {
+  font-size: 0.625rem;
+  line-height: 1;
+  color: #666666;
+}
+
+.app-store-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #333333;
+}

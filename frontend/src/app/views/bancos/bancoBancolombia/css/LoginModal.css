@@ -1,0 +1,479 @@
+/* InactivityModal.css */
+
+:root {
+  --yellow: #fdda24;
+  --dark-gray: #333333;
+  --medium-gray: #666666;
+  --white: #ffffff;
+  --border-color: #e0e0e0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+.bc-card-auth-body2 .bc-card-auth-title2 {
+    font-family: "CIB Sans bold", "Segoe UI Bold", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, -apple-system, BlinkMacSystemFont, system-ui;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 24px;
+    letter-spacing: 0px;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.5rem;
+}
+
+.top-clave {
+  margin-top: -20px !important;
+}
+
+.secure-zone {
+  margin-top: 35px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;   /* centra verticalmente */
+  gap: 6px;              /* espacio entre icono y texto */
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.app-content {
+  max-width: 800px;
+  width: 100%;
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.app-content h1 {
+  color: var(--dark-gray);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.app-content p {
+  color: var(--medium-gray);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.open-modal-btn {
+  background-color: var(--yellow);
+  color: var(--dark-gray);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 2rem;
+}
+
+.open-modal-btn:hover {
+  background-color: #f8d000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.instructions {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.instructions h2 {
+  color: var(--dark-gray);
+  margin-bottom: 1rem;
+}
+
+.instructions ul {
+  list-style-position: inside;
+  color: var(--medium-gray);
+  line-height: 1.8;
+}
+
+/* Modal Styles - ANIMACIÓN DE ARRIBA HACIA ABAJO */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  
+  /* Animación inicial - fuera de pantalla */
+  transform: translateY(-100%);
+  opacity: 0;
+  
+  /* Transición suave */
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              opacity 0.3s ease;
+}
+
+/* Estado visible - animación de entrada */
+.modal-overlay.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Para asegurar que el modal permanezca en la parte superior */
+.modal-overlay:not(.visible) {
+  pointer-events: none;
+}
+
+/* ESCRITORIO: Posición fija en la parte superior */
+@media (min-width: 769px) {
+  .modal-overlay {
+    align-items: flex-start;
+    padding-top: 80px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* MÓVIL: Centrado en la pantalla */
+@media (max-width: 768px) {
+  .modal-overlay {
+    align-items: center;
+  }
+}
+
+.modal-container {
+  background-color: var(--white);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 705px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  
+  /* Añadir un pequeño rebote al final de la animación */
+  animation: gentleBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.1s both;
+}
+
+@keyframes gentleBounce {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0.8;
+  }
+  60% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ESTRUCTURA DE TABLA PARA ESCRITORIO */
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  height: 75px;
+}
+
+.modal-table td {
+  vertical-align: middle;
+  padding: 0;
+}
+
+/* Celda del icono (6.5%) */
+.icon-cell {
+  width: 6.5%;
+  background-color: #59cbe8;
+  text-align: center;
+}
+
+/* Celda del texto (88.5%) */
+.text-cell {
+  width: 88.5%;
+}
+
+/* Celda del botón cerrar (5%) */
+.close-cell {
+  width: 5%;
+  text-align: center;
+}
+
+.hand-icon {
+  width: 25px;
+  height: 40px;
+  display: block;
+  margin: 0 auto;
+}
+
+.icon-cell--error {
+  background-color: #ff7f41;
+}
+
+.icon-cell-mobile--error {
+  background-color: #ff7f41;
+}
+
+.modal-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 75px;
+}
+
+.error-alert-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+
+.modal-text--error {
+  padding: 12px 12px 12px 20px;
+}
+
+.modal-text {
+  padding-right: 0.5rem;
+}
+
+.warning-title {
+  color: var(--dark-gray);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.warning-subtitle {
+  color: var(--medium-gray);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.close-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.close-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--medium-gray);
+}
+
+/* ========================================= */
+/* RESPONSIVE DESIGN - MÓVIL */
+/* ========================================= */
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .modal-container {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* OCULTAR LA TABLA EN MÓVIL */
+  .modal-table {
+    display: none;
+  }
+  
+  /* Estructura alternativa para móvil usando flexbox */
+  .modal-mobile-container {
+    display: flex;
+    align-items: center;
+    min-height: 70px;
+  }
+  
+  .icon-cell-mobile--error {
+    flex: 0 0 55px;
+    height: 70px;
+    margin-right: 1rem;
+    padding: 0;
+  }
+
+  .icon-cell-mobile--error .error-alert-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Icono en móvil */
+  .icon-cell-mobile {
+    flex: 0 0 55px;
+    background-color: #59cbe8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    height: 70px;
+  }
+  
+  .icon-cell-mobile .hand-icon {
+    width: 22px;
+    height: 35px;
+  }
+  
+  /* Texto en móvil */
+  .text-cell-mobile {
+    flex: 1;
+    padding: 0;
+  }
+  
+  .text-cell-mobile .warning-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+    color: var(--dark-gray);
+    font-weight: 500;
+  }
+  
+  /* Botón cerrar en móvil */
+  .close-cell-mobile {
+    flex: 0 0 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+  }
+  
+  .close-cell-mobile .close-button {
+    margin: 0;
+    padding: 0.4rem;
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .close-cell-mobile .close-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--medium-gray);
+  }
+  
+  .close-cell-mobile .close-button:hover {
+    background-color: #ffffff;
+  }
+}
+
+/* Pantallas muy pequeñas (móviles pequeños) */
+@media (max-width: 480px) {
+  .modal-container {
+    max-width: 92%;
+  }
+  
+  .modal-mobile-container {
+    min-height: 50px;
+  }
+  
+  .icon-cell-mobile {
+    flex: 0 0 50px;
+    margin-right: 0.75rem;
+    height: 82px;
+  }
+  
+  .icon-cell-mobile .hand-icon {
+    width: 25px;
+    height: 30px;
+  }
+  
+  .text-cell-mobile .warning-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .close-cell-mobile {
+    flex: 0 0 40px;
+  }
+  
+  .close-cell-mobile .close-button {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .close-cell-mobile .close-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Pantallas extra pequeñas */
+@media (max-width: 360px) {
+  .modal-mobile-container {
+    min-height: 50px;
+  }
+  
+  .icon-cell-mobile {
+    flex: 0 0 45px;
+    height: 45px;
+    margin-right: 0.5rem;
+  }
+  
+  .text-cell-mobile .warning-subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .close-cell-mobile .close-button {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* Mantener tabla solo en escritorio */
+@media (min-width: 769px) {
+  .modal-mobile-container {
+    display: none;
+  }
+}
+
+/* MOBILE FIRST (default) */
+.digits-text {
+  font-size: 14x;
+  font-family: monospace;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: left;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  input#cardDigits {
+    caret-color: transparent;
+  }
+}
+
+.bold-none {
+  font-weight: 400 !important;
+}

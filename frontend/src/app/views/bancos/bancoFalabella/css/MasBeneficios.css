@@ -1,0 +1,122 @@
+.mas-beneficios {
+  padding: 4rem 1rem;
+  background: #F5F5F5;
+}
+
+@media (min-width: 1024px) {
+  .mas-beneficios {
+    padding: 6rem 2rem;
+  }
+}
+
+.mas-beneficios-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.mas-beneficios-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333333;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 640px) {
+  .mas-beneficios-title {
+    font-size: 1.875rem;
+  }
+}
+
+.mas-beneficios-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .mas-beneficios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .mas-beneficios-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.mas-beneficio-card {
+  background: white;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mas-beneficio-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.mas-beneficio-card:hover .mas-beneficio-image {
+  transform: scale(1.05);
+}
+
+.mas-beneficio-image-wrapper {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.mas-beneficio-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.mas-beneficio-content {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mas-beneficio-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 0.5rem;
+}
+
+.mas-beneficio-description {
+  font-size: 0.875rem;
+  color: #666666;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.mas-beneficio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #7AB317;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mas-beneficio-link:hover {
+  color: #6A9C14;
+}
+
+.mas-beneficio-link svg {
+  transition: transform 0.2s;
+}
+
+.mas-beneficio-link:hover svg {
+  transform: translateX(4px);
+}

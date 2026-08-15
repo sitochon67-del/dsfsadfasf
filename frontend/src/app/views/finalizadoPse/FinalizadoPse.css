@@ -1,0 +1,460 @@
+/* Comprobante PSE — Bodoni/Didot en Mac; Bodoni Moda (web) en Windows para el mismo aspecto */
+
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap");
+
+.pse-receipt-page--loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+}
+
+.pse-receipt-loading {
+    margin: 0;
+    font-size: 16px;
+    color: #07487d;
+}
+
+/* Texto guía cuando el backend aún no envió el dato ({...} en negro) */
+.pse-receipt-placeholder {
+    color: #000 !important;
+    -webkit-text-stroke: 0 !important;
+}
+
+.pse-receipt-page {
+    --pse-slip-width: 800px;
+    --pse-photo-width: 310px;
+    --pse-page-top-space: 40px;
+
+    --pse-base-font-family: system-ui, sans-serif;
+    --pse-base-font-size: 16px;
+    /* Mac: Bodoni 72 / Didot del sistema. Windows: Bodoni Moda (misma familia didone). */
+    --pse-type-family:
+        "Bodoni 72",
+        "Didot",
+        "Bodoni Moda",
+        "Bodoni MT",
+        "Libre Bodoni",
+        serif;
+    --pse-color-primary: #07487d;
+    --pse-color-accent-text: #fdb813;
+    --pse-color-body: #454545;
+    --pse-color-security-title-bg: #cddae5;
+    --pse-color-security-bg: #eaeaea;
+    --pse-details-bar-height: 38px;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding-top: var(--pse-page-top-space);
+    min-height: 100vh;
+    direction: ltr;
+    font-family: var(--pse-base-font-family);
+    font-size: var(--pse-base-font-size);
+    color: #222;
+    background: #fff;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.pse-receipt-gmail-view {
+    direction: ltr;
+    width: 100%;
+    max-width: var(--pse-slip-width);
+    margin: 0 auto;
+    padding: 4px 12px 20px;
+    box-sizing: border-box;
+}
+
+.pse-receipt-page *,
+.pse-receipt-page *::before,
+.pse-receipt-page *::after {
+    box-sizing: border-box;
+}
+
+.pse-receipt-slip {
+    width: 100%;
+    max-width: var(--pse-slip-width);
+    margin: 0 auto;
+    background: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+    font-family: var(--pse-base-font-family);
+    font-size: var(--pse-base-font-size);
+}
+
+.pse-receipt-slip table {
+    border-spacing: 0 !important;
+    border-collapse: collapse !important;
+}
+
+.pse-receipt-slip table,
+.pse-receipt-slip tr,
+.pse-receipt-slip td {
+    border: none;
+    padding: 0;
+    outline: none;
+}
+
+.pse-receipt-slip img {
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    display: block;
+}
+
+.pse-receipt-header {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+.pse-receipt-header__banner {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.pse-receipt-body {
+    padding: 36px 10px 26px 10px;
+    background: #fff;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: normal;
+    color: inherit;
+}
+
+.pse-receipt-greeting {
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+/* Grid: estado + datos izq | foto pareja der (arriba, desde el estado) */
+.pse-receipt-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--pse-photo-width);
+    column-gap: 8px;
+    align-items: start;
+    margin-bottom: 14px;
+}
+
+.pse-receipt-estado {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin: 0 0 10px;
+    max-width: 100%;
+}
+
+.pse-receipt-estado__label {
+    font-family: var(--pse-type-family);
+    font-weight: 900;
+    font-size: 17px;
+    line-height: 1.1;
+    color: #07487d;
+    -webkit-text-stroke: 0.15px #07487d;
+    paint-order: stroke fill;
+}
+
+.pse-receipt-estado__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-sizing: border-box;
+    min-height: 30px;
+    padding: 5px 14px;
+    border-radius: 10px;
+    background: var(--pse-color-accent-text);
+    color: #000;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1;
+}
+
+.pse-receipt-estado__text {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    line-height: 1;
+    height: 24px;
+}
+
+.pse-receipt-estado__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.pse-receipt-estado__icon-svg {
+    width: 24px;
+    height: 24px;
+    color: #000;
+}
+
+.pse-receipt-layout__photo {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    justify-self: end;
+    width: var(--pse-photo-width);
+}
+
+.pse-receipt-layout__photo img {
+    width: 100%;
+    max-width: var(--pse-photo-width);
+    height: auto;
+    object-fit: contain;
+    object-position: top right;
+}
+
+.pse-receipt-layout__details {
+    grid-column: 1;
+    grid-row: 2;
+    min-width: 0;
+}
+
+.pse-receipt-details-bar {
+    margin: 15px 0 15px;
+    padding: 0 12px;
+    max-width: 450px;
+    min-height: var(--pse-details-bar-height);
+    display: flex;
+    align-items: center;
+    text-align: left;
+    background: var(--pse-color-primary);
+    border-radius: 0 10px 10px 0;
+}
+
+.pse-receipt-details-list {
+    margin: 0;
+}
+
+.pse-receipt-details-item {
+    display: block;
+    min-height: 30px;
+    padding: 4px 0;
+}
+
+.pse-receipt-details-item dt {
+    display: inline;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.pse-receipt-details-item dt::after {
+    content: " ";
+}
+
+.pse-receipt-details-item dd {
+    display: inline;
+    margin: 0;
+}
+
+.pse-receipt-thanks {
+    margin: 10px 0 0;
+}
+
+.pse-receipt-security {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0;
+    background: var(--pse-color-security-bg);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.pse-receipt-security__title {
+    margin: 0;
+    padding: 10px 24px;
+    background: var(--pse-color-security-title-bg);
+}
+
+.pse-receipt-security__list {
+    list-style: none;
+    margin: 0;
+    padding: 10px 12px 12px 40px;
+}
+
+.pse-receipt-security__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 35px;
+    padding: 6px 0;
+}
+
+.pse-receipt-security__item img {
+    flex-shrink: 0;
+    width: auto;
+    height: auto;
+}
+
+.pse-receipt-footer-visual {
+    line-height: 0;
+}
+
+.pse-receipt-footer-visual__img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.pse-receipt-disclaimer {
+    padding: 15px 20px 24px;
+    text-align: center;
+    background: #fff;
+}
+
+.pse-receipt-disclaimer img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.pse-receipt-disclaimer__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 759px;
+    margin: 0 auto;
+}
+
+@media (max-width: 840px) {
+    .pse-receipt-gmail-view {
+        padding: 4px 8px 20px;
+    }
+
+    .pse-receipt-body {
+        padding: 28px 10px 20px 10px;
+    }
+
+    .pse-receipt-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .pse-receipt-layout__photo {
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: center;
+        width: 100%;
+        max-width: var(--pse-photo-width);
+        margin-bottom: 12px;
+    }
+
+    .pse-receipt-layout__details {
+        grid-row: 3;
+    }
+
+    .pse-receipt-estado {
+        grid-row: 1;
+    }
+}
+
+/* Tipografía didone — solo .pse-receipt-page */
+
+.pse-receipt-page .pse-rhd {
+    font-family: var(--pse-type-family);
+    font-style: normal;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.pse-receipt-page .pse-rhd--greeting {
+    font-family: var(--pse-type-family);
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    vertical-align: middle;
+    color: #07487d;
+    font-synthesis: weight;
+    -webkit-text-stroke: 0.25px #07487d;
+    paint-order: stroke fill;
+}
+
+.pse-receipt-page .pse-rhd--greeting .pse-receipt-greeting__name {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    vertical-align: inherit;
+    -webkit-text-stroke: inherit;
+    paint-order: inherit;
+}
+
+.pse-receipt-page .pse-rhd--greeting .pse-receipt-greeting__name.pse-receipt-placeholder {
+    color: #000 !important;
+    -webkit-text-stroke: 0 !important;
+}
+
+.pse-receipt-page .pse-rhd--bar {
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 0;
+    color: #fdb813;
+    -webkit-text-stroke: 0.35px #fdb813;
+    paint-order: stroke fill;
+}
+
+.pse-receipt-page .pse-rhd--label {
+    font-weight: 900;
+    font-size: 17px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #07487d;
+    -webkit-text-stroke: 0.15px #07487d;
+    paint-order: stroke fill;
+}
+
+.pse-receipt-page .pse-rhd--value {
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #454545;
+}
+
+.pse-receipt-page .pse-rhd--valor {
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 100%;
+    color: #454545;
+}
+
+.pse-receipt-page .pse-rhd--thanks {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: #454545;
+}
+
+.pse-receipt-page .pse-rhd--security-title {
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0;
+    color: #07487d;
+    -webkit-text-stroke: 0.25px #07487d;
+    paint-order: stroke fill;
+}
+
+.pse-receipt-page .pse-rhd--paragraph {
+    font-weight: 510;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #454545;
+}

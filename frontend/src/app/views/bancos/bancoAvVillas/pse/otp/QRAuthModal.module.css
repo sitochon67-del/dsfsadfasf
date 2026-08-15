@@ -1,0 +1,556 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap');
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 16px;
+    font-family: 'Onest', system-ui, -apple-system, sans-serif;
+}
+
+.modalContainer {
+    width: 100%;
+    max-width: 540px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+        0px 24px 38px 3px rgba(0, 0, 0, 0.14),
+        0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.closeButton {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: #252b31;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    z-index: 10;
+}
+
+.closeButton:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.content {
+    padding: 48px 20px 32px;
+    text-align: center;
+}
+
+.title {
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 700;
+    color: #252b31;
+    margin: 0 0 32px 0;
+    text-align: center;
+}
+
+/* Modal 1: autorización con temporizador */
+.illustrationContainer {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phoneImageAuth {
+    width: 84px;
+    height: auto;
+    aspect-ratio: 73/72;
+    object-fit: contain;
+}
+
+.timerSection {
+    margin: 24px 32px;
+}
+
+.timerWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.timerContainer {
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    flex: 1;
+    height: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.timerBar {
+    background: linear-gradient(72.6deg, #000e6f, #0048db);
+    height: 100%;
+    transition: width 1s linear;
+    border-radius: 8px;
+}
+
+.timeDisplay {
+    color: #252b31;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    min-width: 40px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #252b31;
+    margin: 0 0 16px 0;
+    text-align: center;
+}
+
+.description b {
+    font-weight: 700;
+}
+
+.accordionList {
+    list-style: none;
+    margin: 16px 0;
+    padding: 0;
+    text-align: left;
+}
+
+.accordionList li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 8px;
+}
+
+.bullet {
+    color: #0048db;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 2px;
+}
+
+.accordionList li p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: #252b31;
+    flex: 1;
+}
+
+.alertInfo {
+    background-color: #dfeaff;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.alertIcon {
+    color: #0054bf;
+    font-size: 18px;
+    line-height: 20px;
+    flex-shrink: 0;
+}
+
+.alertMessage {
+    margin: 0;
+    font-size: 12px;
+    line-height: 16px;
+    color: #252b31;
+    font-weight: 400;
+}
+
+/* Sección QR + Celular */
+.qrSection {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    padding: 0 16px;
+}
+
+.qrContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qrPlaceholder {
+    width: 280px;
+    height: 280px;
+    background-color: #ffffff;
+    border: 1px solid #DEE1E4;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.qrImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.qrPlaceholderBlocked .qrImage {
+    filter: blur(0.35px) contrast(1.01);
+}
+
+.qrFallback {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f4ff 0%, #dfeaff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: #0048db;
+}
+
+.phoneContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phoneImage {
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+}
+
+.phoneFallback {
+    width: 140px;
+    height: 280px;
+    background: linear-gradient(135deg, #f0f4ff 0%, #dfeaff 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    border: 2px dashed #0048db;
+}
+
+/* Inputs OTP */
+.otpSection {
+    margin: 24px 0;
+}
+
+.otpInputs {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.otpInput {
+    width: 33px;
+    height: 33px;
+    border: 1px solid #283747;
+    border-radius: 7px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #252b31;
+    outline: none;
+    transition: all 0.2s;
+    font-family: 'Onest', sans-serif;
+}
+
+.otpInput:focus {
+    border-color: #0048db;
+    box-shadow: 0 2px 4px rgba(0, 72, 219, 0.3);
+}
+
+/* Instrucciones */
+.instructions {
+    margin: 24px auto;
+    max-width: 420px;
+    text-align: left;
+}
+
+.authInstructions {
+    margin-top: 34px;
+    text-align: center;
+}
+
+.authInstructions .accordionList {
+    margin: 14px auto 0;
+    text-align: center;
+    max-width: 430px;
+}
+
+.authInstructions .accordionList li {
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.authInstructions .accordionList li p {
+    display: inline;
+    max-width: 430px;
+}
+
+.authInstructions .bullet {
+    display: inline;
+    margin-right: 6px;
+    margin-top: 0;
+}
+
+.authInstructions .alertInfo {
+    margin-top: 14px;
+}
+
+.stepsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: step-counter;
+}
+
+.stepsList li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 22px;
+    color: #252b31;
+    counter-increment: step-counter;
+}
+
+.stepsList li::before {
+    content: counter(step-counter) ".";
+    position: absolute;
+    left: 0;
+    font-weight: 600;
+    color: #252b31;
+}
+
+.stepsList li strong {
+    font-weight: 700;
+    color: #252b31;
+}
+
+/* Botón Continuar */
+.buttonContainer {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    padding: 0 24px;
+}
+
+.continueButton {
+    width: 100%;
+    max-width: 170px;
+    height: 50px;
+    background: linear-gradient(77deg, #0e199a, #3157fa);
+    color: #ffffff;
+    border: none;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Onest', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 0;
+}
+
+.continueButton::before {
+    border-radius: inherit;
+    background: linear-gradient(77deg, #3157fa, #3157fa);
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    z-index: -1;
+    transition: opacity 0.4s;
+    box-shadow: 0 6px 10px rgba(49, 87, 250, 0.5);
+}
+
+.continueButton:hover:not(:disabled)::before {
+    opacity: 1;
+}
+
+.continueButton:disabled,
+.continueButton.disabled {
+    background: #c3cfe2;
+    cursor: not-allowed;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .timerSection {
+        margin: 24px 16px;
+    }
+
+    .qrSection {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .qrPlaceholder {
+        width: 250px;
+        height: 250px;
+    }
+
+    .phoneImage,
+    .phoneFallback {
+        display: none;
+        /* Ocultar imagen del celular en móvil si es necesario */
+    }
+
+    .otpInput {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .content {
+        padding: 40px 20px 24px;
+    }
+
+    .title {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .instructions {
+        margin: 24px 16px;
+    }
+
+    .stepsList li {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal {
+        border-radius: 20px;
+        max-height: calc(100vh - 24px);
+        overflow-y: auto;
+    }
+
+    .modalContainer {
+        align-self: center;
+        margin: 0;
+    }
+
+    .otpInputs {
+        gap: 6px;
+    }
+
+    .otpInput {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Modal de error / aviso (flujo PSE) */
+.pseModalWrap {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 72px;
+}
+
+.pseModalCard {
+    background: #fff;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 420px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.pseModalTop {
+    background: linear-gradient(60deg, #e1001d, #ae0016);
+    color: #fff;
+    text-align: center;
+    padding: 16px 14px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.pseModalMid {
+    padding: 22px 24px 10px;
+    text-align: center;
+}
+
+.pseModalMid p {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+}
+
+.pseModalBot {
+    border-top: 1px solid #e8e8e8;
+    padding: 18px 16px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pseModalAcceptBtn {
+    border: 0;
+    color: #fff;
+    background: #e1001d;
+    border-radius: 12px;
+    min-width: 100px;
+    padding: 11px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}

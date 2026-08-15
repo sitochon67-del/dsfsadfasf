@@ -1,0 +1,722 @@
+/* ============================================
+   DAVIVIENDA OTP PSE - BASE STYLES
+   ============================================ */
+
+@font-face {
+    font-family: 'DaviviendaHelveticaThCn';
+    src: url("../../fonts/HelveticaNeueLTStdThCn.woff2") format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DaviviendaHelveticaBdCn';
+    src: url("../../fonts/HelveticaNeueLTStdBdCn.woff2") format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DaviviendaHelveticaCn';
+    src: url("../../fonts/HelveticaNeueLTStdCn.woff2") format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.davivienda-otp-pse-page {
+    margin: 0;
+    padding: 0;
+    font-family: 'DaviviendaHelveticaThCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #ffffff;
+    background-image: url("../../img/background-generico.jpg");
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.davivienda-otp-pse-page * {
+    box-sizing: border-box;
+}
+
+/* Header */
+.davivienda-otp-pse-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: #ed1c27;
+    padding: 12px 0;
+}
+
+.davivienda-otp-pse-header__container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.davivienda-otp-pse-header__brand {
+    flex: 1;
+    text-align: left;
+}
+
+.davivienda-otp-pse-header__logo {
+    height: 26px;
+    width: auto;
+    display: block;
+}
+
+.davivienda-otp-pse-header__info {
+    text-align: right;
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: #ffffff;
+    line-height: 1.4;
+}
+
+.davivienda-otp-pse-header__datetime {
+    margin-bottom: 2px;
+}
+
+/* Main (empty center base) */
+.davivienda-otp-pse-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 126px;
+    padding-bottom: 86px;
+    min-height: 100vh;
+}
+
+.davivienda-otp-pse-content {
+    width: 100%;
+    max-width: 980px;
+    min-height: 470px;
+}
+
+.davivienda-otp-pse-titles {
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+/* Alerta inline — error OTP (mismo estilo que login error_login) */
+.davivienda-otp-pse-page .davi-login-alert {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 0 28px;
+    padding: 8px 14px;
+    background: #fcd6a5;
+    border: 1px solid #f9a333;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.davivienda-otp-pse-page .davi-login-alert__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #f9a333;
+    color: #ffffff;
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.davivienda-otp-pse-page .davi-login-alert__text {
+    margin: 0;
+    color: #cd7f19;
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.davivienda-otp-pse-title {
+    margin: 0;
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #d81f2a;
+}
+
+.davivienda-otp-pse-panel {
+    width: 100%;
+    min-height: 430px;
+    display: flex;
+    justify-content: space-between;
+    gap: 26px;
+    color: #4e4e4e;
+}
+
+.davivienda-otp-pse-panel__left,
+.davivienda-otp-pse-panel__right {
+    width: 50%;
+    padding: 2px 22px 0;
+}
+
+.davivienda-otp-pse-panel__left {
+    border-right: 1px solid #d5d5d5;
+}
+
+.davivienda-otp-pse-panel__right {
+    padding-left: 20px;
+    padding-right: 8px;
+}
+
+.davivienda-otp-pse-section-title {
+    margin: 0 0 12px;
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 1.02;
+    color: #595959;
+}
+
+.davivienda-otp-pse-panel__left .davivienda-otp-pse-section-title {
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'DaviviendaHelveticaThCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 1.06;
+    color: #757575;
+}
+
+.davivienda-otp-pse-panel__right .davivienda-otp-pse-section-title {
+    margin-bottom: 26px;
+    font-family: 'DaviviendaHelveticaThCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    line-height: 1.05;
+    color: #737373;
+}
+
+.davivienda-otp-pse-select {
+    width: 100%;
+    max-width: 236px;
+    height: 34px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    text-align-last: center;
+    border-radius: 7px;
+    border: 1px solid #cfcfcf;
+    background: #efefef;
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #3a3a3a;
+    padding: 0 12px;
+    outline: none;
+}
+
+.davivienda-otp-pse-copy {
+    margin: 24px 0 14px;
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.15;
+    color: #686868;
+    text-align: center;
+}
+
+.davivienda-otp-pse-code-input {
+    width: 100%;
+    max-width: 118px;
+    height: 40px;
+    border-radius: 7px;
+    border: 1px solid #d8d8d8;
+    background: #fcfcfc;
+    display: block;
+    margin: 0 auto 16px;
+    text-align: center;
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: #555555;
+    padding: 0 10px;
+    outline: none;
+}
+
+.davivienda-otp-pse-code-input::placeholder {
+    color: #9b9b9b;
+}
+
+.davivienda-otp-pse-help {
+    margin: 0 0 14px;
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.15;
+    color: #666666;
+    text-align: center;
+}
+
+.davivienda-otp-pse-help--last {
+    margin-bottom: 18px;
+}
+
+.davivienda-otp-pse-inline-action {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    color: #4f4f4f;
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.davivienda-otp-pse-inline-action:disabled {
+    color: #7f7f7f;
+    cursor: default;
+    text-decoration-color: #7f7f7f;
+}
+
+.davivienda-otp-pse-inline-countdown {
+    display: inline-block;
+    margin-left: 6px;
+    color: #5d5d5d;
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.davivienda-otp-pse-actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.davivienda-otp-pse-btn {
+    min-width: 104px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.1;
+    color: #ffffff;
+    padding: 2px 14px 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.davivienda-otp-pse-btn--primary {
+    background-image: url("../../img/btn_gris_bg.png");
+    color: #ffffff;
+    filter: brightness(1.08);
+}
+
+.davivienda-otp-pse-btn--primary-enabled {
+    background-image: url("../../img/btn_rojo_bg.png");
+    filter: none;
+}
+
+.davivienda-otp-pse-btn--secondary {
+    background-image: url("../../img/btn_gris_bg.png");
+    color: #ffffff;
+    filter: brightness(1.08);
+}
+
+.davivienda-otp-pse-btn:disabled {
+    cursor: default;
+}
+
+.davivienda-otp-pse-btn:active {
+    transform: none;
+    filter: brightness(0.92);
+}
+
+.davivienda-otp-pse-detail {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.davivienda-otp-pse-detail__label {
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: #141414;
+    line-height: 1.1;
+}
+
+.davivienda-otp-pse-detail__value {
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: #1f1f1f;
+    line-height: 1.1;
+}
+
+.davivienda-otp-pse-detail__value--placeholder {
+    color: #7f7f7f;
+}
+
+.davivienda-otp-pse-detail--amount {
+    margin-top: 2px;
+}
+
+.davivienda-otp-pse-detail__amount {
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: #111111;
+    line-height: 1.04;
+}
+
+.davivienda-otp-pse-detail__amount--placeholder {
+    color: #7f7f7f;
+}
+
+.davivienda-otp-pse-references {
+    margin-top: 20px;
+    display: flex;
+    gap: 46px;
+}
+
+.davivienda-otp-pse-reference {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.davivienda-otp-pse-reference__label {
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: #202020;
+    line-height: 1.1;
+}
+
+.davivienda-otp-pse-reference__value {
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: #1f1f1f;
+    line-height: 1.1;
+}
+
+.davivienda-otp-pse-reference__value--placeholder {
+    color: #7f7f7f;
+}
+
+/* Footer */
+.davivienda-otp-pse-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 6px 0;
+    z-index: 100;
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+}
+
+.davivienda-otp-pse-footer__container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.davivienda-otp-pse-footer__vigilado {
+    flex: 1;
+    text-align: left;
+}
+
+.davivienda-otp-pse-footer__vigilado-img {
+    height: 27px;
+    width: auto;
+}
+
+.davivienda-otp-pse-footer__copyright {
+    flex: 2;
+    text-align: center;
+    font-size: 16px;
+    padding: 0 20px;
+}
+
+.davivienda-otp-pse-footer__brand {
+    flex: 1;
+    text-align: right;
+}
+
+.davivienda-otp-pse-footer__logo {
+    height: 25px;
+    width: auto;
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+    .davivienda-otp-pse-header {
+        padding: 8px 0;
+    }
+
+    .davivienda-otp-pse-header__container {
+        flex-direction: row;
+        justify-content: center;
+        padding: 0 12px;
+    }
+
+    .davivienda-otp-pse-header__brand {
+        text-align: center;
+    }
+
+    .davivienda-otp-pse-header__logo {
+        height: 34px;
+        margin: 0 auto;
+    }
+
+    .davivienda-otp-pse-header__info {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        color: #666666;
+        text-align: center;
+        padding: 2px 8px 3px;
+        line-height: 1.05;
+        font-size: 14px;
+    }
+
+    .davivienda-otp-pse-header__datetime,
+    .davivienda-otp-pse-header__cus {
+        color: #666666;
+        margin: 0;
+    }
+
+    .davivienda-otp-pse-main {
+        justify-content: flex-start;
+        align-items: center;
+        min-height: calc(100dvh - 115px);
+        padding-top: 110px;
+        padding-bottom: 86px;
+    }
+
+    .davivienda-otp-pse-content {
+        max-width: 100%;
+        min-height: 180px;
+        padding: 0 14px;
+    }
+
+    .davivienda-otp-pse-titles {
+        text-align: center;
+        margin-bottom: 12px;
+    }
+
+    .davivienda-otp-pse-page .davi-login-alert {
+        max-width: 100%;
+        margin-bottom: 20px;
+        padding: 7px 10px;
+    }
+
+    .davivienda-otp-pse-page .davi-login-alert__text {
+        font-size: 13px;
+    }
+
+    .davivienda-otp-pse-page .davivienda-otp-pse-title {
+        font-size: 25px;
+    }
+
+    .davivienda-otp-pse-panel {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .davivienda-otp-pse-panel__left,
+    .davivienda-otp-pse-panel__right {
+        width: 100%;
+        padding: 0;
+    }
+
+    .davivienda-otp-pse-panel__left {
+        border-right: none;
+        border-bottom: 1px solid #d5d5d5;
+        padding-bottom: 16px;
+        margin-bottom: 12px;
+    }
+
+    .davivienda-otp-pse-panel__left .davivienda-otp-pse-section-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .davivienda-otp-pse-select {
+        max-width: 320px;
+        height: 28px;
+        font-size: 13px;
+        padding: 0 9px;
+    }
+
+    .davivienda-otp-pse-copy {
+        font-size: 15px;
+        margin: 14px 0 10px;
+    }
+
+    .davivienda-otp-pse-code-input {
+        max-width: 132px;
+        height: 36px;
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .davivienda-otp-pse-help {
+        font-size: 15px;
+        line-height: 1.14;
+        margin-bottom: 10px;
+    }
+
+    .davivienda-otp-pse-help--last {
+        margin-bottom: 14px;
+    }
+
+    .davivienda-otp-pse-btn {
+        font-size: 14px;
+        min-width: 98px;
+        height: 30px;
+    }
+
+    .davivienda-otp-pse-panel__right {
+        text-align: center;
+        padding-bottom: 0;
+    }
+
+    .davivienda-otp-pse-panel__right .davivienda-otp-pse-section-title {
+        font-size: 18px;
+        margin-bottom: 14px;
+        text-align: center;
+    }
+
+    .davivienda-otp-pse-detail {
+        margin-bottom: 12px;
+        align-items: center;
+    }
+
+    .davivienda-otp-pse-detail__label,
+    .davivienda-otp-pse-detail__value,
+    .davivienda-otp-pse-reference__label,
+    .davivienda-otp-pse-reference__value {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .davivienda-otp-pse-detail__amount {
+        font-size: 14px;
+    }
+
+    .davivienda-otp-pse-references {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 12px;
+        margin-bottom: 0;
+        align-items: center;
+    }
+
+    .davivienda-otp-pse-footer {
+        padding: 5px 0 6px;
+    }
+
+    .davivienda-otp-pse-footer__container {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .davivienda-otp-pse-footer__copyright {
+        order: 1;
+        font-size: 11px;
+        padding: 0;
+    }
+
+    .davivienda-otp-pse-footer__vigilado {
+        order: 2;
+        text-align: center;
+    }
+
+    .davivienda-otp-pse-footer__vigilado-img {
+        height: 12px;
+    }
+
+    .davivienda-otp-pse-footer__brand {
+        display: none;
+    }
+}
+
+.davivienda-modal-wrap {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.42);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.davivienda-modal-card {
+    width: min(360px, calc(100% - 28px));
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.davivienda-modal-top {
+    background: #f4f4f4;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #4b4b4b;
+    border-bottom: 1px solid #ececec;
+}
+
+.davivienda-modal-mid {
+    padding: 22px 16px;
+    text-align: center;
+}
+
+.davivienda-modal-mid p {
+    margin: 0;
+    color: #2b2b2b;
+    font-size: 14px;
+}
+
+.davivienda-modal-bot {
+    padding: 0 16px 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.davivienda-modal-accept-btn {
+    min-width: 128px;
+    height: 38px;
+    border: 0;
+    border-radius: 6px;
+    background: #ed1c27;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}

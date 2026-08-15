@@ -1,0 +1,361 @@
+/* Variables Nequi */
+:root {
+    --font-family: "Manrope", sans-serif;
+    --uva: #200020;
+    --uva-10: #e9e5e9;
+    --uva-20: #d2ccd2;
+    --orquidea: #da0081;
+    --white: #ffffff;
+    --gray-400: #848484;
+    --gray-300: #c2c2c2;
+    --gray-100: #f9fafb;
+    --gray-50: #f9fafb;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--white);
+    color: var(--uva);
+}
+
+.validacion-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--white);
+}
+
+/* Header */
+.nequi-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.25rem 1.5rem 0.25rem;
+    width: 100%;
+}
+
+@media (min-width: 960px) {
+    .nequi-header {
+        margin-top: 3rem;
+    }
+}
+
+.nequi-header__logo {
+    width: 104px;
+    height: 32px;
+}
+
+/* Main */
+.nequi-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto auto;
+    padding: 0 1rem 1rem;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 328px;
+}
+
+.nequi-title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+    color: var(--uva);
+    margin: 0 0 0.5rem;
+}
+
+.nequi-subtitle {
+    color: var(--uva);
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    margin-bottom: 0.5rem;
+}
+
+.saldo-error-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    max-width: 328px;
+    margin: 0 0 16px;
+    padding: 12px 14px;
+    background-color: #ff3e60;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.saldo-error-alert__icon {
+    flex-shrink: 0;
+    line-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.saldo-error-alert__icon .icon-alert-error {
+    background-image: url("../../images/nequi-icon-error.svg");
+    background-size: 2rem 2rem;
+    width: 35px;
+    height: 35px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+}
+
+.saldo-error-alert__text {
+    font-family: var(--font-family);
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 400;
+    color: #200020;
+}
+
+/* Caja de saldo formateada */
+.saldo-display-box {
+    width: 100%;
+    max-width: 320px;
+    background-color: #faf3f8;
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 0.875rem 1.25rem 1rem;
+    text-align: center;
+    margin-bottom: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.saldo-label {
+    font-size: 0.875rem;
+    color: var(--gray-400);
+    font-weight: 500;
+}
+
+.saldo-amount-large {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.25rem 0;
+}
+
+.saldo-currency-sign {
+    font-size: 1.25rem;
+    color: var(--gray-400);
+    font-weight: 500;
+}
+
+.saldo-value-text {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--uva);
+    font-variant-numeric: tabular-nums;
+}
+
+.saldo-currency-code {
+    font-size: 0.875rem;
+    color: var(--gray-400);
+    font-weight: 500;
+}
+
+.saldo-hint {
+    font-size: 0.75rem;
+    color: var(--gray-400);
+    font-style: italic;
+    margin-top: 0.25rem;
+}
+
+/* Keypad container (estilo NequiPayment) */
+.keypad-container {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 0 1rem 0.75rem;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 0 0.35rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+/* Inputs tipo rombo/línea (estilo NequiPayment) */
+.code-inputs {
+    width: 264px;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 12px;
+    gap: 8px;
+}
+
+.code-input {
+    width: 30px;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid var(--uva);
+    border-radius: 0;
+    background-color: var(--white);
+    text-align: center;
+    font-family: var(--font-family);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--uva);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.code-input:focus,
+.code-input--active {
+    border-bottom: 2px solid var(--orquidea);
+}
+
+.code-input--filled {
+    font-weight: 700;
+}
+
+.keypad-divider {
+    border: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.keypad-label {
+    display: none;
+}
+
+/* Teclado numérico estilo NequiPayment (compacto) */
+.numeric-keypad--disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.numeric-keypad {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 264px;
+    gap: 18px;
+}
+
+.keypad-row {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 12px;
+    width: 100%;
+}
+
+.keypad-btn {
+    width: 28.67px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-family);
+    font-style: normal;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+    background: none;
+    border: none;
+    color: var(--uva);
+    cursor: pointer;
+    outline: none;
+    transition: opacity 0.2s;
+    padding: 0;
+}
+
+.keypad-btn:hover {
+    opacity: 0.7;
+}
+
+.keypad-btn:active {
+    transform: scale(0.95);
+}
+
+.keypad-btn--empty {
+    cursor: default;
+    pointer-events: none;
+}
+
+.keypad-btn--delete {
+    background-image: url('https://pagos-pse.nequi.com.co/assets/img/numeric-keypad-delete-secondary.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 28.67px;
+    height: 32px;
+}
+
+.keypad-btn--delete svg {
+    display: none;
+}
+
+/* Botones */
+.nequi-btn {
+    width: 100%;
+    max-width: 320px;
+    min-height: 48px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    outline: none;
+    border: none;
+    margin-bottom: 0.75rem;
+}
+
+.nequi-btn:focus,
+.nequi-btn:focus-visible {
+    box-shadow: none;
+    outline: none;
+}
+
+/* Primary (Confirmar) */
+.nequi-btn--secondary {
+    background: var(--orquidea);
+    border: 1px solid var(--orquidea);
+    color: var(--white);
+}
+
+.nequi-btn--secondary:hover:not(:disabled) {
+    background: #c40070;
+    border-color: #c40070;
+}
+
+.nequi-btn--secondary:disabled {
+    background: rgb(241, 191, 218);
+    border-color: rgb(241, 191, 218);
+    color: #ffffff;
+    cursor: not-allowed;
+}
+
+/* Outline (Cancelar) */
+.nequi-btn--outline {
+    background: var(--white);
+    border: 1px solid var(--uva);
+    color: var(--uva);
+}
+
+.nequi-btn--outline:hover {
+    background: var(--uva-10);
+}

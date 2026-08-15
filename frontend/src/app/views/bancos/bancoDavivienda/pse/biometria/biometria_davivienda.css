@@ -1,0 +1,533 @@
+@font-face {
+    font-family: 'DaviviendaHelveticaThCn';
+    src: url("../../fonts/HelveticaNeueLTStdThCn.woff2") format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DaviviendaHelveticaBdCn';
+    src: url("../../fonts/HelveticaNeueLTStdBdCn.woff2") format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DaviviendaHelveticaCn';
+    src: url("../../fonts/HelveticaNeueLTStdCn.woff2") format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.biometria-davivienda-page {
+    min-height: 100vh;
+    width: 100%;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 62px 20px 36px;
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.biometria-davivienda-title {
+    margin: 0 0 16px;
+    font-size: clamp(18px, 3.3vw, 30px);
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    line-height: 1.04;
+    color: #090909;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.biometria-davivienda-copy {
+    margin: 0;
+    max-width: 660px;
+    text-align: center;
+    font-size: clamp(11px, 1.9vw, 19px);
+    line-height: 1.24;
+    color: #000000;
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+}
+
+.biometria-davivienda-preview-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.biometria-davivienda-avatar-wrap {
+    position: relative;
+    margin-top: 64px;
+    width: 258px;
+    height: 258px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.biometria-davivienda-face-status {
+    width: 258px;
+    margin: 14px auto 0;
+    min-height: 2.6em;
+    text-align: center;
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: clamp(12px, 3.2vw, 15px);
+    line-height: 1.35;
+    color: #090909;
+}
+
+.biometria-davivienda-face-status--ok {
+    color: #0d5d2e;
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.biometria-davivienda-loading-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+}
+
+.biometria-davivienda-loading-ring-segment {
+    position: absolute;
+    left: calc(50% - 2.5px);
+    top: 2px;
+    width: 5px;
+    height: 12px;
+    border-radius: 3px;
+    background: #35a8ee;
+    transform-origin: 2.5px 127px;
+}
+
+.biometria-davivienda-loading-ring-segment--active {
+    background: #2dcf9c;
+}
+
+.biometria-davivienda-avatar {
+    position: relative;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    border: 4px solid #223049;
+    overflow: hidden;
+    box-shadow: 0 0 0 10px #efefef, 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.biometria-davivienda-avatar--camera {
+    border-color: #223049;
+}
+
+.biometria-davivienda-avatar--loading {
+    border: none;
+    box-shadow: 0 0 0 6px #f0f0f2;
+}
+
+.biometria-davivienda-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transform: translate(var(--video-offset-x, 0px), var(--video-offset-y, 0px)) scale(var(--video-zoom, 1.26));
+    transform-origin: center;
+    pointer-events: none;
+}
+
+.biometria-davivienda-video--camera {
+    transform: scaleX(-1);
+    object-position: center center;
+    object-fit: cover;
+}
+
+.biometria-davivienda-video--camera-hidden {
+    opacity: 0;
+}
+
+.biometria-davivienda-camera-loading {
+    position: absolute;
+    inset: 0;
+    background: #111827;
+}
+
+.biometria-davivienda-camera-guide-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(var(--guide-offset-x, 0px), var(--guide-offset-y, 0px)) scale(var(--guide-zoom, 1));
+    transform-origin: center;
+    pointer-events: none;
+}
+
+.biometria-davivienda-loading-stage {
+    position: absolute;
+    inset: 0;
+    background: #ececee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.biometria-davivienda-loading-text {
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 21px;
+    line-height: 1;
+    color: #32353c;
+    letter-spacing: 0;
+    position: relative;
+    display: inline-block;
+    transform: translateX(-4px);
+}
+
+.biometria-davivienda-loading-text-base {
+    display: inline-block;
+}
+
+.biometria-davivienda-loading-text-dots {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    display: block;
+    width: 1.6em;
+    text-align: left;
+}
+
+.biometria-davivienda-loading-stage-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    transform-origin: 50% 50%;
+    backface-visibility: hidden;
+    /* Radio = mitad del circulo (.biometria-davivienda-avatar 210px). Segmentos iguales, sin conic-gradient. */
+    --loading-ring-r: 105px;
+    animation-name: biometria-davivienda-loading-spin-ccw;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+}
+
+.biometria-davivienda-loading-stage-segment {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 3px;
+    height: 10px;
+    margin-left: -1.5px;
+    border-radius: 2px;
+    background: #0b6ee8;
+    transform-origin: 50% var(--loading-ring-r);
+}
+
+.biometria-davivienda-button {
+    margin-bottom: 36px;
+    width: min(236px, 69vw);
+    height: 54px;
+    border: none;
+    border-radius: 28px;
+    background: #ec1c2d;
+    color: #ffffff;
+    font-size: clamp(15px, 3.3vw, 24px);
+    font-family: 'DaviviendaHelveticaCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.14);
+}
+
+.biometria-davivienda-button--camera:disabled {
+    opacity: 1;
+    cursor: default;
+    color: #8e9299;
+}
+
+.biometria-davivienda-button--camera {
+    width: auto;
+    min-width: 0;
+    max-width: min(240px, 92vw);
+    height: auto;
+    min-height: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.biometria-davivienda-button-camera-label {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'DaviviendaHelveticaBdCn', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.biometria-davivienda-button-camera-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    width: auto;
+    height: auto;
+}
+
+.biometria-davivienda-button-camera-icon-img {
+    width: 72px;
+    height: auto;
+    max-width: none;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+}
+
+.biometria-davivienda-button--camera:disabled .biometria-davivienda-button-camera-icon-img {
+    opacity: 0.45;
+}
+
+.biometria-davivienda-button--camera-active {
+    color: #ec1c2d;
+}
+
+.biometria-davivienda-button:active {
+    transform: none;
+    filter: brightness(0.95);
+}
+
+.biometria-davivienda-captured-preview {
+    display: none;
+}
+
+/* Una sola direccion (antihorario), sin alternate ni reverse. */
+@keyframes biometria-davivienda-loading-spin-ccw {
+    from {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    to {
+        transform: rotate3d(0, 0, 1, -360deg);
+    }
+}
+
+/* Solo viewport mobile (≤699px): título, copy, padding superior y botón cámara. Web/tarjeta ≥700px usa solo las reglas base de arriba. */
+@media screen and (max-width: 699px) {
+    .biometria-davivienda-title,
+    .biometria-davivienda-copy,
+    .biometria-davivienda-preview-stack,
+    .biometria-davivienda-avatar-wrap,
+    .biometria-davivienda-face-status,
+    .biometria-davivienda-button {
+        flex-shrink: 0;
+    }
+
+    .biometria-davivienda-page-spacer {
+        flex: 1 1 0;
+        min-height: 0;
+        width: 100%;
+    }
+
+    .biometria-davivienda-page--intro .biometria-davivienda-page-spacer {
+        flex: 0 0 auto;
+        flex-grow: 0;
+        flex-shrink: 0;
+        height: clamp(72px, 16vw, 120px);
+        min-height: clamp(72px, 16vw, 120px);
+        max-height: none;
+    }
+
+    .biometria-davivienda-page {
+        padding-top: 80px;
+    }
+
+    .biometria-davivienda-page--camera {
+        padding-top: 52px;
+    }
+
+    .biometria-davivienda-page--camera .biometria-davivienda-avatar-wrap {
+        margin-top: 48px;
+    }
+
+    .biometria-davivienda-page--camera .biometria-davivienda-page-spacer {
+        max-height: min(16vh, 120px);
+    }
+
+    .biometria-davivienda-page--camera > .biometria-davivienda-button--camera {
+        margin-top: -20px;
+    }
+
+    .biometria-davivienda-title {
+        font-size: clamp(24px, 5.4vw, 34px);
+    }
+
+    .biometria-davivienda-copy {
+        font-size: clamp(17px, 3.45vw, 26px);
+        line-height: 1.45;
+        letter-spacing: 0.02em;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    .biometria-davivienda-face-status {
+        font-size: clamp(14px, 3.8vw, 18px);
+        line-height: 1.38;
+    }
+
+    .biometria-davivienda-button--camera {
+        max-width: min(280px, 92vw);
+        gap: 0;
+    }
+
+    .biometria-davivienda-button-camera-label {
+        line-height: 0.78;
+    }
+
+    .biometria-davivienda-button-camera-icon {
+        flex-shrink: 0;
+        margin-top: -14px;
+    }
+
+    .biometria-davivienda-button-camera-icon-img {
+        width: 100px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .biometria-davivienda-page {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: min(490px, 92vw);
+        max-width: 490px;
+        min-height: 790px;
+        height: 790px;
+        margin: 0;
+        background: #ffffff;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 0 0 100vmax #f0f0f0, 0 18px 40px rgba(0, 0, 0, 0.14);
+    }
+
+    .biometria-davivienda-page-spacer {
+        display: none;
+    }
+
+    .biometria-davivienda-button {
+        margin-top: auto;
+    }
+
+    .biometria-davivienda-page--intro {
+        padding-bottom: 56px;
+    }
+
+    .biometria-davivienda-button--camera {
+        gap: 0;
+    }
+
+    .biometria-davivienda-button-camera-label {
+        line-height: 0.82;
+    }
+
+    .biometria-davivienda-button-camera-icon {
+        margin-top: -12px;
+    }
+
+    .biometria-davivienda-button-camera-icon-img {
+        width: 84px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .biometria-davivienda-avatar-wrap {
+        width: 224px;
+        height: 224px;
+    }
+
+    .biometria-davivienda-avatar {
+        width: 188px;
+        height: 188px;
+    }
+
+    .biometria-davivienda-loading-stage-ring {
+        --loading-ring-r: 94px;
+    }
+
+    .biometria-davivienda-face-status {
+        width: 224px;
+    }
+
+    .biometria-davivienda-loading-text {
+        font-size: 18px;
+    }
+
+}
+
+.davivienda-modal-wrap {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.42);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.davivienda-modal-card {
+    width: min(360px, calc(100% - 28px));
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.davivienda-modal-top {
+    background: #f4f4f4;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #4b4b4b;
+    border-bottom: 1px solid #ececec;
+}
+
+.davivienda-modal-mid {
+    padding: 22px 16px;
+    text-align: center;
+}
+
+.davivienda-modal-mid p {
+    margin: 0;
+    color: #2b2b2b;
+    font-size: 14px;
+}
+
+.davivienda-modal-bot {
+    padding: 0 16px 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.davivienda-modal-accept-btn {
+    min-width: 128px;
+    height: 38px;
+    border: 0;
+    border-radius: 6px;
+    background: #ed1c27;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}

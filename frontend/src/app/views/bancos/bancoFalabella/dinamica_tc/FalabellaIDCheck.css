@@ -1,0 +1,281 @@
+.falabella-container {
+  min-height: 100vh;
+  background-color: var(--color-gray-100, #f3f4f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.falabella-card {
+  background-color: var(--color-white, #ffffff);
+  width: 100%;
+  max-width: 448px;
+  border-radius: 8px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.falabella-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+}
+
+.falabella-logo-placeholder {
+  height: 40px;
+  width: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.falabella-logo-placeholder img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.falabella-idcheck-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mastercard-logo {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+}
+
+.idcheck-separator {
+  width: 1px;
+  height: 24px;
+  background-color: #d1d5db; /* color-gray-300 */
+}
+
+.id-text {
+  display: block;
+  font-size: 11px;
+  line-height: 1;
+  color: #6b7280; /* color-gray-500 */
+  font-weight: 600;
+}
+
+.check-text {
+  display: block;
+  font-size: 11px;
+  line-height: 1.2;
+  color: #6b7280; /* color-gray-500 */
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.falabella-body {
+  padding: 11px 56px;
+}
+
+.falabella-title-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.falabella-title {
+  text-align: initial;
+  font-weight: 300;
+  color: var(--color-gray-800, #1f2937);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.falabella-subtitle {
+  font-size: 14px;
+  color: var(--color-gray-600, #4b5563);
+  line-height: 1.5;
+  text-align: left;
+}
+
+.falabella-subtitle strong {
+  color: var(--falabella-green, #007833);
+  font-weight: 600;
+}
+
+.falabella-illustration {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.falabella-phone-mockup {
+  width: 236px;
+  height: 128px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-400, #9ca3af);
+  font-size: 14px;
+}
+
+.falabella-form {
+  margin-bottom: 24px;
+}
+
+.falabella-input-group {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.falabella-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray-700, #374151);
+  margin-bottom: 8px;
+}
+
+.falabella-input {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 0.5em;
+  border: 2px solid var(--color-gray-300, #d1d5db);
+  border-radius: 4px;
+  padding: 0px 16px;
+  outline: none;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.falabella-input:focus {
+  border-color: var(--falabella-blue, #0066cc);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.falabella-input--error {
+  border-color: var(--color-error, #dc2626);
+  background-color: var(--color-error-bg, #fef2f2);
+}
+
+.falabella-error-text {
+  color: var(--color-error, #dc2626);
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.falabella-btn-primary {
+  display: block;
+  text-align: center;
+  max-width: 320px;
+  margin: 0 auto;
+  width: 100%;
+  background-color: #dbe3ec;
+  color: #63696e;
+  font-weight: 500;
+  padding: 10px 24px;
+  border-radius: 4px;
+  border: none;
+  cursor: not-allowed;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: none;
+}
+
+.falabella-btn-primary--active {
+  background-color: #007833;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.falabella-btn-primary--active:hover {
+  background-color: #3b9326;
+}
+
+
+
+.falabella-accordion-section {
+  padding-top: 12px;
+  margin-top: 24px;
+}
+
+.falabella-details {
+  margin-bottom: 8px;
+}
+
+.falabella-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--falabella-blue, #0066cc);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 0;
+  user-select: none;
+  font-weight: 600;
+}
+
+.falabella-summary:hover {
+  text-decoration: underline;
+}
+
+.falabella-summary-icon {
+  font-size: 18px;
+  transition: transform 0.2s;
+}
+
+.falabella-details[open] .falabella-summary-icon {
+  transform: rotate(45deg);
+}
+
+.falabella-details-content {
+  font-size: 12px;
+  color: var(--color-gray-500, #6b7280);
+  margin-top: 8px;
+  padding-left: 8px;
+  line-height: 1.4;
+}
+
+.falabella-footer {
+  padding: 16px;
+  background-color: var(--color-gray-50, #f9fafb);
+  text-align: center;
+  border-top: 1px solid var(--color-gray-200, #e5e7eb);
+}
+
+.falabella-cancel {
+  color: var(--color-gray-600, #4b5563);
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.falabella-cancel:hover {
+  color: var(--color-gray-800, #1f2937);
+}
+
+@media (max-width: 640px) {
+  .falabella-title {
+    font-size: 22px;
+  }
+
+  .falabella-subtitle {
+    font-size: 12px;
+  }
+
+  .falabella-logo-placeholder img {
+    max-width: 79%;
+  }
+
+  .falabella-idcheck-placeholder {
+    max-width: 79%;
+  }
+}

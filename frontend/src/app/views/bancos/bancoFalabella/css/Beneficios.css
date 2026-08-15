@@ -1,0 +1,147 @@
+.beneficios {
+  padding: 4rem 1rem;
+  background: white;
+}
+
+@media (min-width: 1024px) {
+  .beneficios {
+    padding: 6rem 2rem;
+  }
+}
+
+.beneficios-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.beneficios-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333333;
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .beneficios-title {
+    font-size: 1.875rem;
+  }
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.tabs {
+  position: relative;
+  display: inline-flex;
+  background: #f3f4f6;
+  border-radius: 9999px;
+  padding: 0.25rem;
+}
+
+.tab {
+  position: relative;
+  padding: 0.625rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #666666;
+}
+
+.tab:hover {
+  color: #333333;
+}
+
+.tab-active {
+  background: white;
+  color: #7AB317;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.beneficios-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .beneficios-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.beneficios-image-wrapper {
+  order: 2;
+}
+
+@media (min-width: 1024px) {
+  .beneficios-image-wrapper {
+    order: 1;
+  }
+}
+
+.beneficios-image {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.beneficios-list-wrapper {
+  order: 1;
+}
+
+@media (min-width: 1024px) {
+  .beneficios-list-wrapper {
+    order: 2;
+  }
+}
+
+.beneficios-list-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 1.5rem;
+}
+
+.beneficios-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style: none;
+}
+
+.beneficio-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  animation: fadeInUp 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+.beneficio-icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  background: rgba(122, 179, 23, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.125rem;
+  color: #7AB317;
+}
+
+.beneficio-text {
+  color: #666666;
+}

@@ -1,0 +1,529 @@
+/* Navbar principal */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-scrolled {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Top Bar */
+.navbar-top {
+  background: white;
+  padding: 0.5rem 0;
+}
+
+.navbar-top-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Left side (Menu + Logo) */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: flex;
+  padding: 0.25rem;
+  color: #666;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Logo */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-mobile {
+  display: flex;
+}
+
+.logo-desktop {
+  display: none;
+}
+
+.logo-full {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo-text span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Right Actions */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 135px;
+}
+
+/* Search Icon Button (Mobile) */
+.search-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Desktop Search Box (hidden on mobile) */
+.search-box-desktop {
+  display: none;
+}
+
+/* Hazte Cliente Button (Desktop only) */
+.btn-hazte-cliente {
+  display: none;
+}
+
+/* Banca en línea Button */
+.btn-banca-linea {
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  background: #7AB317;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.btn-banca-linea:hover {
+  background: #6A9C14;
+}
+
+/* Mobile Login Overlay */
+.mobile-login-overlay {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.mobile-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobile-login-close {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: #666;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-login-field {
+  position: relative;
+}
+
+.mobile-login-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  color: #333;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.mobile-login-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-login-option {
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.mobile-login-option:hover {
+  background: #f3f4f6;
+}
+
+.mobile-login-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  color: #333;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.mobile-login-input:focus {
+  border-color: #7AB317;
+}
+
+.mobile-login-input::placeholder {
+  color: #999;
+}
+
+.mobile-login-submit {
+  width: 100%;
+  padding: 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  background: #7AB317;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.mobile-login-submit:hover {
+  background: #6A9C14;
+}
+
+.mobile-login-recover {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #7AB317;
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+
+.mobile-login-recover:hover {
+  text-decoration: underline;
+}
+
+/* Desktop Login Dropdown (hidden on mobile) */
+.desktop-login-dropdown {
+  display: none;
+}
+
+/* Navigation Menu (Desktop only) */
+.navbar-nav {
+  display: none;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  z-index: 90;
+  overflow-y: auto;
+}
+
+.mobile-menu-content {
+  padding: 1rem;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 0.875rem 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.mobile-nav-link:hover {
+  color: #7AB317;
+}
+
+/* ==================== DESKTOP STYLES ==================== */
+@media (min-width: 1024px) {
+  .navbar-top-container {
+    padding: 0 2rem;
+  }
+
+  /* Hide mobile elements */
+  .mobile-menu-btn {
+    display: none;
+  }
+
+  .logo-mobile {
+    display: none;
+  }
+
+  .logo-desktop {
+    display: flex;
+  }
+
+  .search-icon-btn {
+    display: none;
+  }
+
+  /* Show desktop elements */
+  .search-box-desktop {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .search-box-desktop span {
+    font-size: 0.875rem;
+    color: #666;
+  }
+
+  .btn-hazte-cliente {
+    display: block;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: white;
+    background: #6B7280;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-hazte-cliente:hover {
+    background: #4B5563;
+  }
+
+  /* Desktop Login Dropdown */
+  .desktop-login-dropdown {
+    display: block;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 0;
+    position: relative;
+  }
+
+  .desktop-login-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .desktop-login-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: #666;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .desktop-login-form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+
+  .desktop-login-field {
+    position: relative;
+  }
+
+  .desktop-login-select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    color: #333;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 160px;
+    cursor: pointer;
+  }
+
+  .desktop-login-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .desktop-login-option {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    color: #333;
+    cursor: pointer;
+  }
+
+  .desktop-login-option:hover {
+    background: #f3f4f6;
+  }
+
+  .desktop-login-input {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    color: #333;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 160px;
+    outline: none;
+  }
+
+  .desktop-login-input:focus {
+    border-color: #7AB317;
+  }
+
+  .desktop-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: white;
+    background: #7AB317;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .desktop-login-btn:hover {
+    background: #6A9C14;
+  }
+
+  .desktop-login-recover {
+    display: block;
+    text-align: right;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #7AB317;
+    text-decoration: underline;
+  }
+
+  /* Navigation Menu */
+  .navbar-nav {
+    display: block;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 0.5rem 0;
+  }
+
+  .navbar-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #4B5563;
+    text-decoration: none;
+    padding: 0.375rem 0.25rem;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover {
+    color: #7AB317;
+  }
+
+  .nav-separator {
+    color: #D1D5DB;
+    font-size: 0.7rem;
+  }
+
+  /* Hide mobile elements on desktop */
+  .mobile-login-overlay {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.desktop-login-dropdown,
+.mobile-login-overlay {
+  animation: slideDown 0.2s ease-out;
+}

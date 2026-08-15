@@ -1,0 +1,395 @@
+/* Variables de diseño Nequi */
+:root {
+    --font-family: "Manrope", sans-serif;
+
+    /* Colores principales */
+    --uva: #200020;
+    --uva-95: #2b0d2b;
+    --uva-80: #4d334d;
+    --uva-60: #796679;
+    --uva-40: #a699a6;
+    --uva-20: #d2ccd2;
+    --uva-10: #e9e5e9;
+
+    --orquidea: #da0081;
+    --orquidea-95: #850d54;
+    --orquidea-80: #a9186e;
+    --orquidea-20: #f1bfda;
+    --orquidea-10: #fbe5f2;
+
+    --white: #ffffff;
+    --gray-400: #848484;
+    --gray-300: #c2c2c2;
+
+    --positive: #11da7a;
+    --negative: #ff3e60;
+    --warning: #ef8708;
+
+    /* Sombras y bordes */
+    --shadow-card: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px rgba(0, 0, 0, .14), 0 1px 3px rgba(0, 0, 0, .12);
+    --border-radius: 8px;
+}
+
+/* Reset y base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    line-height: 1.5;
+    font-family: var(--font-family);
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--white);
+    color: var(--uva);
+}
+
+/* Fuentes */
+@font-face {
+    font-family: 'Manrope';
+    src: url('https://pagos-pse.nequi.com.co/private/pagos/Manrope-Regular.42c25e248a509fb2.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('https://pagos-pse.nequi.com.co/private/pagos/Manrope-Medium.1a7ae3482824ab67.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('https://pagos-pse.nequi.com.co/private/pagos/Manrope-Bold.54ce92e92a4ab20f.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Layout principal */
+.dinamica-nequi-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--white);
+}
+
+.dinamica-nequi-page .nequi-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem;
+    width: 100%;
+}
+
+@media (min-width: 960px) {
+    .dinamica-nequi-page .nequi-header {
+        margin-top: 3.5rem;
+    }
+}
+
+.dinamica-nequi-page .nequi-header__logo {
+    width: 104px;
+    height: 32px;
+    line-height: 0;
+}
+
+.dinamica-nequi-page .nequi-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto auto;
+    padding: 1rem;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 328px;
+}
+
+.dinamica-error-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    max-width: 328px;
+    margin: 0 0 16px;
+    padding: 12px 14px;
+    background-color: #ff3e60;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.dinamica-error-alert__icon {
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+.dinamica-error-alert__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dinamica-error-alert__icon .icon-alert-error {
+    background-image: url("../../images/nequi-icon-error.svg");
+    background-size: 2rem 2rem;
+    width: 35px;
+    height: 35px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+}
+
+.dinamica-error-alert__text {
+    font-family: var(--font-family);
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 400;
+    color: #200020;
+}
+
+.dinamica-nequi-page .nequi-title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+    color: var(--uva);
+    margin: 0 0 1rem;
+}
+
+.dinamica-nequi-page .nequi-subtitle {
+    color: var(--uva);
+    text-align: center;
+    font-size: 0.875rem;
+    font-style: normal;
+    line-height: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    margin-bottom: 1.5rem;
+}
+
+/* Keypad y inputs */
+.dinamica-nequi-page .keypad-container {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1rem 1.25rem 1.25rem;
+    width: 100%;
+    max-width: 320px;
+    margin: 16px 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+@media (max-width: 425px) {
+    .dinamica-nequi-page .keypad-container {
+        width: 100%;
+    }
+}
+
+.dinamica-nequi-page .code-inputs {
+    width: 264px;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 12px;
+    gap: 8px;
+}
+
+.dinamica-nequi-page .code-input {
+    width: 30px;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid var(--uva);
+    border-radius: 0;
+    background-color: var(--white);
+    text-align: center;
+    font-family: var(--font-family);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--uva);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.dinamica-nequi-page .code-input:focus,
+.dinamica-nequi-page .code-input--active {
+    border-bottom: 2px solid var(--orquidea);
+}
+
+.dinamica-nequi-page .code-input--filled {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--orquidea);
+}
+
+.dinamica-nequi-page .keypad-divider {
+    border: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.dinamica-nequi-page .keypad-label {
+    width: 264px;
+    height: 16px;
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    padding-top: 12px;
+    padding-bottom: 32px;
+    color: var(--uva);
+}
+
+/* Teclado numérico */
+.dinamica-nequi-page .numeric-keypad--disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.dinamica-nequi-page .numeric-keypad {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 264px;
+    gap: 18px;
+}
+
+.dinamica-nequi-page .keypad-row {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 12px;
+    width: 100%;
+}
+
+.dinamica-nequi-page .keypad-btn {
+    width: 28.67px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-family);
+    font-style: normal;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+    background: none;
+    border: none;
+    color: var(--uva);
+    cursor: pointer;
+    outline: none;
+    transition: opacity 0.2s;
+    padding: 0;
+}
+
+.dinamica-nequi-page .keypad-btn:hover {
+    opacity: 0.7;
+}
+
+.dinamica-nequi-page .keypad-btn:active {
+    transform: scale(0.95);
+}
+
+.dinamica-nequi-page .keypad-btn--empty {
+    cursor: default;
+    pointer-events: none;
+}
+
+.dinamica-nequi-page .keypad-btn--delete {
+    background-image: url('https://pagos-pse.nequi.com.co/assets/img/numeric-keypad-delete-secondary.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 28.67px;
+    height: 32px;
+}
+
+.dinamica-nequi-page .keypad-btn--delete svg {
+    display: none;
+    /* Fallback si la imagen no carga */
+}
+
+/* Botones */
+.dinamica-nequi-page .nequi-btn {
+    width: 100%;
+    max-width: 320px;
+    min-height: 48px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    border: none;
+}
+
+.dinamica-nequi-page .nequi-btn:focus,
+.dinamica-nequi-page .nequi-btn:focus-visible {
+    box-shadow: none;
+    outline: none;
+}
+
+.dinamica-nequi-page .nequi-btn--secondary {
+    background: var(--white);
+    border: 1px solid var(--uva);
+    color: var(--uva);
+}
+
+.dinamica-nequi-page .nequi-btn--secondary:hover {
+    background: var(--uva-10);
+    border-color: var(--uva);
+    color: var(--uva);
+}
+
+.dinamica-nequi-page .nequi-btn--secondary:active {
+    background: var(--uva-20);
+    border-color: var(--uva);
+    color: var(--uva);
+}
+
+.dinamica-nequi-page .nequi-btn--secondary:disabled {
+    color: var(--gray-400);
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    cursor: not-allowed;
+}
+
+/* Toast container */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 360px;
+    width: calc(100% - 40px);
+}
+
+@media (max-width: 599px) {
+    .toast-container {
+        left: 8px;
+        right: 8px;
+        width: calc(100% - 16px);
+        max-width: none;
+    }
+}

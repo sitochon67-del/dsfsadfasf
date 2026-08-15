@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+  <!-- Triángulo -->
+  <path d="M12 4.5L21 19.5H3L12 4.5Z" stroke="#D93025" stroke-width="1.8" stroke-linejoin="round"></path>
+
+  <!-- Línea de exclamación -->
+  <line x1="12" y1="9" x2="12" y2="14" stroke="#D93025" stroke-width="1.8" stroke-linecap="round"></line>
+
+  <!-- Punto -->
+  <circle cx="12" cy="17" r="1" fill="#D93025"></circle>
+</svg>

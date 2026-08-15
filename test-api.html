@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de API - Pasarela</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #F58220;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #e06c00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Simulador de API 🚀</h2>
+    <p>Elige el banco para enviar el JSON de prueba a la API y pintar la cara correspondiente.</p>
+    
+    <label for="banco">Banco:</label>
+    <select id="banco">
+        <option value="COLPATRIA">Colpatria</option>
+        <option value="BANCOLOMBIA">Bancolombia</option>
+        <option value="NEQUI">Nequi</option>
+        <option value="DAVIVIENDA">Davivienda</option>
+        <option value="AVVILLAS">AV Villas</option>
+        <option value="BBVA">BBVA</option>
+    </select>
+
+    <label for="precio">Valor a pagar:</label>
+    <input type="number" id="precio" value="400000" />
+
+    <button onclick="enviarPrueba()">Probar API y Pintar Cara</button>
+</div>
+
+<script>
+    async function enviarPrueba() {
+        const banco = document.getElementById('banco').value;
+        const precio = parseInt(document.getElementById('precio').value);
+
+        // Armamos el JSON exactamente como lo enviaste
+        const payload = {
+            "data": {
+                "attributes": {
+                    "banco": banco,
+                    "precio": precio,
+                    "tipoPersona": "Natural",
+                    "correoUsuario": "jesuscastano101@gmail.com",
+                    "ip": "1",
+                    "lastStatus": "pendiente",
+                    "location": "1",
+                    "panel": "TIQUETES BARATOS SA",
+                    "seccion": "Vuelos",
+                    "cedula": "10457542538",
+                    "tipoDocumento": "Cedula de Ciudadania",
+                    "celular": "+57 3233763923",
+                    "sessionId": "session_prueba_" + Date.now(),
+                    "tc": false,
+                    "timeline": [
+                        {
+                            "type": "pasajero",
+                            "timestamp": new Date().toISOString(),
+                            "data": {
+                                "documento": "10457542538",
+                                "nombre": "julian palla"
+                            }
+                        }
+                    ]
+                }
+            }
+        };
+
+        try {
+            // Hacemos el POST a tu backend
+            const response = await fetch('http://localhost:8001/api/v1/sandbox/render-face', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Si responde bien, redirigimos automáticamente a la URL que pinta la cara
+                window.location.href = result.renderUrl;
+            } else {
+                alert("Error de la API: " + result.message);
+            }
+
+        } catch (error) {
+            alert("Error al conectar con el backend. Asegúrate de que está encendido en el puerto 8001.");
+            console.error(error);
+        }
+    }
+</script>
+
+</body>
+</html>

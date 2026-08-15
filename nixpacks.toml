@@ -1,0 +1,17 @@
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
+[phases.install]
+cmds = [
+  "npm install --prefix frontend --legacy-peer-deps",
+  "npm install --prefix backend"
+]
+
+[phases.build]
+cmds = [
+  "npm run build --prefix frontend",
+  "npm run build --prefix backend"
+]
+
+[start]
+cmd = "npm run start --prefix backend"

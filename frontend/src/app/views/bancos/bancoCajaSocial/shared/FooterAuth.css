@@ -1,0 +1,30 @@
+.footer-auth {
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.footer-auth a {
+  margin-left: 6px;
+  color: #295eff;
+}
+.bb-subtitle--sm {
+  margin-top: 24px;
+  font-size: 14px;
+}
+hr {
+    margin: 1rem 0;
+    color: inherit;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    opacity: 1;
+}
+
+.btn-link-text {
+  display: block;          /* 👈 ESTO ES LA CLAVE */
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0072c8;
+  text-decoration: none;
+  padding: 4px;
+}

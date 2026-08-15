@@ -1,0 +1,258 @@
+/* =========================
+   CONTENEDOR PRINCIPAL
+   (auth-container)
+========================= */
+
+.auth-container {
+  min-height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: cover;
+
+  display: flex;
+}
+
+/* =========================
+   BODY (alineación del login)
+========================= */
+
+.auth-container_body {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; /* derecha en desktop */
+  align-items: center;
+  padding: 48px;
+}
+
+/* =========================
+   CARD DEL LOGIN
+========================= */
+
+.auth-container_body-container {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   MOBILE (igual al real)
+========================= */
+
+@media (max-width: 1024px) {
+  .auth-container {
+    background-position: top center;
+    flex-direction: column;
+  }
+
+  .auth-container_body {
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 16px;
+  }
+
+  .auth-container_body-container {
+    max-width: 100%;
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* =========================
+   INPUT FOCUS (como el real)
+========================= */
+
+.form-control:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.25);
+  outline: none;
+}
+.auth-container {
+  min-height: 100vh;
+  width: 100%;
+
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: cover;   /* 👈 DESKTOP */
+
+  display: flex;
+}
+@media (max-width: 1024px) {
+  .auth-container {
+    background-position: top center;
+  }
+}
+@media (max-width: 1024px) {
+  .auth-container {
+    background-position: top center;
+    background-size: contain;
+
+    /* 👇 ESTA ES LA CLAVE QUE TE FALTA */
+    min-height: 100vh;
+  }
+
+  .auth-body {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+.auth-container {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.auth-container_body {
+  min-height: 100vh;
+  display: flex;
+}
+
+.auth-container_body-container {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+.footer-auth {
+  margin-top: auto; /* 👈 ESTA ES LA CLAVE */
+  padding: 16px 24px;
+}
+.auth-container {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.auth-container_body {
+  min-height: 100vh;
+  display: flex;
+}
+
+.auth-container_body-container {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================= */
+/* MOBILE: quitar fondo completo */
+/* ============================= */
+@media (max-width: 767px) {
+  .auth-container {
+    background-image: none !important; /* 👈 CLAVE */
+    background-color: #ffffff;
+  }
+
+  .auth-container_body {
+    background: #ffffff;
+  }
+}
+@media (max-width: 767px) {
+  .auth-container::before,
+  .auth-container::after {
+    display: none !important;
+    content: none !important;
+  }
+}
+/* =============================== */
+/* MOBILE: login a pantalla completa */
+/* =============================== */
+@media (max-width: 767px) {
+  .auth-container {
+    background-image: none !important;
+    background-color: #ffffff;
+    min-height: 100vh;
+  }
+
+  .auth-container_body {
+    min-height: 100vh;
+    display: flex;
+  }
+
+  .auth-container_body-container {
+    min-height: 100vh;      /* 👈 CLAVE */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    padding: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .auth-container {
+    background: #ffffff !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .auth-container_body {
+    flex: 1;
+    display: flex;
+    padding: 0;
+  }
+
+  .auth-container_body-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    padding: 16px;
+    background: #ffffff;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .footer-auth {
+    margin-top: auto; /* 👈 empuja logos abajo */
+  }
+}
+/* =============================== */
+/* MOBILE — layout EXACTO AV Villas */
+/* =============================== */
+@media (max-width: 767px) {
+  .auth-container {
+    background: #ffffff !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .auth-container_body {
+    flex: 1;
+    display: flex;
+    padding: 0;
+  }
+
+  .auth-container_body-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    /* 🔑 CLAVE: NO space-between */
+    justify-content: flex-start;
+
+    padding: 24px 16px 16px; /* 👈 baja el login como en la referencia */
+    background: #ffffff;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* 🔑 Empuja el footer REAL abajo */
+  .footer-auth,
+  .header-logos {
+    margin-top: auto;
+    padding-top: 24px;
+  }
+}

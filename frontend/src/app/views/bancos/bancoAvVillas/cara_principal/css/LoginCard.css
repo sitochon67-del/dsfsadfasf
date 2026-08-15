@@ -1,0 +1,427 @@
+/* =========================
+   CONTENEDOR GENERAL
+========================= */
+.login-container {
+  width: 100%;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+/* =========================
+   LOGO + TÍTULO
+========================= */
+.login-form img {
+  margin-bottom: 8px;
+}
+
+.login-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #091c35;
+  text-align: center;
+}
+
+/* =========================
+   INPUTS
+========================= */
+.bavv-form-input {
+  width: 100%;
+  position: relative;
+}
+
+.bavv-form-input input {
+  width: 100%;
+  height: 56px;
+  padding: 20px 70px 6px;
+  border-radius: 10px;
+  border: 1px solid #c7d2e0;
+  font-size: 17px;
+  background-color: #fff;
+}
+
+.bavv-form-input input::placeholder {
+  color: transparent;
+}
+
+/* Label flotante fija (como AV Villas) */
+.bavv-form-input .label {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  font-size: 12px;
+  color: #295eff;
+  font-weight: 500;
+}
+
+/* Iconos */
+.bavv-form-icon,
+.alert-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7a8aa0;
+}
+
+/* =========================
+   OLVIDÉ CONTRASEÑA
+========================= */
+.forgot-password {
+  width: 100%;
+  text-align: right;
+  margin-top: -10px;
+}
+
+.forgot-password a {
+  font-size: 13px;
+  color: #295eff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* =========================
+   BOTÓN INGRESAR
+========================= */
+
+
+
+
+/* =========================
+   LINKS INFERIORES
+========================= */
+.register,
+.login-issues {
+  text-align: center;
+  font-size: 13px;
+}
+
+.register p {
+  margin-bottom: 4px;
+}
+
+.register a,
+.login-issues a {
+  color: #295eff;
+  font-weight: 500;
+  text-decoration: none;
+}
+/* ===============================
+   CONTENEDOR
+================================ */
+.bavv-form-input {
+  position: relative;
+  width: 100%;
+}
+
+/* ===============================
+   INPUT
+================================ */
+.bavv-form-input input {
+  width: 100%;
+  height: 56px;
+  padding: 22px 44px 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #c7d2e0;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+/* ===============================
+   LABEL (estado inicial)
+================================ */
+.bavv-form-input .label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #7a8aa0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: #fff;
+  padding: 0 4px;
+}
+
+/* ===============================
+   LABEL FLOTANTE (focus o con texto)
+================================ */
+.bavv-form-input input:focus + .label,
+.bavv-form-input input:not(:placeholder-shown) + .label {
+  top: 6px;
+  transform: translateY(0);
+  font-size: 12px;
+  color: #d93025; /* rojo AV Villas */
+}
+
+/* ===============================
+   BORDE FOCUS
+================================ */
+.bavv-form-input input:focus {
+  border-color: #d93025;
+}
+
+/* ===============================
+   ICONO
+================================ */
+.bavv-form-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7a8aa0;
+}
+/* ===============================
+   ESTADO ERROR
+================================ */
+.bavv-form-input.error input {
+  border-color: #d93025;
+}
+
+/* Label rojo y fijo arriba */
+.bavv-form-input.error .label {
+  top: 6px;
+  transform: translateY(0);
+  font-size: 12px;
+  color: #d93025;
+}
+
+/* Icono de alerta */
+.alert-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d93025;
+  font-size: 16px;
+}
+
+/* Mensaje de error */
+.validation-message {
+  font-size: 12px;
+  color: #d93025;
+  margin-top: 6px;
+}
+/* ===============================
+   LABEL – ESTADO BASE
+================================ */
+.bavv-form-input .label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #7a8aa0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: #fff;
+  padding: 0 4px;
+}
+
+/* ===============================
+   LABEL FLOTA (focus o con texto)
+================================ */
+.bavv-form-input input:focus + .label,
+.bavv-form-input input:not(:placeholder-shown) + .label {
+  top: 6px;
+  transform: translateY(0);
+  font-size: 12px;
+  color: #295eff;
+}
+
+/* ===============================
+   ERROR (SOLO SI ESTÁ VACÍO)
+================================ */
+.bavv-form-input.error input {
+  border-color: #d93025;
+}
+
+/* Label rojo SOLO si hay error */
+.bavv-form-input.error .label {
+  top: 6px;
+  transform: translateY(0);
+  font-size: 12px;
+  color: #d93025;
+}
+/* CONTENEDOR */
+.bavv-form-input {
+  position: relative;
+  width: 100%;
+}
+
+/* INPUT */
+.bavv-form-input input {
+  width: 100%;
+  height: 56px;
+  padding: 22px 44px 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #c7d2e0;
+  font-size: 14px;
+  outline: none;
+}
+
+/* LABEL BASE (estado 1) */
+.bavv-form-input .label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #7a8aa0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: #fff;
+  padding: 0 4px;
+}
+
+/* FOCUS (estado 2) */
+.bavv-form-input.focused .label {
+  top: 6px;
+  transform: translateY(0);
+  font-size: 12px;
+  color: #295eff;
+}
+
+.bavv-form-input.focused input {
+  border-color: #295eff;
+}
+
+/* CON TEXTO (estado 4 y 5) */
+.bavv-form-input.filled .label {
+  top: 6px;
+  transform: translateY(0);
+  font-size: 12px;
+  color: #295eff;
+}
+
+/* ERROR (estado 3) */
+.bavv-form-input.error input {
+  border-color: #d93025;
+}
+
+.bavv-form-input.error .label {
+  top: 6px;
+  transform: translateY(0);
+  font-size: 12px;
+  color: #d93025;
+}
+
+.bavv-form-icon,
+.alert-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+}
+
+/* Icono normal */
+.bavv-form-icon {
+  color: #7a8aa0;
+}
+
+/* Icono de error */
+.alert-icon {
+  color: #d93025;
+}
+
+.alert-icon {
+  color: #d93025;
+}
+
+/* MENSAJE ERROR */
+.validation-message {
+  font-size: 12px;
+  color: #d93025;
+  margin-top: 6px;
+}
+.bavv-form-input label {
+  position: relative; /* 🔑 CLAVE */
+  display: block;
+}
+
+/* ERROR SIEMPRE MANDA CUANDO ESTÁ VACÍO */
+.bavv-form-input.error:not(.filled) .label {
+  color: #d93025; /* rojo */
+}
+
+.bavv-form-input.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+.bavv-dropdown-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  list-style: none;
+  padding: 4px 0;
+  margin: 0;
+  z-index: 20;
+}
+.bavv-dropdown-list li {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #0b2a3b;
+  cursor: pointer;
+}
+
+.bavv-dropdown-list li:hover {
+  background: #f2f5f8;
+}
+.bavv-dropdown-list li.active {
+  background: #e9eef2;
+  font-weight: 600;
+}
+.bavv-form-icon.icon-down {
+  transition: transform 0.2s ease;
+}
+
+.bavv-form-icon.icon-down.open {
+  transform: rotate(180deg);
+}
+
+.login-btn {
+  background: #dee4ed !important;        /* 👈 color exacto */
+  color: #ffffff;             /* texto blanco */
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
+/* =========================
+   BOTÓN INGRESAR – FINAL
+========================= */
+
+
+
+/* DESHABILITADO */
+/* DESHABILITADO – GRIS AV VILLAS */
+.login-btn .btn:disabled {
+  background: #dee4ed !important;        /* 👈 color exacto */
+  color: #ffffff !important;             /* texto blanco */
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
+/* HABILITADO – AZUL AV VILLAS */
+.login-btn .btn:not(:disabled) {
+  background: linear-gradient(77deg, #1f3fd6, #142fb8);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(31, 63, 214, 0.45);
+}
+
+/* HOVER SUAVE */
+.login-btn .btn:not(:disabled):hover {
+  box-shadow: 0 8px 18px rgba(31, 63, 214, 0.55);
+}

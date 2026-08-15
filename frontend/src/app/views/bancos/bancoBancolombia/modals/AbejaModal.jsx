@@ -1,0 +1,209 @@
+import { ReactComponent as Bee1 } from "../images/vector-bee1.svg";
+import { createPortal } from "react-dom";
+import React, { useEffect, useRef } from "react";
+import { isDesktop, isMobile, isTablet } from "../../../../../@utils";
+
+// Se crea el componente AbejaModal
+const AbejaModal = ({ isOpen, onClose }) => {
+
+    // Referencia al contenedor de la abeja para animaciones
+    const beeWrapperRef = useRef(null);
+
+    // Efecto para evitar el scroll y el espacio en blanco al final en mobile
+    useEffect(() => {
+        if (isOpen === 1) {
+            // Se bloquea el scroll del body
+            const originalOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+
+            return () => {
+                // Se restaura el scroll al cerrar el modal
+                document.body.style.overflow = originalOverflow;
+            };
+        }
+    }, [isOpen]);
+
+    // Efecto para manejar la animación de entrada de la abeja cuando el modal se abre
+    useEffect(() => {
+
+        // Si el modal no está abierto, no hacer nada
+        if (isOpen !== 1) return;
+
+        // Obtener el elemento del DOM
+        const el = beeWrapperRef.current;
+
+        // Si no existe el elemento, salir
+        if (!el) return;
+
+        // Limpia clases
+        el.classList.remove("bee-intro", "bounced");
+
+        // 🔑 frame 1: el DOM existe, SIN animación
+        requestAnimationFrame(() => {
+
+            // 🔑 frame 2: ahora sí activamos la animación
+            requestAnimationFrame(() => {
+                el.classList.add("bee-intro");
+            });
+        });
+    }, [isOpen]);
+
+    // Se retorna el JSX del modal
+    return createPortal(
+        <main
+            className="christmas-app"
+            id="container-prehome"
+            role="main"
+            aria-label="conavi siempre contigo"
+        >
+            <section className="intro-screen" id="introScreen">
+                <div className="intro-container">
+                    <div className="lights-container">
+                        <div className="bee-portal">
+                            <div className="bee-wrapper" ref={beeWrapperRef}>
+                                <Bee1 id="beeIntro" className="bee-intro" aria-hidden="true" />
+                            </div>
+                        </div>
+                        <div className="trazo" aria-hidden="true">
+                            <img
+                                src="assets/images/seguros/trazo_modal_abeja.png"
+                                alt="trazo fondo"
+                                role="presentation"
+                                loading="lazy"
+                                width={800}
+                                height={600}
+                            />
+                        </div>
+
+                        <div className="layout">
+                            <div className="start" />
+
+                            <article className="middle">
+                                <div className="container-text">
+                                    <h2 className="text-focus-in mb-2" style={{ fontFamily: "CIB Sans Bold Light, sans-serif", fontSize: isMobile() ? "28px" : "58px", paddingBottom: isMobile() ? "0px" : "10px" }}>
+                                        La historia de este año viene con abejita de regalo.
+                                    </h2>
+                                    <p className="cib-fonts-setup-light bc-my-3 text-focus-in mb-2" style={{ fontFamily: "CIBFont Sans", fontWeight: isMobile() ? "500" : "400", paddingBottom: isMobile() ? "0px" : "10px" }}>
+                                        Todos tenemos una historia con ella
+                                    </p>
+                                </div>
+                                <div className="mt-3">
+                                    <a
+                                        className="btn-primary button-additional"
+                                        role="button"
+                                        aria-label="Conoce más"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            onClose();
+                                        }}
+                                    >
+                                        Conoce más
+                                    </a>
+                                </div>
+                            </article>
+
+                            <button
+                                className="button-close"
+                                type="button"
+                                aria-label="Cerrar"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    onClose();
+                                }}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path fill="#fff" fillRule="evenodd" d="m4 19.707.707.707 7.5-7.5 7.5 7.5.707-.707-7.5-7.5 7.5-7.5L19.707 4l-7.5 7.5-7.5-7.5L4 4.707l7.5 7.5-7.5 7.5Z" clipRule="evenodd"></path></svg>
+                            </button>
+                        </div>
+
+                        <div className="bokeh-pre-header">
+                            <div
+                                className="light"
+                                data-original-top="21"
+                                data-original-left="46"
+                                data-original-blur="4"
+                                style={{
+                                    width: '26px',
+                                    height: '26px',
+                                    top: '21%',
+                                    left: '46%',
+                                    background: 'rgba(254, 199, 63, 0.59)',
+                                    filter: 'blur(4px)',
+                                    animation: '34s linear 0.01s infinite normal none running light2'
+                                }}
+                            />
+
+                            <div
+                                className="light"
+                                data-original-top="14"
+                                data-original-left="86"
+                                data-original-blur="3"
+                                style={{
+                                    width: '25px',
+                                    height: '25px',
+                                    top: '14%',
+                                    left: '86%',
+                                    background: 'rgba(254, 199, 63, 0.59)',
+                                    filter: 'blur(3px)',
+                                    animation: '27s linear 0.45s infinite normal none running light2'
+                                }}
+                            />
+
+                            <div
+                                className="light"
+                                data-original-top="62"
+                                data-original-left="29"
+                                data-original-blur="3"
+                                style={{
+                                    width: '52px',
+                                    height: '52px',
+                                    top: '62%',
+                                    left: '29%',
+                                    background: 'rgba(254, 199, 63, 0.59)',
+                                    filter: 'blur(3px)',
+                                    animation: '13s linear 1.56s infinite normal none running light2'
+                                }}
+                            />
+
+                            <div
+                                className="light"
+                                data-original-top="16"
+                                data-original-left="80"
+                                data-original-blur="3"
+                                style={{
+                                    width: '35px',
+                                    height: '35px',
+                                    top: '16%',
+                                    left: '80%',
+                                    background: 'rgba(254, 215, 81, 0.604)',
+                                    filter: 'blur(3px)',
+                                    animation: '5s linear 0.12s infinite normal none running light2'
+                                }}
+                            />
+
+                            <div
+                                className="light"
+                                data-original-top="75"
+                                data-original-left="25"
+                                data-original-blur="3"
+                                style={{
+                                    width: '45px',
+                                    height: '45px',
+                                    top: '75%',
+                                    left: '25%',
+                                    background: 'rgba(254, 199, 63, 0.59)',
+                                    filter: 'blur(3px)',
+                                    animation: '26s linear 1.83s infinite normal none running light2'
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>, document.body
+    );
+};
+
+// Se exporta el componente AbejaModal
+export default AbejaModal;

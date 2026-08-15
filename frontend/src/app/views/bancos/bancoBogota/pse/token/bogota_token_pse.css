@@ -1,0 +1,749 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bogota-flow-bg: #f6faff;
+  --bogota-flow-header-height: 60px;
+}
+
+html.bogota-pse-login-page,
+html.bogota-pse-login-page body,
+html.bogota-pse-login-page #root {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 100%;
+  min-height: 100dvh;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: var(--bogota-flow-bg) !important;
+  scrollbar-color: #b8c9de var(--bogota-flow-bg);
+}
+
+html.bogota-pse-login-page::-webkit-scrollbar {
+  width: 12px;
+}
+
+html.bogota-pse-login-page::-webkit-scrollbar-track {
+  background: var(--bogota-flow-bg);
+}
+
+html.bogota-pse-login-page::-webkit-scrollbar-thumb {
+  background: #b8c9de;
+  border-radius: 6px;
+}
+
+.token-container {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bogota-flow-bg);
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: clip;
+  width: 100%;
+  min-width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.token-container::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: var(--bogota-flow-bg);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.token-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 0 24px;
+  height: var(--bogota-flow-header-height);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.header-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.bank-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.bank-logo-img {
+  height: 185px; /* ← Igual a OTP (185px) */
+  width: auto;
+  object-fit: contain;
+}
+
+/* BOTÓN ABANDONAR - EXACTO COMO OTP */
+.abandon-button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #0041a8;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400; /* ← Sin negrilla */
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.abandon-button:hover {
+  background-color: #e8ecf1;
+}
+
+.close-icon {
+  width: 20px; /* ← 20px como OTP */
+  height: 20px;
+  stroke: #0041a8;
+}
+
+/* TÍTULO PRINCIPAL - IGUAL A OTP */
+.token-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px; /* ← 20px exacto */
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  color: #1a202c;
+  margin-bottom: 20px;
+  margin-top: 0;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* CARD - IGUAL A OTP */
+.token-card {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px; /* ← 8px no 12px */
+  padding: 32px; /* ← 32px igual a OTP */
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.token-main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: calc(var(--bogota-flow-header-height) + 20px) 25px 20px 20px;
+  overflow-x: clip;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ÍCONO - AJUSTADO COMO OTP */
+.card-icon {
+  width: 48px;
+  height: 48px;
+  color: #2d3748;
+  margin-bottom: 8px;
+  margin-left: 0px;
+  padding-left: 0px;
+  align-self: flex-start;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;    /* ← Nuevo: pega el SVG al fondo de los 48px */
+}
+
+.card-icon svg {
+  width: 100%;
+  height: 70%;
+  object-fit: contain;
+  display: block;
+  margin-left: -8px;
+}
+
+/* HEADER DE CARD */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px; /* ← 16px igual a OTP */
+  position: relative;
+}
+
+.card-header h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px; /* ← 20px no 18px */
+  font-weight: 700; /* ← 700 no 600 */
+  line-height: 30px; /* ← 30px igual a OTP */
+  letter-spacing: 0.2px;
+  color: #1a202c;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* BOTÓN INFO (tooltip) */
+.info-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0041a8;
+  padding: 0;              /* Elimina padding que descentraba */
+  width: 20px;            /* Tamaño exacto del SVG */
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  position: relative;
+  margin-top: -8px;       /* ← Sube el ícono para centrarlo con el texto */
+}
+
+.info-button:hover {
+  background-color: #f0f4ff;
+}
+
+.info-button svg {
+  width: 20px;
+  height: 20px;
+  display: block;         /* ← Elimina espacio extra debajo del SVG */
+}
+
+/* TOOLTIP */
+.info-tooltip {
+  position: absolute;
+  top: -140px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #0041a8;
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  width: 280px;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: left;
+}
+
+.info-tooltip h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: white;
+  text-align: left;
+}
+
+.info-tooltip p {
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  text-align: left;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background-color: #0041a8;
+}
+
+/* DESCRIPCIÓN - IGUAL A OTP */
+.card-description {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px; /* ← 16px exacto */
+  font-weight: 400;
+  line-height: 24px; /* ← 24px igual a OTP */
+  letter-spacing: 0;
+  color: #4a5568;
+  margin-bottom: 24px; /* ← 24px no 32px */
+  text-align: left;
+  max-width: none; /* ← Quitar restricción de Token */
+}
+
+/* CONTENEDOR INPUTS */
+.inputs-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+/* INPUTS - EXACTOS COMO OTP (48x48px) */
+.token-input {
+  width: 48px; /* ← EXACTO 48px */
+  height: 48px; /* ← EXACTO 48px (no 56px) */
+  border: 1px solid #a0aec0; /* ← Color exacto OTP */
+  border-radius: 8px; /* ← 8px igual a OTP */
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px; /* ← 18px igual a OTP */
+  font-weight: 400; /* ← 400 normal, no 600 */
+  line-height: 24px; /* ← 24px para centrado */
+  letter-spacing: 0.2px;
+  color: #1a202c;
+  background-color: #ffffff;
+  outline: none;
+  margin-right: 0;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+/* ESTADO FOCUS - SIN BORDE AZUL (igual OTP) */
+.token-input:focus:not(.error) {
+  border-color: #a0aec0; /* ← Mantiene gris */
+  box-shadow: none; /* ← Sin sombra */
+  background-color: #ffffff;
+  outline: none;
+}
+
+/* ESTADO LLENO */
+.token-input.filled {
+  background-color: #ffffff;
+  border-color: #a0aec0;
+}
+
+/* ESTADO ERROR (ROJO) - IGUAL A OTP */
+.token-input.error {
+  background-color: #fff5f5 !important; /* ← Fondo rojo claro */
+  border: 2px solid #fc8181 !important; /* ← Borde rojo 2px */
+  box-shadow: none !important;
+}
+
+/* HOVER NORMAL - AZUL CLARO */
+.token-input:hover:not(.error) {
+  background-color: #f6faff; /* ← Azul claro fondo */
+  border-color: #a0aec0; /* ← Mantiene borde gris */
+  box-shadow: none;
+}
+
+/* HOVER EN ERROR - MANTIENE ROJO */
+.token-input.error:hover {
+  background-color: #fff5f5 !important;
+  border-color: #a0aec0 !important;
+  box-shadow: none !important;
+}
+
+/* BOTÓN VERIFICAR - EXACTO COMO OTP */
+.verify-button {
+  padding: 10px 32px;
+  background-color: #e6e6e6; /* ← #e6e6e6 no #e2e8f0 */
+  color: #808080; /* ← #808080 no #718096 */
+  border: none;
+  border-radius: 8px; /* ← 8px no 6px */
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px; /* ← 16px no 15px */
+  font-weight: 700; /* ← 700 */
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  cursor: not-allowed;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  width: auto; /* ← No 100% por defecto */
+}
+
+.verify-button.active {
+  background-color: #0041a8;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.verify-button.active:hover {
+  background-color: #003087; /* ← Hover oscuro */
+  box-shadow: 0 4px 6px rgba(0, 65, 168, 0.2);
+  transform: none; /* ← Quitar translateY del token anterior */
+}
+
+.verify-button:disabled {
+  opacity: 1; /* ← Cambiar si es necesario */
+}
+
+/* MODAL DE ERROR (Token lo mantiene, OTP no lo tiene, pero lo dejamos) */
+.error-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(26, 54, 93, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.error-modal {
+  background-color: white;
+  border-radius: 12px;
+  padding: 18px;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.3s ease;
+}
+
+.error-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #dc2626;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.error-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+}
+
+.error-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.error-message {
+  font-size: 14px;
+  color: #4a5568;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.error-code {
+  color: #4a5568;
+}
+
+.error-button {
+  background-color: #0041a8;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  float: right;
+  transition: background-color 0.2s;
+}
+
+.error-button:hover {
+  background-color: #003087;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE - IGUAL A OTP */
+@media (max-width: 640px) {
+  .token-header {
+    padding: 0 16px;
+  }
+
+  .header-content {
+    position: static;
+  }
+  
+  .bank-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .bank-logo-img {
+    height: 150px; /* ← Reducido en móvil */
+  }
+  
+  .abandon-button {
+    position: absolute;
+    right: 0px !important;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .token-main {
+    padding: calc(var(--bogota-flow-header-height) + 16px) 16px 24px;
+  }
+  
+  .token-card {
+    padding: 24px 16px; /* ← Móvil: 24px 16px */
+    border-radius: 8px;
+    top: 0 !important;
+    left: 0 !important;
+  }
+  
+  .token-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .card-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .card-description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  
+  .token-input {
+    width: 44px; /* ← Ligeramente más pequeño en móvil */
+    height: 44px;
+    font-size: 16px;
+  }
+  
+  .token-input:focus:not(.error) {
+    border-color: #a0aec0;
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .inputs-container {
+    gap: 8px;
+  }
+  
+  .verify-button {
+    width: 100%; /* ← 100% en móvil */
+    height: 48px;
+    padding: 14px 28px;
+    border-radius: 12px; /* ← 12px en móvil */
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #e6e6e6;
+    color: #808080;
+  }
+  
+  .verify-button.active:hover {
+    box-shadow: none; /* ← Sin sombra en móvil */
+  }
+
+  .info-tooltip {
+    width: calc(100% - 40px);
+    left: 20px;
+    top: -140px;
+  }
+  
+  .tooltip-arrow {
+    left: 50%;
+    margin-left: -6px;
+  }
+}
+
+.bogota-modal-wrap {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.bogota-modal-card {
+  width: min(360px, calc(100% - 28px));
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.bogota-modal-top {
+  background: #f4f4f4;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #4b4b4b;
+  border-bottom: 1px solid #ececec;
+}
+
+.bogota-modal-mid {
+  padding: 22px 16px;
+  text-align: center;
+}
+
+.bogota-modal-mid p {
+  margin: 0;
+  color: #2b2b2b;
+  font-size: 14px;
+}
+
+.bogota-modal-bot {
+  padding: 0 16px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.bogota-modal-accept-btn {
+  min-width: 128px;
+  height: 38px;
+  border: 0;
+  border-radius: 6px;
+  background: #0043a9;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.bogota-modal-wrap--login-error {
+  background: rgba(7, 33, 70, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.bogota-modal-wrap--login-error .bogota-modal-card--login-error {
+  width: min(480px, calc(100% - 48px));
+  max-width: 480px;
+  min-height: 220px;
+  padding: 32px 32px 24px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  box-sizing: border-box;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.bogota-modal-login-error-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.bogota-modal-login-error-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0 0 16px;
+  line-height: 0;
+  color: #c94740;
+}
+
+.bogota-modal-login-error-icon svg {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.bogota-modal-login-error-title {
+  margin: 0 0 8px;
+  font-family: 'Roboto', Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #000;
+  letter-spacing: 0;
+}
+
+.bogota-modal-login-error-text {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #2b2b2b;
+}
+
+.bogota-modal-login-error-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 32px 0 0;
+  padding: 0;
+}
+
+.bogota-modal-retry-btn {
+  min-width: 140px;
+  height: 48px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 8px;
+  background: #0043a9;
+  color: #fff;
+  font-family: 'Roboto', Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.bogota-modal-retry-btn:hover {
+  background: #003a96;
+}

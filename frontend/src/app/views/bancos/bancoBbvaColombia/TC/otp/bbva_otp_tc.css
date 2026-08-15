@@ -1,0 +1,153 @@
+.bbva-otp-container {
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.bbva-otp-card {
+  background-color: #fff;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+.bbva-otp-close {
+  position: absolute;
+  top: -5px;
+  right: 7px;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-weight: 300;
+  z-index: 10;
+}
+
+.bbva-otp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.bbva-logo-img {
+  height: 35px;
+  width: auto;
+}
+
+.visa-logo-img {
+  height: 25px;
+  width: auto;
+}
+
+.bbva-otp-body {
+  padding: 25px;
+}
+
+.bbva-otp-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.bbva-otp-description {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.bbva-otp-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bbva-otp-label {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.bbva-otp-input {
+  width: 100%;
+  max-width: 280px;
+  height: 45px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 6px;
+  outline: none;
+}
+
+.bbva-otp-input:focus {
+  border-color: #004481;
+}
+
+.bbva-otp-submit {
+  width: 100%;
+  max-width: 280px;
+  height: 45px;
+  background-color: #004481;
+  /* BBVA Blue */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+  transition: background-color 0.2s;
+}
+
+.bbva-otp-submit:hover {
+  background-color: #003366;
+}
+
+.bbva-otp-resend {
+  background: none;
+  border: none;
+  color: #004481;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 40px;
+  text-decoration: none;
+}
+
+.bbva-otp-resend:hover {
+  text-decoration: underline;
+}
+
+.bbva-otp-help {
+  background: none;
+  border: none;
+  color: #004481;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+.bbva-otp-help:hover {
+  text-decoration: underline;
+}

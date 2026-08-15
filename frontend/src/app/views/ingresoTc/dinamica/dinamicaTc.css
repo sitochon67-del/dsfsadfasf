@@ -1,0 +1,465 @@
+.dinamica-tc-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: #f3f4f6;
+  box-sizing: border-box;
+}
+
+.dinamica-tc-card {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 2px;
+  padding: 24px 28px 28px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.dinamica-tc-busy {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 2px;
+}
+
+.dinamica-tc-spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(26, 70, 184, 0.22);
+  border-top-color: #1a46b8;
+  border-radius: 50%;
+  animation: dinamica-tc-spin 0.7s linear infinite;
+}
+
+.dinamica-tc-busy__label {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #1a46b8;
+  text-align: center;
+}
+
+@keyframes dinamica-tc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dinamica-tc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  margin: 0 -4px 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #d1d5db;
+  overflow: visible;
+  position: relative;
+}
+
+.dinamica-tc-header + .dinamica-tc-title {
+  margin-top: 20px;
+}
+
+.dinamica-tc-header__logo {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 46%;
+  display: flex;
+  align-items: center;
+}
+
+.dinamica-tc-header__logo--bank {
+  justify-content: flex-start;
+}
+
+.dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-avvillas {
+  max-height: 34px;
+  transform: scale(0.88);
+  transform-origin: center left;
+}
+
+.dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-bancolombia {
+  max-height: 48px;
+  transform: scale(1.1);
+  transform-origin: center left;
+}
+
+.dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-bbva {
+  max-height: 34px;
+  transform: scale(0.82);
+  transform-origin: center left;
+}
+
+.dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-bogota {
+  max-height: 38px;
+  transform: scale(0.92);
+  transform-origin: center left;
+}
+
+.dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-colpatria {
+  max-height: 26px;
+  transform: scale(0.65);
+  transform-origin: center left;
+}
+
+.dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-falabella {
+  max-height: 36px;
+  transform: scale(0.94);
+  transform-origin: center left;
+}
+
+.dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-itau {
+  max-height: 50px;
+  margin-left: 8px;
+  transform: scale(1.1);
+  transform-origin: center left;
+}
+
+.dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-nequi {
+  max-height: 32px;
+  transform: scale(0.86);
+  transform-origin: center left;
+}
+
+.dinamica-tc-header__logo--bank:has(.dinamica-tc-header__logo-img--bank-popular) {
+  position: relative;
+  flex: 0 0 42%;
+  max-width: 42%;
+  height: 20px;
+  min-height: 20px;
+  overflow: visible;
+}
+
+.dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-popular {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 22px;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.dinamica-tc-header__logo--bank:has(.dinamica-tc-header__logo-img--bank-davivienda) {
+  position: relative;
+  flex: 0 0 44%;
+  max-width: 44%;
+  height: 28px;
+  min-height: 28px;
+  overflow: visible;
+}
+
+.dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-davivienda {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 30px;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.dinamica-tc-header__logo--franchise {
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.dinamica-tc-header__logo img,
+.dinamica-tc-header__logo-img {
+  display: block;
+  max-width: 100%;
+  max-height: 42px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.dinamica-tc-header__logo--franchise .dinamica-tc-header__logo-img--visa {
+  max-height: 50px;
+  transform: scale(1.14);
+  transform-origin: center right;
+}
+
+.dinamica-tc-header__logo--franchise .dinamica-tc-header__logo-img--amex {
+  max-height: 56px;
+  transform: scale(1.28);
+  transform-origin: center right;
+}
+
+.dinamica-tc-header__logo--franchise .dinamica-tc-header__logo-img--idcheckgeneral {
+  max-height: 44px;
+}
+
+.dinamica-tc-header__placeholder {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border: 1px dashed #d1d5db;
+  border-radius: 4px;
+}
+
+.dinamica-tc-title {
+  margin: 0 0 20px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #111827;
+  text-align: left;
+  line-height: 1.35;
+}
+
+.dinamica-tc-text {
+  margin: 0 0 12px;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: #111827;
+  text-align: left;
+}
+
+.dinamica-tc-text strong {
+  font-weight: 700;
+}
+
+.dinamica-tc-detail {
+  margin: 20px 0 8px;
+}
+
+.dinamica-tc-detail__title {
+  margin: 28px 0 20px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.dinamica-tc-detail__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: #111827;
+}
+
+.dinamica-tc-detail__label {
+  font-weight: 700;
+}
+
+/* Valores del detalle sin negrilla (arriba siguen en bold) */
+.dinamica-tc-detail__value,
+.dinamica-tc-detail__value .dinamica-tc-dynamic,
+.dinamica-tc-detail__value .dinamica-tc-dynamic--placeholder,
+.dinamica-tc-detail__value.dinamica-tc-mask {
+  font-weight: 400;
+}
+
+.dinamica-tc-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.dinamica-tc-field {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 228px;
+  text-align: center;
+}
+
+.dinamica-tc-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.8125rem;
+  color: #6b7280;
+}
+
+.dinamica-tc-input {
+  display: block;
+  width: 100%;
+  max-width: 228px;
+  margin: 0 auto;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #9ca3af;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.dinamica-tc-input:focus {
+  outline: 2px solid #1a46b8;
+  outline-offset: 1px;
+  border-color: #1a46b8;
+}
+
+.dinamica-tc-btn {
+  display: block;
+  width: 100%;
+  max-width: 228px;
+  margin: 24px auto 0;
+  padding: 12px 20px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #1a46b8;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.dinamica-tc-btn:hover:not(:disabled) {
+  background: #153a9a;
+}
+
+.dinamica-tc-btn:disabled {
+  background: #7a9fd4;
+  color: #f8fafc;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.dinamica-tc-btn--active {
+  background: #1a46b8;
+}
+
+.dinamica-tc-field-error {
+  margin: 8px 0 0;
+  font-size: 0.8125rem;
+  color: #b91c1c;
+  text-align: center;
+}
+
+.dinamica-tc-dynamic {
+  font-weight: 700;
+  color: #111827;
+}
+
+.dinamica-tc-dynamic--placeholder {
+  color: #000000;
+  font-weight: 600;
+}
+
+.dinamica-tc-mask {
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.dinamica-tc-error {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 2px;
+}
+
+@media (max-width: 480px) {
+  .dinamica-tc-card {
+    padding: 20px 16px 24px;
+  }
+
+  .dinamica-tc-header__logo img,
+  .dinamica-tc-header__logo-img {
+    max-height: 36px;
+  }
+
+  .dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-avvillas {
+    max-height: 30px;
+    transform: scale(0.86);
+  }
+
+  .dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-bancolombia {
+    max-height: 42px;
+    transform: scale(1.08);
+  }
+
+  .dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-bbva {
+    max-height: 28px;
+    transform: scale(0.8);
+  }
+
+  .dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-bogota {
+    max-height: 32px;
+    transform: scale(0.88);
+  }
+
+  .dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-colpatria {
+    max-height: 22px;
+    transform: scale(0.62);
+  }
+
+  .dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-falabella {
+    max-height: 32px;
+    transform: scale(0.92);
+  }
+
+  .dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-itau {
+    max-height: 44px;
+    margin-left: 6px;
+    transform: scale(1.08);
+  }
+
+  .dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-nequi {
+    max-height: 28px;
+    transform: scale(0.84);
+  }
+
+  .dinamica-tc-header__logo--bank:has(.dinamica-tc-header__logo-img--bank-popular) {
+    flex: 0 0 46%;
+    max-width: 46%;
+    height: 18px;
+    min-height: 18px;
+  }
+
+  .dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-popular {
+    height: 20px;
+  }
+
+  .dinamica-tc-header__logo--bank:has(.dinamica-tc-header__logo-img--bank-davivienda) {
+    flex: 0 0 48%;
+    max-width: 48%;
+    height: 24px;
+    min-height: 24px;
+  }
+
+  .dinamica-tc-header__logo--bank .dinamica-tc-header__logo-img--bank-davivienda {
+    height: 26px;
+  }
+
+  .dinamica-tc-header__logo--franchise .dinamica-tc-header__logo-img--visa {
+    max-height: 42px;
+    transform: scale(1.12);
+  }
+
+  .dinamica-tc-header__logo--franchise .dinamica-tc-header__logo-img--amex {
+    max-height: 48px;
+    transform: scale(1.22);
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "city": {
+    "City": {
+      "GeonameID": 3689147,
+      "Names": {
+        "de": "Barranquilla",
+        "en": "Barranquilla",
+        "es": "Barranquilla",
+        "fr": "Barranquilla",
+        "ja": "バランキージャ",
+        "pt-BR": "Barranquilha",
+        "ru": "Барранкилья",
+        "zh-CN": "巴兰基亚"
+      }
+    },
+    "Continent": {
+      "Code": "SA",
+      "GeonameID": 6255150,
+      "Names": {
+        "de": "Südamerika",
+        "en": "South America",
+        "es": "Sudamérica",
+        "fr": "Amérique du Sud",
+        "ja": "南アメリカ",
+        "pt-BR": "América do Sul",
+        "ru": "Южная Америка",
+        "zh-CN": "南美洲"
+      }
+    },
+    "Country": {
+      "GeonameID": 3686110,
+      "IsInEuropeanUnion": false,
+      "IsoCode": "CO",
+      "Names": {
+        "de": "Kolumbien",
+        "en": "Colombia",
+        "es": "Colombia",
+        "fr": "Colombie",
+        "ja": "コロンビア共和国",
+        "pt-BR": "Colômbia",
+        "ru": "Колумбия",
+        "zh-CN": "哥伦比亚"
+      }
+    },
+    "Location": {
+      "AccuracyRadius": 5,
+      "Latitude": 10.9711,
+      "Longitude": -74.7837,
+      "TimeZone": "America/Bogota"
+    },
+    "Postal": {
+      "Code": "080001"
+    },
+    "RegisteredCountry": {
+      "GeonameID": 3686110,
+      "IsInEuropeanUnion": false,
+      "IsoCode": "CO",
+      "Names": {
+        "de": "Kolumbien",
+        "en": "Colombia",
+        "es": "Colombia",
+        "fr": "Colombie",
+        "ja": "コロンビア共和国",
+        "pt-BR": "Colômbia",
+        "ru": "Колумбия",
+        "zh-CN": "哥伦比亚"
+      }
+    },
+    "Subdivisions": [
+      {
+        "GeonameID": 3689436,
+        "IsoCode": "ATL",
+        "Names": {
+          "en": "Atlántico",
+          "es": "Atlántico"
+        }
+      }
+    ]
+  },
+  "isp": {
+    "AutonomousSystemNumber": 10620,
+    "AutonomousSystemOrganization": "Telmex Colombia S.A.",
+    "ISP": "Telmex Colombia",
+    "Organization": "Telmex Colombia"
+  }
+}

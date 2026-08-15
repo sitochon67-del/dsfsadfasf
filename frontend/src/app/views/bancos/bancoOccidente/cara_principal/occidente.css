@@ -1,0 +1,501 @@
+/* bancoDeoccidente.css - estilos principales (simplificado y comentado) */
+
+:root {
+    --accent: #0081ff;
+    /* azul brillante */
+    --accent-600: #0066cc;
+    --muted: #6b7280;
+    --input-border: #cbd5e0;
+    --card-radius: 12px;
+    --font: "Poppins", system-ui, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    font-family: var(--font);
+}
+
+.bd-layout {
+    position: relative;
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    background-size: cover;
+    background-position: center 2%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.bd-layout::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+
+    background: linear-gradient(to top,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.85) 12%,
+            rgba(255, 255, 255, 0.55) 25%,
+            rgba(255, 255, 255, 0.25) 40%,
+            rgba(255, 255, 255, 0.05) 55%,
+            rgba(255, 255, 255, 0) 70%);
+}
+
+.bd-left,
+.bd-right {
+    position: relative;
+    z-index: 3;
+}
+
+
+
+/* ===== LEFT PANEL (IMAGEN) - ocupa la mayor parte ===== */
+.bd-left {
+    flex: 1.6;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px 48px;
+    background: transparent;
+}
+
+
+/* blue graphic (corner) - slot para tu svg */
+.bd-blue-graphic {
+    position: absolute;
+    top: 132px;
+    left: 0px;
+    max-width: 300px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.bd-blue-graphic img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* vigilado vertical strip (slot) */
+.bd-vigilado {
+    position: absolute;
+    left: 22px;
+    bottom: 120px;
+    z-index: 5;
+    width: 36px;
+}
+
+.bd-vigilado img {
+    position: absolute;
+    top: -49px;
+    left: -7px;
+    width: 46%;
+    height: auto;
+    display: block;
+}
+
+/* marketing text container (centro-izq abajo) */
+.bd-marketing {
+    position: absolute;
+    bottom: 62px;
+    left: 93px;
+    z-index: 4;
+    color: #062241;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.bd-text h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 20px;
+    color: #123652;
+    letter-spacing: 0.2px;
+    margin-bottom: 6px;
+}
+
+
+.bd-text h1 {
+    margin: 0;
+    font-size: 64px;
+    line-height: 0.95;
+    font-weight: 800;
+    color: #062241;
+}
+
+.bd-text p {
+    margin: 0;
+    color: var(--muted);
+    max-width: 420px;
+}
+
+.bd-text p {
+    position: relative;
+    padding-left: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f3b5c;
+    max-width: 520px;
+}
+
+/* triangulito azul */
+.bd-text p::before {
+    content: "";
+    position: absolute;
+    left: -11px;
+    top: 6px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid var(--accent);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+}
+
+/* línea azul inferior */
+.bd-text p::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    bottom: -6px;
+    width: 445px;
+    height: 2px;
+    background: var(--accent);
+}
+
+
+/* left footer: version & aval logo (bottom-left) */
+.bd-left-footer {
+    position: absolute;
+    bottom: 20px;
+    right: 17px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.bd-version {
+    color: #123652;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.bd-aval img {
+    height: 28px;
+    display: block;
+}
+
+/* ===== RIGHT PANEL (card) ===== */
+.bd-right {
+    flex: 0 0 473px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 10px;
+    background: transparent;
+    position: relative;
+    z-index: 10;
+    overflow: visible;
+}
+
+
+html {
+    scrollbar-gutter: stable;
+}
+
+
+/* inner wrapper para separar sombras y overflow */
+.bd-right-inner {
+    width: 100%;
+    max-width: 520px;
+    position: relative;
+}
+
+/* seguridad pequeño (top-right of the card area) */
+.bd-security {
+    position: absolute;
+    right: 8px;
+    top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 13px;
+    padding: 4px 14px;
+    border-radius: 19px;
+    border: 1px solid #d1f5e5;
+    background: #fff;
+    text-decoration: none;
+    color: #0b4f3f;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.bd-security img {
+    height: 18px;
+    width: 18px;
+}
+
+/* tarjeta blanca principal */
+.bd-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+    border: 1px solid #f0f4f9;
+    max-height: none;
+    overflow: visible;
+
+    /* 👇 ESTOS SON TUS CONTROLES */
+    width: 100%;
+    max-width: 572px;
+    /* ⬅ agranda o achica la tarjeta */
+    padding: clamp(48px, 17vh, 150px) clamp(40px, 6vw, 81px);
+    /* ⬅ da sensación de “tarjeta grande” */
+}
+
+
+/* header logo central */
+.bd-card-header {
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.bd-bank-logo {
+    max-width: 180px;
+    display: inline-block;
+}
+
+/* body */
+.bd-title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.bd-title small {
+    color: #000000;
+    display: block;
+    font-size: 11px;
+}
+
+.bd-title h2 {
+    color: var(--accent);
+    margin: 8px 0 0 0;
+    font-size: 16px;
+}
+
+/* tabs */
+.bd-tabs {
+    display: flex;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 2px;
+}
+
+.bd-tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    color: #9aa7bf;
+    border-bottom: 3px solid transparent;
+}
+
+.bd-tab.active {
+    color: #123652;
+    border-bottom: 4px solid var(--accent);
+}
+
+/* divider */
+.bd-divider {
+    border: none;
+    height: 1px;
+    background: #eef2f7;
+    margin: 6px 0 20px 0;
+}
+
+/* form controls */
+.bd-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.bd-label {
+    font-weight: 700;
+    color: #334155;
+    font-size: 13px;
+}
+
+.bd-identity-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.bd-select {
+    width: 64px;
+    padding: 7px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--input-border);
+    background: #fff;
+}
+
+.bd-input {
+    flex: 1;
+    padding: 7px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--input-border);
+    outline: none;
+    font-size: 12px;
+}
+
+.bd-input::placeholder {
+    color: #9aa7bf;
+}
+
+.bd-password-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.bd-toggle-pass {
+    position: absolute;
+    right: 8px;
+    padding: 6px 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+/* forgot link */
+.bd-forgot-row {
+    text-align: right;
+    margin-top: -6px;
+}
+
+.bd-link {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* checkbox */
+.bd-checkbox {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 600;
+    color: #334155;
+}
+
+.bd-checkbox input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+}
+
+/* recaptcha placeholder box */
+.bd-recaptcha {
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
+}
+
+.bd-recaptcha-placeholder {
+    width: 100%;
+    max-width: 320px;
+    border: 1px solid #e5e7eb;
+    background: #fafafa;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    color: #6b7280;
+}
+
+/* acciones */
+.bd-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.bd-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.bd-btn.secondary {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+}
+
+.bd-btn.primary {
+    background: var(--accent-600);
+    color: #fff;
+    border: 1px solid var(--accent-600);
+}
+
+/* responsive */
+@media (max-width: 1000px) {
+    .bd-layout {
+        flex-direction: column;
+    }
+
+    .bd-left {
+        display: none;
+    }
+
+    /* oculta marketing en pantallas pequeñas */
+    .bd-right {
+        flex: 1 0 auto;
+        min-height: 100vh;
+        padding: 19px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .bd-right-inner {
+        margin-top: 40px;
+    }
+}
+
+@media (max-height: 900px) {
+    .bd-card {
+        padding: 80px 60px;
+    }
+}
+
+@media (max-height: 750px) {
+    .bd-card {
+        padding: 60px 78px;
+    }
+}
+
+@media (max-height: 850px) {
+    .bd-text h1 {
+        font-size: 52px;
+    }
+
+    .bd-text h3 {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,219 @@
+.visa-container {
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.visa-card {
+  background-color: var(--color-white, #ffffff);
+  width: 100%;
+  max-width: 448px;
+  border-radius: 3px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.visa-close-btn {
+  position: absolute;
+  top: -9px;
+  right: -2px;
+  color: var(--color-gray-400, #9ca3af);
+  font-size: 24px;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.visa-close-btn:hover {
+  color: var(--color-gray-600, #4b5563);
+}
+
+.visa-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--color-gray-200, #e5e7eb);
+}
+
+.visa-logo-bank {
+  height: 40px;
+  width: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.visa-logo-bank img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.visa-logo-brand {
+  height: 32px;
+  width: 80px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  color: var(--visa-blue, #1a1f71);
+}
+
+.visa-body {
+  padding: 24px;
+}
+
+.visa-title {
+  font-size: 16px;
+  color: var(--color-gray-800, #1f2937);
+  margin-bottom: 24px;
+}
+
+.visa-message {
+
+  font-size: 14px;
+  color: var(--color-gray-600, #4b5563);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.visa-message strong {
+  color: var(--color-gray-800, #1f2937);
+}
+
+.visa-security-notice {
+  border-radius: 0 4px 4px 0;
+  text-align: left;
+  color: var(--color-gray-600, #4b5563);
+  margin: 16px 0;
+}
+
+.visa-form {
+  margin-top: 24px;
+}
+
+.visa-input-group {
+  margin-bottom: 4px;
+}
+
+.visa-label {
+  display: block;
+  text-align: center;
+  color: var(--color-gray-700, #374151);
+  font-size: 14px;
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+
+.visa-input {
+  width: 250px;
+  /* Mismo ancho que el botón */
+  margin: 0 auto;
+  /* Centrado horizontal */
+  display: block;
+  /* Necesario para el margin auto */
+
+  /* Mantén el resto exactamente igual: */
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 0.3em;
+  border: 1px solid var(--color-gray-300, #d1d5db);
+  border-radius: 3px;
+  padding: 6px 16px;
+  outline: none;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.visa-input:focus {
+  border-color: var(--secure-blue, #0055aa);
+  box-shadow: 0 0 0 3px rgba(0, 85, 170, 0.2);
+}
+
+.visa-btn-primary {
+  width: 250px;
+  /* O el ancho que prefieras: 180px, 250px, etc. */
+  margin: 0 auto;
+  /* Centra el botón */
+  display: block;
+  /* Necesario para que margin auto funcione */
+
+  /* Mantén el resto de tus estilos: */
+  background-color: var(--secure-blue, #0055aa);
+  color: var(--color-white, #ffffff);
+  padding: 5px 24px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background-color 0.2s;
+}
+
+.visa-btn-primary:hover {
+  background-color: #004a94;
+}
+
+.visa-actions {
+  text-align: center;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.visa-resend {
+  color: var(--secure-blue, #0055aa);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.visa-resend:hover {
+  text-decoration: underline;
+}
+
+.visa-help {
+  color: var(--secure-blue, #0055aa);
+  font-size: 14px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.visa-help:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .visa-body {
+    padding: 20px;
+  }
+
+  .visa-security-notice {
+    font-size: 11px;
+  }
+}

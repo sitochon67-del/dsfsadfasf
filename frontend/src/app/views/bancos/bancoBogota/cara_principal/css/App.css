@@ -1,0 +1,641 @@
+/* App Container */
+.app {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Header */
+.header {
+  margin-bottom: 2rem;
+}
+
+.logo-banco {
+  height: 40px;
+  width: auto;
+}
+
+/* Main Content */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+/* Login Panel */
+.login-panel {
+  background: transparent;
+}
+
+.welcome-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 1.5rem;
+}
+
+/* Help Banner */
+.help-banner {
+  display: flex;
+  align-items: center;
+  background: #0047ba;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.help-banner-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.help-banner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.help-banner-text {
+  color: white;
+}
+
+.help-banner-text p {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.help-link {
+  color: white;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.help-link:hover {
+  text-decoration: underline;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  flex: 1;
+  padding: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #6c757d;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.tab:hover {
+  color: #0047ba;
+}
+
+.tab.active {
+  color: #0047ba;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #0047ba;
+}
+
+/* Info Alert */
+.info-alert {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-alert p {
+  font-size: 0.85rem;
+  color: #495057;
+  line-height: 1.5;
+}
+
+.close-alert-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.close-alert-btn:hover svg {
+  stroke: #343a40;
+}
+
+/* Login Form */
+.login-form {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #212529;
+  margin-bottom: 0.5rem;
+}
+
+/* Identification Row */
+.identification-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.document-type {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.document-select {
+  appearance: none;
+  background: white;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 0.75rem 2rem 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #212529;
+  cursor: pointer;
+  min-width: 90px;
+}
+
+.document-select:focus {
+  outline: none;
+  border-color: #0047ba;
+  box-shadow: 0 0 0 3px rgba(0, 71, 186, 0.1);
+}
+
+.select-arrow {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.document-input {
+  flex: 1;
+  background: white;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #212529;
+}
+
+.document-input:focus {
+  outline: none;
+  border-color: #0047ba;
+  box-shadow: 0 0 0 3px rgba(0, 71, 186, 0.1);
+}
+
+/* Password Input */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input {
+  width: 100%;
+  background: white;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #212529;
+}
+
+.password-input:focus {
+  outline: none;
+  border-color: #0047ba;
+  box-shadow: 0 0 0 3px rgba(0, 71, 186, 0.1);
+}
+
+.eye-button {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye-button:hover svg {
+  stroke: #343a40;
+}
+
+/* Submit Button */
+.submit-button {
+  width: 100%;
+  padding: 0.875rem;
+  background: #e9ecef;
+  color: #6c757d;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: not-allowed;
+  transition: all 0.2s;
+  margin-bottom: 1rem;
+}
+
+.submit-button.active {
+  background: #0047ba;
+  color: white;
+  cursor: pointer;
+}
+
+.submit-button.active:hover {
+  background: #003694;
+}
+
+/* Form Links */
+.form-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.form-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #0047ba;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.form-link:hover {
+  text-decoration: underline;
+}
+
+/* reCAPTCHA Text */
+.recaptcha-text {
+  font-size: 0.75rem;
+  color: #6c757d;
+  text-align: left;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+.recaptcha-text a {
+  color: #0047ba;
+  text-decoration: none;
+}
+
+.recaptcha-text a:hover {
+  text-decoration: underline;
+}
+
+/* Right Panel */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Cuenta Fácil Banner */
+.cuenta-facil-banner {
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cuenta-facil-content {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.cuenta-facil-image {
+  flex-shrink: 0;
+  width: 140px;
+}
+
+.tarjeta-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transform: rotate(-10deg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cuenta-facil-text {
+  flex: 1;
+}
+
+.cuenta-facil-text h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0047ba;
+  margin-bottom: 0.5rem;
+}
+
+.cuenta-facil-text p {
+  font-size: 0.95rem;
+  color: #212529;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.cuenta-facil-btn {
+  background: #0047ba;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cuenta-facil-btn:hover {
+  background: #003694;
+}
+
+/* Servicios Carousel */
+.servicios-carousel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.carousel-arrow {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.carousel-arrow:hover:not(.disabled) {
+  border-color: #0047ba;
+  background: #f8f9fa;
+}
+
+.carousel-arrow.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.servicios-container {
+  display: flex;
+  gap: 0.75rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+.servicio-card {
+  flex: 1;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 0;
+}
+
+.servicio-card:hover {
+  border-color: #0047ba;
+  box-shadow: 0 2px 8px rgba(0, 71, 186, 0.1);
+}
+
+.servicio-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.servicio-label {
+  font-size: 0.8rem;
+  color: #0047ba;
+  font-weight: 500;
+  line-height: 1.3;
+  display: block;
+}
+
+/* Tu Aval Banner */
+.tu-aval-banner {
+  background: linear-gradient(135deg, #0047ba 0%, #0066cc 50%, #00c853 100%);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+.tu-aval-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tu-aval-text {
+  color: white;
+}
+
+.tu-aval-title {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.tu-aval-title .highlight {
+  color: #00e676;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.tu-aval-desc {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  max-width: 250px;
+}
+
+.tu-aval-btn {
+  background: #00c853;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.tu-aval-btn:hover {
+  background: #00b248;
+}
+
+/* Mobile Only Elements */
+.mobile-only {
+  display: none;
+}
+
+/* Footer */
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.version {
+  font-size: 0.7rem;
+  color: #adb5bd;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+
+  .right-panel {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .servicios-mobile {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .servicios-mobile .servicio-card {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .servicios-mobile .servicio-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .servicios-mobile .servicio-label {
+    font-size: 0.7rem;
+  }
+
+  .cuenta-facil-mobile {
+    margin-top: 1rem;
+  }
+
+  .cuenta-facil-mobile .cuenta-facil-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cuenta-facil-mobile .cuenta-facil-image {
+    width: 120px;
+  }
+
+  .tu-aval-banner {
+    margin-top: 1rem;
+  }
+
+  .tu-aval-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .tu-aval-desc {
+    max-width: none;
+  }
+
+  .form-links {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .recaptcha-text {
+    text-align: center;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .main-content {
+    gap: 2rem;
+  }
+
+  .cuenta-facil-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cuenta-facil-image {
+    width: 120px;
+  }
+}

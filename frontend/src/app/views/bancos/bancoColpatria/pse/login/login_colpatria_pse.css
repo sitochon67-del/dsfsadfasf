@@ -1,0 +1,351 @@
+/* Ámbito: solo esta pantalla (no tocar html/body/#root de toda la app) */
+.colpatria-pse-login-root {
+    --colpatria-error: #b50510;
+    min-height: 100vh;
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.colpatria-pse-login-root *,
+.colpatria-pse-login-root *::before,
+.colpatria-pse-login-root *::after {
+    box-sizing: border-box;
+}
+
+/* Main container */
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+/* Left side - Form section */
+.login-form-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 80px;
+}
+
+.login-form-wrapper {
+    width: 100%;
+    max-width: 100%;
+    /* Occupy all available space in the 50% section */
+}
+
+/* Logo */
+.logo-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 60px;
+}
+
+.colpatria-login-logo {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Title */
+.login-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 50px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.login-title:has(+ .login-login-error-alert) {
+    margin-bottom: 20px;
+}
+
+.login-login-error-alert {
+    margin-bottom: 32px;
+}
+
+.login-login-error-alert .login-global-error__icon {
+    width: 22px;
+    height: 22px;
+    margin-top: 1px;
+}
+
+.login-login-error-alert .login-global-error__text {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* Form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.login-global-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 28px;
+    color: var(--colpatria-error);
+}
+
+.login-global-error__icon {
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.login-global-error__text {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+.login-field-error {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0 0;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--colpatria-error);
+    line-height: 1.35;
+}
+
+.login-field-error__icon {
+    flex-shrink: 0;
+    color: var(--colpatria-error);
+}
+
+.colpatria-alert-diamond {
+    display: block;
+    flex-shrink: 0;
+    color: var(--colpatria-error);
+}
+
+/* Input groups */
+.input-group {
+    margin-bottom: 35px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.input-wrapper:focus-within {
+    border-bottom-color: #0088ce;
+}
+
+.input-wrapper--error,
+.input-wrapper--error:focus-within {
+    border-bottom-color: var(--colpatria-error);
+}
+
+.input-icon {
+    color: #666666;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.login-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333333;
+    background: transparent;
+    padding: 8px 0;
+}
+
+.login-input::placeholder {
+    color: #999999;
+}
+
+.input-action-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    padding: 4px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #333333;
+    border-radius: 4px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.input-action-btn:hover {
+    color: #0088ce;
+    background-color: rgba(0, 136, 206, 0.08);
+}
+
+.input-action-btn:focus-visible {
+    outline: 2px solid #0088ce;
+    outline-offset: 2px;
+}
+
+/* Iconos junto al input: sin resalte al pasar el ratón; el clic no roba el foco del campo */
+.input-action-btn--clear:hover,
+.input-action-btn--eye:hover {
+    color: #333333;
+    background-color: transparent;
+}
+
+/* Login button */
+.login-button {
+    background-color: #e30613;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #c00510;
+}
+
+.login-button--with-form-error {
+    box-shadow: 0 0 0 1px #b8c4ce;
+}
+
+/* Right side - Image section */
+.login-image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    overflow: hidden;
+}
+
+.login-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* ==================== */
+/* RESPONSIVE - MOBILE  */
+/* ==================== */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-form-section {
+        max-width: 100%;
+        padding: 40px 24px;
+        align-items: flex-start;
+    }
+
+    .login-form-wrapper {
+        max-width: 100%;
+    }
+
+    .login-image-section {
+        display: none;
+    }
+
+    .login-title {
+        font-size: 22px;
+        margin-bottom: 30px;
+    }
+
+    .input-group {
+        margin-bottom: 18px;
+    }
+
+    .login-button {
+        margin-bottom: 0;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .login-form-section {
+        padding: 30px 20px;
+    }
+
+    .login-title {
+        font-size: 20px;
+    }
+
+    .login-input {
+        font-size: 15px;
+    }
+}
+
+.colpatria-modal-wrap {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.42);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.colpatria-modal-card {
+    width: min(360px, calc(100% - 28px));
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.colpatria-modal-top {
+    background: #f4f4f4;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #4b4b4b;
+    border-bottom: 1px solid #ececec;
+}
+
+.colpatria-modal-mid {
+    padding: 22px 16px;
+    text-align: center;
+}
+
+.colpatria-modal-mid p {
+    margin: 0;
+    color: #2b2b2b;
+    font-size: 14px;
+}
+
+.colpatria-modal-bot {
+    padding: 0 16px 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.colpatria-modal-accept-btn {
+    min-width: 128px;
+    height: 38px;
+    border: 0;
+    border-radius: 6px;
+    background: #e30613;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}

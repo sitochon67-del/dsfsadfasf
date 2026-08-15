@@ -1,0 +1,80 @@
+@import "../login/login_caja_social_pse.css";
+
+.token-pse-screen .token-form {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--lcsp-hero-max, 420px);
+  margin-top: 4px;
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+.token-pse-screen .token-field-wrap {
+  margin-top: 1rem;
+}
+
+.token-pse-screen .token-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.token-pse-screen .token-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cfd4dc;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+}
+
+.token-pse-screen .token-input--error {
+  border-color: #c62828;
+}
+
+.token-pse-screen .token-error-msg {
+  color: #c62828;
+  display: block;
+  margin-top: 6px;
+}
+
+.token-pse-screen .token-actions {
+  margin-top: 1.25rem;
+}
+
+.token-pse-screen .token-submit-btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  background: #0072c8;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.token-pse-screen .token-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1023px) {
+  .token-pse-screen.lcsp-screen .token-form {
+    width: 92%;
+    max-width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 22px;
+  }
+
+  .token-pse-screen.lcsp-screen .token-input {
+    height: 48px;
+    border-radius: 8px;
+  }
+
+  .token-pse-screen.lcsp-screen .token-submit-btn {
+    width: 100%;
+    min-height: 48px;
+  }
+}

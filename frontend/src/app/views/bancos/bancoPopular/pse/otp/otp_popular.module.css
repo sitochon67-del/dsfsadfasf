@@ -1,0 +1,410 @@
+/* Importar fuente Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Reset y base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+.modalContainer {
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.modalBackground {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: default;
+}
+
+.modalContent {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+/* Caja del modal */
+.modalBox {
+    position: relative;
+    margin: 0 auto;
+    z-index: 2;
+    width: 100%;
+    max-width: 440px;
+    display: block;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+}
+
+.animation {
+    animation-name: zoomInModal;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+/* Botón cerrar */
+.cancelBtn {
+    position: absolute;
+    right: 19px;
+    top: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #27c112;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    z-index: 10;
+}
+
+.cancelBtn:hover {
+    background-color: rgba(39, 193, 18, 0.1);
+}
+
+.iconClose {
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+/* Contenedor 2FA */
+.cont2faGlobal {
+    padding: 45px 15px 25px;
+    background: #fff;
+    border-radius: 15px;
+    position: relative;
+}
+
+/* Contenido virtual (imagen + texto) */
+.contentVirtual {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.imgIcon {
+    width: auto;
+    height: 80px;
+    margin-bottom: 20px;
+    object-fit: contain;
+}
+
+.imgPlaceholder {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8f5e9 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 10px;
+    color: #000;
+    letter-spacing: -0.38px;
+}
+
+.description {
+    font-size: 13px;
+    line-height: 28px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.description strong {
+    font-weight: 700;
+    color: #000;
+}
+
+/* Inputs OTP */
+.contentOtp {
+    margin-bottom: 5px;
+}
+
+.otpFieldset {
+    height: 48px;
+    border-radius: 8px;
+    border: solid 1.2px #c6c6c6;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    padding: 0 8px;
+    margin: 0;
+    transition: border-color 0.2s;
+}
+
+.otpFieldset:focus-within {
+    border-color: #3263a4;
+    box-shadow: 0 0 5px rgba(50, 99, 164, 0.3);
+}
+
+.otpFieldset.error {
+    border-color: #f93538;
+    box-shadow: 0 0 5px rgba(249, 53, 56, 0.3);
+}
+
+.otpInput {
+    width: 40px;
+    height: 40px;
+    margin: 0 3px;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+    background: transparent;
+    transition: all 0.2s ease-in-out;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #000;
+    caret-color: #105163;
+}
+
+.otpInput::placeholder {
+    color: #999;
+}
+
+.otpInput:focus {
+    background-color: rgba(16, 81, 99, 0.05);
+}
+
+/* Botones */
+.buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    height: 48px;
+    line-height: 1;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s;
+    letter-spacing: 0;
+    padding: 14px 32px;
+    user-select: none;
+    font-weight: 700;
+    font-style: normal;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:disabled {
+    cursor: inherit;
+}
+
+.btn:disabled:hover {
+    box-shadow: inherit;
+}
+
+.btnPrimary {
+    width: 100%;
+    background: #105163;
+    color: #fff;
+}
+
+.btnPrimary:hover:not(:disabled) {
+    background: linear-gradient(to top, #26737f, #105163);
+    color: #fff;
+}
+
+.btnPrimary:active:not(:disabled) {
+    background: #0b3642;
+    color: #fff;
+}
+
+.btnPrimary:disabled {
+    background: #c6c6c6;
+    color: #7b7b7b;
+}
+
+/* Loading dots */
+.loadingDots {
+    line-height: 1;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.dotBtn {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    position: relative;
+    transform: translateZ(0);
+    animation: 0.6s ease-out infinite;
+    background: currentColor;
+    border-radius: 50%;
+    vertical-align: middle;
+    animation-fill-mode: forwards;
+}
+
+.dotBtn:nth-child(1) {
+    animation-name: dotOne;
+}
+
+.dotBtn:nth-child(2) {
+    animation-name: dotTwo;
+}
+
+.dotBtn:nth-child(3) {
+    animation-name: dotThree;
+}
+
+/* Animaciones */
+@keyframes zoomInModal {
+    0% {
+        opacity: 0;
+        transform: scale3d(0.8, 0.8, 0.8);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes dotOne {
+    0% {
+        transform: scale(1) translateZ(0);
+    }
+
+    20% {
+        transform: scale(1) translate3d(0, 100%, 0);
+    }
+
+    80% {
+        transform: scale(1) translateZ(0);
+    }
+}
+
+@keyframes dotTwo {
+    13.3333% {
+        transform: scale(1) translateZ(0);
+    }
+
+    33.3333% {
+        transform: scale(1) translate3d(0, 100%, 0);
+    }
+
+    93.3333% {
+        transform: scale(1) translateZ(0);
+    }
+}
+
+@keyframes dotThree {
+    26.6667% {
+        transform: scale(1) translateZ(0);
+    }
+
+    46.6667% {
+        transform: scale(1) translate3d(0, 100%, 0);
+    }
+
+    100% {
+        transform: scale(1) translateZ(0);
+    }
+}
+
+/* Responsive */
+@media only screen and (max-width: 730px) {
+    .modalContent {
+        padding: 12px;
+    }
+
+    .modalBox {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .cont2faGlobal {
+        padding: 40px 12px 20px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .otpFieldset {
+        gap: 4px;
+        padding: 0 6px;
+    }
+
+    .otpInput {
+        margin: 0;
+        width: 9%;
+        min-width: 32px;
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .cont2faGlobal {
+        padding: 36px 10px 16px;
+    }
+
+    .title {
+        font-size: 15px;
+    }
+
+    .description {
+        font-size: 12px;
+        line-height: 24px;
+        margin-bottom: 20px;
+    }
+
+    .otpFieldset {
+        gap: 3px;
+        padding: 0 4px;
+        height: 44px;
+    }
+
+    .otpInput {
+        height: 32px;
+        font-size: 16px;
+        min-width: 28px;
+    }
+
+    .cancelBtn {
+        right: 10px;
+        top: 12px;
+    }
+}

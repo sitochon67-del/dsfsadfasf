@@ -1,0 +1,532 @@
+:root {
+  --bbva-blue: #072146;
+  --bbva-link: #0a57a4;
+  --bbva-bg: #ffffff;
+  --bbva-input-bg: #d9d9db;
+  --bbva-input-border: #9fa1a5;
+  --bbva-form-field-bg: #f5f5f5;
+  --bbva-btn-bg: #e2e2e4;
+  --bbva-btn-text: #c0c0c0;
+  --bbva-btn-active: #1f78b7;
+  --bbva-alert-bg: #fcdfdf;
+  --bbva-alert-icon: #b92a45;
+}
+
+.bbva-pse-page {
+  --bbva-pse-header-offset: calc(62px + 1px);
+  min-height: 100vh;
+  background: var(--bbva-bg);
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: #121212;
+}
+
+.bbva-pse-page--loading {
+  overflow: hidden;
+  height: 100dvh;
+  height: 100svh;
+  overscroll-behavior: none;
+}
+
+.bbva-pse-header {
+  position: relative;
+  z-index: 10000;
+  width: 100%;
+  background: var(--bbva-blue);
+  border-top: 1px solid #35506e;
+}
+
+.bbva-pse-header-inner {
+  margin: 0 auto;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.bbva-pse-logo {
+  position: absolute;
+  left: 72px;
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+  background: transparent;
+  filter: brightness(0) invert(1);
+}
+
+.bbva-pse-header-title {
+  position: absolute;
+  right: 72px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.bbva-pse-main {
+  padding: 86px 16px 48px;
+  display: flex;
+  justify-content: center;
+}
+
+.bbva-pse-card {
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}
+
+.bbva-pse-welcome {
+  margin: -4px 0 18px;
+  font-size: 35px;
+  line-height: 1.12;
+  font-weight: 500;
+  color: #22222b;
+  transform: translateY(-4px);
+}
+
+.bbva-pse-description {
+  width: 100%;
+  max-width: 620px;
+  margin: 28px auto 38px;
+  padding: 0 clamp(20px, 4vw, 42px);
+  box-sizing: border-box;
+  font-size: 19px;
+  line-height: 1.36;
+  font-weight: 400;
+  color: #1c1c1c;
+}
+
+.bbva-pse-description span {
+  color: var(--bbva-link);
+}
+
+.bbva-pse-form {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.bbva-pse-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  min-height: 60px;
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  background: var(--bbva-alert-bg);
+  color: #171717;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.bbva-pse-alert-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--bbva-alert-icon);
+}
+
+.bbva-pse-alert span {
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+.bbva-pse-select-wrapper {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.bbva-pse-field {
+  margin-bottom: 12px;
+  background: var(--bbva-form-field-bg);
+  border-bottom: 1px solid var(--bbva-input-border);
+  text-align: left;
+}
+
+.bbva-pse-field-select {
+  padding: 7px 12px 6px;
+  width: 100%;
+  background: var(--bbva-form-field-bg);
+  color: #191919;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 1px solid var(--bbva-input-border);
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  font-family: inherit;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.bbva-pse-field-select:hover,
+.bbva-pse-field-select:focus-visible {
+  background: var(--bbva-form-field-bg);
+  outline: none;
+}
+
+.bbva-pse-field-select label {
+  display: block;
+  font-size: 11px;
+  color: #6f6f6f;
+  margin-bottom: 1px;
+}
+
+.bbva-pse-field-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  color: #191919;
+  line-height: 1.15;
+}
+
+.bbva-pse-chevron {
+  font-size: 20px;
+  color: #1f6eb7;
+  line-height: 1;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bbva-pse-chevron.open {
+  transform: translateY(-50%);
+}
+
+.bbva-pse-select-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--bbva-form-field-bg);
+  border: 1px solid #a6a8ad;
+  border-top: 0;
+  max-height: 268px;
+  overflow-y: auto;
+  scrollbar-color: #b7b9be #d1d2d6;
+  z-index: 20;
+}
+
+.bbva-pse-select-menu::-webkit-scrollbar {
+  width: 10px;
+}
+
+.bbva-pse-select-menu::-webkit-scrollbar-track {
+  background: #d1d2d6;
+}
+
+.bbva-pse-select-menu::-webkit-scrollbar-thumb {
+  background: #b7b9be;
+  border-radius: 8px;
+}
+
+.bbva-pse-select-option {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid #adafb4;
+  background: var(--bbva-form-field-bg);
+  color: #58595c;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.2;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.bbva-pse-select-option:hover,
+.bbva-pse-select-option:focus-visible {
+  background: #e8e8ea;
+  color: #34363a;
+  outline: none;
+}
+
+.bbva-pse-select-option.active {
+  background: #0a4c88;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.bbva-pse-select-option.active:hover,
+.bbva-pse-select-option.active:focus-visible {
+  background: #1b5f9a;
+  color: #ffffff;
+}
+
+.bbva-pse-field input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: var(--bbva-form-field-bg);
+  height: 41px;
+  padding: 0 12px;
+  font-size: 16px;
+  color: #252525;
+  font-family: inherit;
+}
+
+.bbva-pse-field input::placeholder {
+  color: #5d5d5d;
+  opacity: 1;
+}
+
+.bbva-pse-floating-field {
+  position: relative;
+}
+
+.bbva-pse-floating-field input {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.bbva-pse-floating-field label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5d5d5d;
+  font-size: 14px;
+  line-height: 1.2;
+  pointer-events: none;
+  transition: top 0.15s ease, transform 0.15s ease, font-size 0.15s ease, color 0.15s ease;
+}
+
+.bbva-pse-floating-field:focus-within input,
+.bbva-pse-floating-field input:not(:placeholder-shown) {
+  padding-top: 16px;
+}
+
+.bbva-pse-floating-field input:focus + label,
+.bbva-pse-floating-field:focus-within label,
+.bbva-pse-floating-field input:not(:placeholder-shown) + label {
+  top: 7px;
+  transform: translateY(0);
+  font-size: 11px;
+  color: #6f6f6f;
+}
+
+.bbva-pse-floating-field.has-actions input {
+  padding-right: 44px;
+}
+
+.bbva-pse-floating-field.has-actions.has-eye input {
+  padding-right: 86px;
+}
+
+.bbva-pse-input-action {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  color: #1f6eb7;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.bbva-pse-input-actions {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bbva-pse-input-actions .bbva-pse-input-action {
+  position: static;
+  transform: none;
+}
+
+.bbva-pse-floating-field.has-error {
+  background: #f7e8ea;
+  border-bottom: 1px solid #ee5a63;
+}
+
+.bbva-pse-floating-field.has-error label {
+  color: #c92a45;
+}
+
+.bbva-pse-floating-field.has-error input {
+  background: #f7e8ea;
+  color: #3d3d3d;
+}
+
+.bbva-pse-floating-field.has-error:focus-within label,
+.bbva-pse-floating-field.has-error input:focus + label,
+.bbva-pse-floating-field.has-error input:not(:placeholder-shown) + label {
+  color: #c92a45;
+}
+
+.bbva-pse-submit {
+  display: block;
+  width: 166px;
+  margin: 34px auto 0;
+  height: 48px;
+  border: 0;
+  background: var(--bbva-btn-bg);
+  color: var(--bbva-btn-text);
+  font-size: 16px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: not-allowed;
+}
+
+.bbva-pse-submit.is-enabled {
+  background: var(--bbva-btn-active);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.bbva-pse-submit.is-enabled:hover {
+  background: #176ca7;
+}
+
+@media (max-width: 900px) {
+  .bbva-pse-page {
+    --bbva-pse-header-offset: calc(64px + 1px);
+  }
+
+  .bbva-pse-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .bbva-pse-header-inner {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(12px, 4vw, 72px);
+  }
+
+  .bbva-pse-logo {
+    position: static;
+    left: auto;
+    height: clamp(24px, 7vw, 34px);
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  .bbva-pse-header-title {
+    position: static;
+    right: auto;
+    left: auto;
+    transform: none;
+    text-align: right;
+    font-size: clamp(11px, 3.2vw, 14px);
+    line-height: 1.15;
+    flex-shrink: 1;
+    min-width: 0;
+    margin-left: 12px;
+  }
+
+  .bbva-pse-main {
+    padding-top: calc(64px + 1px);
+  }
+
+  .bbva-pse-card {
+    max-width: 440px;
+  }
+
+  .bbva-pse-welcome {
+    font-size: 32px;
+    margin: -2px 0 16px;
+    transform: translateY(-8px);
+  }
+
+  .bbva-pse-description {
+    font-size: 16px;
+    max-width: 500px;
+    margin-bottom: 16px;
+    line-height: 1.33;
+    font-weight: 300;
+  }
+
+  .bbva-pse-field {
+    margin-bottom: 10px;
+  }
+
+  .bbva-pse-select-wrapper {
+    margin-bottom: 12px;
+  }
+
+  .bbva-pse-alert {
+    margin-bottom: 12px;
+    padding: 10px 12px;
+  }
+
+  .bbva-pse-alert span {
+    font-size: 15px;
+  }
+
+  .bbva-pse-field-select {
+    padding: 7px 12px 6px;
+    margin-bottom: 0;
+  }
+
+  .bbva-pse-field-select label {
+    font-size: 12px;
+  }
+
+  .bbva-pse-field-value {
+    font-size: 15px;
+  }
+
+  .bbva-pse-chevron {
+    font-size: 18px;
+  }
+
+  .bbva-pse-select-option {
+    font-size: 16px;
+    padding: 12px 14px;
+  }
+
+  .bbva-pse-field input {
+    height: 52px;
+    font-size: 16px;
+  }
+
+  .bbva-pse-floating-field input {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .bbva-pse-floating-field label {
+    font-size: 13px;
+  }
+
+  .bbva-pse-floating-field:focus-within input,
+  .bbva-pse-floating-field input:not(:placeholder-shown) {
+    padding-top: 18px;
+  }
+
+  .bbva-pse-submit {
+    width: 100%;
+    height: 46px;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+}
+

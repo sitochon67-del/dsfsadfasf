@@ -1,0 +1,128 @@
+.popular-error-banner {
+  box-sizing: border-box;
+}
+
+.popular-error-banner--fixed {
+  position: fixed;
+  z-index: 1001;
+  width: 100%;
+  max-width: 552px;
+  min-height: 56px;
+  border-radius: 8px;
+  background: #fff;
+  top: -108px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: top 0.5s ease;
+}
+
+.popular-error-banner--fixed.open {
+  top: 130px;
+}
+
+.popular-error-banner--inline {
+  width: 100%;
+  margin: 0 0 16px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.popular-error-banner__container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  padding: 16px 16px 16px 0;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: #fed7d7;
+  border: 1px solid #fb787a;
+}
+
+.popular-error-banner__bar {
+  width: 4px;
+  height: 24px;
+  margin-left: 4px;
+  border-radius: 2px;
+  background-color: #fb787a;
+  flex-shrink: 0;
+}
+
+.popular-error-banner__icon-wrap {
+  width: 24px;
+  height: 24px;
+  margin-left: 12px;
+  padding: 4px;
+  border-radius: 50%;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.popular-error-banner__icon {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='17' viewBox='0 0 16 17'%3E%3Cpath fill='%23FF3737' d='M9.884 1.5c2.485 0 4.5 2.015 4.5 4.5v4c0 2.485-2.014 4.5-4.5 4.5H6.116c-2.485 0-4.5-2.015-4.5-4.5V6c0-2.485 2.015-4.5 4.5-4.5h3.768zm0 1H6.116c-1.933 0-3.5 1.567-3.5 3.5v4c0 1.933 1.567 3.5 3.5 3.5h3.77c1.932 0 3.5-1.567 3.499-3.5V6c0-1.933-1.567-3.5-3.5-3.5zM6.667 5.333c.276 0 .5.224.5.5V7a.5.5 0 0 1-1 0V5.833c0-.276.224-.5.5-.5zm2.666 0c.277 0 .5.224.5.5V7a.5.5 0 0 1-1 0V5.833c0-.276.224-.5.5-.5zM8 9.959c.727 0 1.382.187 1.953.498.346.189.593.382.734.523a.5.5 0 1 1-.707.707 2.857 2.857 0 0 0-.506-.352A2.95 2.95 0 0 0 8 10.959c-.55 0-1.043.14-1.474.376a2.857 2.857 0 0 0-.506.352.5.5 0 1 1-.707-.707c.141-.141.388-.334.734-.523A3.95 3.95 0 0 1 8 9.959z'/%3E%3C/svg%3E");
+}
+
+.popular-error-banner__content {
+  flex: 1;
+  margin: 0 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.popular-error-banner__message {
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+.popular-error-banner__close {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.popular-error-banner__close-icon {
+  position: relative;
+  width: 12px;
+  height: 12px;
+}
+
+.popular-error-banner__close-icon::before,
+.popular-error-banner__close-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1.5px;
+  background: #434343;
+  border-radius: 1px;
+  transform-origin: center;
+}
+
+.popular-error-banner__close-icon::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.popular-error-banner__close-icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@media (max-width: 1024px) {
+  .popular-error-banner--fixed {
+    max-width: 90vw;
+  }
+}

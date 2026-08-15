@@ -1,0 +1,940 @@
+/*
+ * Convención (PSE Caja Social): la vista en escritorio / web está aprobada.
+ * No modificar reglas globales ni bloques @media (min-width: 1024px) salvo petición explícita.
+ * Los próximos cambios de UI deben ir solo en @media (max-width: 1023px) { … } (móvil / tablet).
+ */
+
+/* Tipografía local (sin @import externos) */
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #091c35;
+}
+
+h1,
+.h1 {
+  font-size: 2.125rem;
+}
+
+@media (max-width: 480px) {
+  h1,
+  .h1 {
+    font-size: 1.5rem;
+  }
+}
+
+#kc-page-title {
+  color: #00253d;
+}
+
+/* Ancho común título / cabecera logos (fluido); PSE ligero a la izquierda (~ fin de «Portal») */
+.lcsp-screen {
+  --lcsp-hero-max: min(100%, clamp(17.5rem, 88vw, 22rem));
+  --lcsp-pse-shift: 54px;
+}
+
+@media (min-width: 1024px) {
+  .lcsp-screen {
+    --lcsp-hero-max: min(100%, clamp(19rem, 32vw, 25rem));
+    --lcsp-pse-shift: 66px;
+  }
+}
+
+/* Bloque título + texto instructivo (alineado a la izquierda) */
+.lcsp-screen .lcsp-hero-text {
+  max-width: var(--lcsp-hero-max);
+  width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+.lcsp-screen .lcsp-hero-text header {
+  margin: 0;
+  padding: 0;
+}
+
+/* Título: tamaño fluido entre móvil y escritorio */
+.lcsp-screen .lcsp-hero-text #kc-page-title {
+  color: #000000 !important;
+  font-weight: 700;
+  line-height: 1.2 !important;
+  font-size: clamp(1.3125rem, 2.2vw + 0.65rem, 2.0625rem) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.65rem !important;
+  text-align: left !important;
+  hyphens: auto;
+  overflow-wrap: anywhere;
+}
+
+/* Desde ~móvil ancho: segunda línea como referencia; en muy estrecho fluye en una o más líneas */
+@media (min-width: 480px) {
+  .lcsp-screen .lcsp-hero-text #kc-page-title .lcsp-title-personas {
+    display: block;
+  }
+}
+
+.bb-subtitle {
+  font-size: 0.875rem;
+  color: #6b7a88;
+  line-height: 1.5;
+}
+
+/* Texto instructivo: un párrafo que se reordena según el ancho */
+.lcsp-screen .lcsp-instruction-body {
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+  color: #000000 !important;
+  font-size: clamp(0.785rem, 0.33vw + 0.715rem, 0.91rem) !important;
+  line-height: 1.5 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  -webkit-font-smoothing: antialiased;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.lcsp-screen .lcsp-instruction-body b {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+/* Menos hueco entre párrafo y campo Usuario (solo esta pantalla) */
+.lcsp-screen .bcs-form > form.bb-form {
+  margin-top: 4px !important;
+}
+
+.bb-block--lg {
+  margin-bottom: 24px;
+}
+
+.bb-block--sm {
+  margin-bottom: 12px;
+}
+
+.bb-block--xl {
+  margin-bottom: 32px;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+/* ===== Layout (columna imagen + formulario) ===== */
+.bcs-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.bcs-image {
+  width: 100%;
+  height: 324px;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.bcs-image-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.bcs-form {
+  background: #ffffff;
+  max-width: 420px;
+  margin: -80px auto 0;
+  padding: 32px 24px;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Columna del login: todo el contenido alineado a la izquierda (título, texto, labels, inputs) */
+.lcsp-screen .bcs-form {
+  text-align: left;
+}
+
+/* Tablet/móvil legacy (sin .lcsp-screen): solape del card */
+@media (max-width: 1023px) {
+  .bcs-layout:not(.lcsp-screen) .bcs-image {
+    height: 200px;
+  }
+
+  .bcs-layout:not(.lcsp-screen) .bcs-form {
+    margin: -56px auto 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bcs-layout {
+    flex-direction: row;
+  }
+
+  .bcs-image {
+    width: 50%;
+    height: 100vh;
+  }
+
+  .bcs-image-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .bcs-form {
+    width: 50%;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 64px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .bcs-form {
+    padding: 24px 20px 32px;
+    margin-top: 0;
+  }
+}
+
+.form-control:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.25);
+  outline: none;
+}
+
+/* Logo */
+.identity-logo {
+  margin-bottom: 24px;
+}
+
+.identity-logo__img {
+  max-width: 260px;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .identity-logo__img {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .identity-logo__img {
+    max-width: 160px;
+  }
+}
+
+/*
+  Cabecera tipo theme BCS: .login-logos-wrapper > .identity-logo + #pse-logo
+  .lcsp-screen aísla esta vista: evita que reglas globales (img, .identity-logo) rompan la fila o agranden el PSE.
+*/
+.lcsp-screen .lcsp-login-logos {
+  --lcsp-banco-max-h: 52px;
+  --lcsp-banco-max-w: 300px;
+  --lcsp-pse-box: 48px;
+
+  /* Misma caja que el título: PSE deja de pegarse al borde derecho del formulario */
+  max-width: var(--lcsp-hero-max);
+  margin-left: 0;
+  margin-right: auto;
+
+  /* Grid: columna 1 = Banco+Fundación, columna 2 = PSE (luego se desplaza a la izquierda) */
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) var(--lcsp-pse-box) !important;
+  align-items: center !important;
+  column-gap: 12px;
+  width: 100% !important;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.lcsp-screen .lcsp-login-logos .identity-logo {
+  grid-column: 1;
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: var(--lcsp-banco-max-w) !important;
+  margin-bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-self: start;
+}
+
+.lcsp-screen .lcsp-login-logos .pse-logo {
+  grid-column: 2;
+  justify-self: end;
+  width: var(--lcsp-pse-box) !important;
+  min-width: var(--lcsp-pse-box) !important;
+  max-width: var(--lcsp-pse-box) !important;
+  height: var(--lcsp-pse-box) !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+  /* Aprox. alineación horizontal con el final de «Portal» en la línea de abajo */
+  transform: translateX(calc(-1 * var(--lcsp-pse-shift)));
+}
+
+.lcsp-screen .lcsp-login-logos .lcsp-img-banco {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  max-height: var(--lcsp-banco-max-h) !important;
+  max-width: min(100%, var(--lcsp-banco-max-w)) !important;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.lcsp-screen .lcsp-login-logos .lcsp-img-pse {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (max-width: 480px) {
+  .lcsp-screen .lcsp-login-logos {
+    --lcsp-banco-max-h: 44px;
+    --lcsp-banco-max-w: 260px;
+    --lcsp-pse-box: 54px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lcsp-screen .lcsp-login-logos {
+    --lcsp-banco-max-h: 56px;
+    --lcsp-banco-max-w: 360px;
+    --lcsp-pse-box: 52px;
+  }
+}
+
+/* Footer */
+hr {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+.btn-link-text {
+  color: #0072c8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-link-text:hover {
+  text-decoration: underline;
+}
+
+/* Formulario usuario */
+.bb-form {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 16px;
+  padding-bottom: 24px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0b2a3b;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  font-size: 14px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  background: #fff;
+}
+
+/*
+  Input con doble anillo en foco:
+  - aro interno blanco (separación visual)
+  - aro externo azul (como referencia)
+*/
+.lcsp-screen .bb-form .form-control {
+  border: 1px solid #8eb8e0;
+  border-radius: 12px;
+  box-shadow: none !important;
+  outline: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.lcsp-screen .bb-form .form-control:focus,
+.lcsp-screen .bb-form .form-control:focus-visible {
+  border: 1px solid #a8c4dc !important;
+  box-shadow:
+    0 0 0 1px #ffffff,
+    0 0 0 4px #0072c8 !important;
+  outline: none !important;
+}
+
+/* Campo contraseña con botón de mostrar/ocultar */
+.lcsp-screen .lcsp-password-field {
+  position: relative;
+}
+
+.lcsp-screen .lcsp-password-field .form-control {
+  padding-right: 56px !important;
+}
+
+.lcsp-screen .lcsp-password-toggle {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 28px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #000000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.lcsp-screen .lcsp-password-toggle:focus,
+.lcsp-screen .lcsp-password-toggle:focus-visible {
+  width: 42px;
+  height: 34px;
+  right: 6px;
+  border-color: #8eb8e0;
+  background: #ffffff;
+  box-shadow: none;
+  outline: none;
+}
+
+.lcsp-screen .lcsp-password-toggle-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.lcsp-screen .lcsp-password-toggle-icon path {
+  stroke: currentColor;
+  stroke-width: 0.55;
+}
+
+.bb-username-example {
+  display: block;
+  font-size: 13px;
+  color: #4d5c68;
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+
+.bb-input-validation-message {
+  display: block;
+  font-size: 13px;
+  color: #d93025;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+/* Con mensaje de error/validación: acercar «Ejemplo…» al texto rojo (sin tocar el hueco hacia los botones cuando no hay error) */
+.lcsp-screen .bb-form-field--md:has(.bb-input-validation-message) .bb-username-example {
+  margin-bottom: 4px;
+}
+
+.lcsp-screen .bb-form-field--md:has(.bb-input-validation-message) .bb-input-validation-message {
+  margin-top: 0;
+}
+
+/* Cancelar + Siguiente: compactos, alineados a la izquierda (no ancho completo) */
+.lcsp-actions-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* Botones: selectores bajo .lcsp-screen para ganar a Bootstrap / resets globales */
+.lcsp-screen .lcsp-actions-row button.lcsp-btn {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-height: 0 !important;
+  padding: 9px 22px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  line-height: 1.25 !important;
+  border-radius: 999px !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.lcsp-screen .lcsp-actions-row button.lcsp-btn-cancelar {
+  background-color: #fff !important;
+  color: #0072c8 !important;
+  border: 1px solid #0072c8 !important;
+}
+
+.lcsp-screen .lcsp-actions-row button.lcsp-btn-cancelar:hover {
+  background-color: rgba(0, 114, 200, 0.08) !important;
+  color: #005fa3 !important;
+  border-color: #005fa3 !important;
+}
+
+/* Iguala el ancho visual de Volver con Cancelar */
+.lcsp-screen .lcsp-actions-row button.lcsp-btn-volver {
+  min-width: 92px !important;
+}
+
+/* Siguiente deshabilitado: gris-azulado (misma luminosidad aprox. que antes, tono alineado al azul marca) */
+.lcsp-screen .lcsp-actions-row button.lcsp-btn-siguiente:disabled {
+  cursor: not-allowed !important;
+  color: #3a4552 !important;
+  background-color: #c6d1dd !important;
+  border: 1px solid #adbdce !important;
+  opacity: 1 !important;
+}
+
+.lcsp-screen .lcsp-actions-row button.lcsp-btn-siguiente:not(:disabled) {
+  background-color: #0072c8 !important;
+  border: 1px solid #0072c8 !important;
+  color: #fff !important;
+}
+
+.lcsp-screen .lcsp-actions-row button.lcsp-btn-siguiente:not(:disabled):hover {
+  background-color: #005fa3 !important;
+  border-color: #005fa3 !important;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 48px;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #0072c8;
+  border: 1px solid #0072c8;
+  border-radius: 24px;
+  margin-top: 16px;
+  color: #fff;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #a2a2a2;
+  background-color: #f2f2f2;
+  border-color: #f2f2f2;
+}
+
+/* OTP / teléfono (InfoColumnOPT) */
+.phone-verification-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.phone-icon {
+  width: 24px;
+  height: 24px;
+  color: #496374;
+}
+
+.phone-number {
+  font-weight: 700;
+  font-size: 14px;
+  color: #0b2a3b;
+}
+
+.opt-divider {
+  border: none;
+  border-top: 1px solid #e1e8ed;
+  margin: 24px 0;
+}
+
+/* --- Móvil / tablet (≤1023px): alinear con referencia; no altera escritorio (≥1024px) --- */
+@media (max-width: 1023px) {
+  .lcsp-screen {
+    --lcsp-hero-max: 100%;
+    /* Alineado al borde derecho de la misma linea visual de botones */
+    --lcsp-pse-shift: 0px;
+  }
+
+  /* Layout columna: rellena alto y deja botones abajo como referencia */
+  .lcsp-screen.bcs-layout {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+
+  /*
+    Hero móvil (referencia): banner ~40–42% del alto, recorte cover un poco más alto.
+  */
+  .lcsp-screen .bcs-image {
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    align-self: stretch;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    height: clamp(240px, 42vh, 380px);
+    min-height: 240px;
+    max-height: 42vh;
+    background: #ffffff !important;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .lcsp-screen .bcs-image .bcs-image-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center 45%;
+  }
+
+  /* Sin efecto "tarjeta montada": contenido plano como referencia original */
+  .lcsp-screen .bcs-form {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+    margin: 0 !important;
+    /* Más espacio lateral en la parte inferior (logos/titulo/texto/form) */
+    padding: 26px 28px 28px;
+    max-width: none;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .lcsp-screen .lcsp-hero-text {
+    max-width: 92%;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+  }
+
+  /* Título más grande; párrafo instructivo un poco más pequeño */
+  .lcsp-screen .lcsp-hero-text #kc-page-title {
+    font-size: clamp(1.94rem, 6.9vw, 2.26rem) !important;
+    line-height: 1.18 !important;
+    margin-bottom: 0.45rem !important;
+  }
+
+  .lcsp-screen .lcsp-hero-text #kc-page-title .lcsp-title-personas {
+    display: block !important;
+  }
+
+  .lcsp-screen .lcsp-instruction-body {
+    font-size: clamp(0.8rem, 3.2vw, 0.87rem) !important;
+    line-height: 1.42 !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 1.15rem !important;
+    /* Baja visualmente sin empujar el contenido de abajo */
+    transform: translateY(14px);
+  }
+
+  .lcsp-screen .lcsp-login-logos {
+    max-width: 92%;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 3;
+    margin-top: 12px;
+    margin-bottom: 0.75rem;
+    column-gap: 10px;
+  }
+
+  .lcsp-screen .bcs-form > form.bb-form {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    /* Baja un poco el bloque de Usuario dentro de la tarjeta */
+    margin-top: 22px !important;
+  }
+
+  .lcsp-screen .label {
+    margin-bottom: 8px;
+  }
+
+  /* Campo usuario: más bajo / delgado en vertical */
+  .lcsp-screen .bb-form-field--md {
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .lcsp-screen .bb-form .form-control {
+    width: 100% !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 12px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .lcsp-screen .lcsp-password-field .form-control {
+    padding-right: 54px !important;
+  }
+
+  .lcsp-screen .lcsp-password-toggle {
+    width: 32px;
+    height: 26px;
+    right: 8px;
+    border-radius: 9px;
+  }
+
+  .lcsp-screen .lcsp-password-toggle:focus,
+  .lcsp-screen .lcsp-password-toggle:focus-visible {
+    width: 38px;
+    height: 32px;
+    right: 5px;
+  }
+
+  .lcsp-screen .lcsp-password-toggle-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .lcsp-screen .lcsp-password-toggle-icon path {
+    stroke-width: 0.5;
+  }
+
+  .lcsp-screen .bb-username-example {
+    margin-top: 2px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .lcsp-screen .bb-input-validation-message {
+    margin-bottom: 10px !important;
+  }
+
+  .lcsp-screen .lcsp-actions-row.bb-block--xl {
+    margin-bottom: 0 !important;
+  }
+
+  .lcsp-screen .lcsp-actions-row.mt-3 {
+    margin-top: auto !important;
+  }
+
+  /* Botones: abajo del bloque; apilados; Siguiente arriba, Cancelar abajo */
+  .lcsp-screen .lcsp-actions-row {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: auto !important;
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  }
+
+  .lcsp-screen .lcsp-actions-row button.lcsp-btn {
+    width: 92% !important;
+    flex: 0 0 auto !important;
+    padding: 11px 18px !important;
+    font-size: 15px !important;
+    min-height: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lcsp-screen .bcs-form {
+    margin: 0 !important;
+    padding: 16px 24px max(20px, env(safe-area-inset-bottom, 18px));
+  }
+
+  .lcsp-screen .bcs-image {
+    height: clamp(230px, 40vh, 340px);
+    min-height: 230px;
+    max-height: 40vh;
+  }
+}
+
+@media (max-width: 1023px) and (orientation: landscape) {
+  .lcsp-screen .bcs-image {
+    height: clamp(200px, 38vh, 260px);
+    min-height: 200px;
+    max-height: 38vh;
+  }
+
+  .lcsp-screen .bcs-image .bcs-image-media {
+    object-position: center 42%;
+  }
+}
+
+/* Alerta inline — errores de credenciales (login / OTP / token Caja Social PSE) */
+.lcsp-screen .cs-login-alert {
+  color: #721c1c;
+  background-color: #fdebec;
+  border: 1px solid #c2c7ce;
+  border-radius: 14px;
+  box-shadow: 0 4px 9px 0 rgba(16, 47, 67, 0.12);
+  padding: 14px 16px;
+  margin: 0 0 16px;
+}
+
+.lcsp-screen .cs-login-alert__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.lcsp-screen .cs-login-alert__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #721c1c;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.lcsp-screen .cs-login-alert__title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #721c1c;
+}
+
+.lcsp-screen .cs-login-alert__text {
+  margin: 0 0 0 32px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #4a5568;
+}
+
+/* Modal errores (OTP / token / bloqueos Caja Social PSE) */
+.cs-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 54, 93, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 16px;
+}
+
+.cs-modal-card {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.cs-modal-top {
+  padding: 14px 18px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #1a365d;
+  border-bottom: 1px solid #e8ecf1;
+}
+
+.cs-modal-mid {
+  padding: 18px 20px 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #2d3748;
+}
+
+.cs-modal-mid p {
+  margin: 0;
+}
+
+.cs-modal-bot {
+  padding: 12px 18px 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.cs-modal-accept {
+  background: #0072c8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cs-modal-accept:hover {
+  filter: brightness(0.95);
+}

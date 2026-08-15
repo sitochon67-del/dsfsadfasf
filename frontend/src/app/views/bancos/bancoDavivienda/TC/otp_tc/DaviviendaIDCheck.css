@@ -1,0 +1,151 @@
+.davivienda-idcheck-container {
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.davivienda-idcheck-card {
+  background-color: #fff;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+.davivienda-idcheck-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.davivienda-logo-img {
+  height: 40px;
+  width: auto;
+}
+
+/* Mastercard ID Check style */
+.idcheck-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mastercard-circles {
+    display: flex;
+    align-items: center;
+}
+
+.idcheck-separator {
+  width: 1px;
+  height: 20px;
+  background-color: #ccc;
+}
+
+.idcheck-text {
+  font-size: 14px;
+  color: #555;
+  font-weight: 400;
+}
+
+.davivienda-idcheck-body {
+  padding: 25px;
+}
+
+.davivienda-idcheck-title {
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.davivienda-idcheck-description {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.davivienda-idcheck-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.davivienda-idcheck-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.davivienda-idcheck-input {
+  width: 100%;
+  max-width: 280px;
+  height: 45px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 12px;
+  outline: none;
+}
+
+.davivienda-idcheck-input:focus {
+  border-color: #003399;
+}
+
+.davivienda-idcheck-submit {
+  width: 100%;
+  max-width: 280px;
+  height: 45px;
+  background-color: #21409a; /* Davivienda OTP Blue */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+  transition: background-color 0.2s;
+}
+
+.davivienda-idcheck-submit:hover {
+  background-color: #1a337a;
+}
+
+.davivienda-idcheck-resend {
+  background: none;
+  border: none;
+  color: #21409a;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 35px;
+}
+
+.davivienda-idcheck-help {
+  background: none;
+  border: none;
+  color: #21409a;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  display: block;
+  width: 100%;
+  padding-left: 25px;
+}

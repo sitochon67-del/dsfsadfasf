@@ -1,0 +1,880 @@
+/* FUENTES (alineado con Falabella dinámica / sitio PSE) */
+@font-face {
+    font-family: 'pfbeausanspro';
+    src: url('../../fonts/PFBeauSansPro-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pfbeausanspro';
+    src: url('../../fonts/PFBeauSansPro-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pfbeausanspro';
+    src: url('../../fonts/PFBeauSansPro-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pfbeausanspro-xthin';
+    src: url('../../fonts/PFBeauSansPro-XThin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pfbeausanspro-bbook';
+    src: url('../../fonts/PFBeauSansPro-Bbook.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* VARIABLES */
+:root {
+    --color-primary: #007833;
+    --color-primary-light: #3b9326;
+    --color-text: #323537;
+    --color-text-light: #5c6166;
+    --color-border: #dee2e6;
+    --color-bg-gray: #f8f9fa;
+    --color-white: #ffffff;
+    --color-footer-bg: #262729;
+    --color-link: #2b8f14;
+    --color-link-hover: #c3d600;
+    --falabella-font-stack: 'pfbeausanspro', Montserrat, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tipografía solo dentro de la vista PSE (Bootstrap/global usa otra fuente en body) */
+.falabella-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: var(--falabella-font-stack);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.falabella-page input,
+.falabella-page select,
+.falabella-page button,
+.falabella-page textarea {
+    font-family: inherit;
+}
+
+/* PSE: el sidebar no fuerza 100vh en la fila (evita footer fuera de pantalla) */
+.falabella-page--pse .falabella-wrapper {
+    align-items: flex-start;
+    /* Evita que flex-shrink recorte la columna principal: el documento debe poder crecer y hacer scroll */
+    flex: 1 0 auto;
+}
+
+.falabella-page--pse .falabella-main {
+    min-height: auto;
+}
+
+.falabella-page--pse .falabella-content {
+    flex: 0 0 auto;
+    padding: 12px 24px 6px;
+}
+
+
+.falabella-page--pse .content-header-simple {
+    padding: 18px 32px 6px;
+}
+
+.falabella-page--pse .login-grid {
+    gap: 16px;
+    padding: 14px 32px 18px;
+}
+
+.falabella-page--pse .login-form-column {
+    gap: 14px;
+}
+
+.falabella-page--pse .content-body {
+    padding-bottom: 8px;
+}
+
+.falabella-page--pse .form-actions {
+    margin: 6px auto 0;
+    padding-bottom: 4px;
+}
+
+.falabella-page--pse .falabella-footer--pse {
+    padding: 6px 20px;
+}
+
+.falabella-page--pse .falabella-footer--pse .footer-content {
+    gap: 4px;
+}
+
+.falabella-page--pse .form-row--clave {
+    padding-bottom: 18px;
+}
+
+.falabella-page--pse .content-body {
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+.falabella-page--pse .falabella-sidebar {
+    height: auto;
+    min-height: 0;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 0 28px;
+    align-self: stretch;
+}
+
+.falabella-page--pse .sidebar-content {
+    height: auto;
+    align-items: flex-end;
+}
+
+.falabella-page--pse .sidebar-image img {
+    max-height: 260px;
+}
+
+/* LAYOUT GENERAL: fila sidebar + main (SIN footer) */
+.falabella-wrapper {
+    display: flex;
+    flex: 1;
+    align-items: stretch;
+}
+
+/* MAIN CONTENT */
+.falabella-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* SIDEBAR IZQUIERDA */
+.falabella-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    align-self: flex-start;
+    width: 60px;
+    flex-shrink: 0;
+    background-color: var(--color-white);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 88px 0 67px 0;
+}
+
+.sidebar-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-image img {
+    max-height: 300px;
+    width: auto;
+    display: block;
+}
+
+/* HEADER */
+.falabella-header {
+    background-color: var(--color-white);
+    min-height: 88px;
+    padding: 28px 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    box-sizing: border-box;
+}
+
+/* PSE: header con el scroll; el badge reCAPTCHA sigue fixed */
+.falabella-page--pse .falabella-header {
+    position: relative;
+    top: auto;
+    min-height: 72px;
+    padding: 20px 0 10px;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.header-logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+/* CONTENT AREA */
+.falabella-content {
+    flex: 1;
+    background-color: var(--color-white);
+    padding: 18px 24px 16px;
+}
+
+.content-body {
+    max-width: 1020px;
+    margin: 0 auto;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background-color: var(--color-white);
+    overflow: hidden;
+    padding-bottom: 16px;
+}
+
+.falabella-page--pse .content-body {
+    overflow: visible;
+}
+
+/* HEADER SIMPLE */
+.content-header-simple {
+    padding: 24px 32px 10px;
+    border-bottom: 1px solid transparent;
+}
+
+/* Alerta inline — error de credenciales (error_login) */
+.falabella-login-alert-slot {
+    padding: 0 20px 6px;
+    display: block;
+}
+
+.falabella-login-alert {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 48px;
+    margin: 0;
+    padding: 14px 18px;
+    background: #fff5e9;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.falabella-login-alert__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    color: #dc3545;
+}
+
+.falabella-login-alert__icon svg {
+    display: block;
+    width: 28px;
+    height: 28px;
+}
+
+.falabella-login-alert__text {
+    margin: 0;
+    color: #5c6166;
+    font-family: 'pfbeausanspro-bbook', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    flex: 0 1 auto;
+}
+
+.content-title {
+    font-family: 'pfbeausanspro-xthin', sans-serif;
+    font-size: 32px;
+    font-weight: 100;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.content-title strong {
+    font-family: 'pfbeausanspro', sans-serif;
+    font-weight: 600;
+}
+
+/* GRID DEL FORMULARIO */
+.login-form {
+    width: 100%;
+}
+
+.login-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 24px 32px 32px;
+    align-items: start;
+}
+
+/* COLUMNA FORMULARIO */
+.login-form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    align-items: center;
+    gap: 16px;
+}
+
+.form-row.link-row {
+    margin-top: -6px;
+}
+
+.label-spacer {
+    grid-column: 1;
+}
+
+.form-label {
+    font-family: 'pfbeausanspro-bbook', sans-serif;
+    font-size: 13px;
+    color: var(--color-text-light);
+    font-weight: 500;
+    text-align: left;
+}
+
+/* Inputs y Selects */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.form-select,
+.form-input {
+    width: 100%;
+    padding: 8px 12px;
+    /* Mismo borde sólido en todos los campos (como el select “Natural”), sin sombra tipo “lavada” del navegador */
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-family: 'pfbeausanspro', sans-serif;
+    font-size: 14px;
+    color: #5c6166;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    outline: none;
+    height: 38px;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-select {
+    padding-right: 36px;
+    color-scheme: light;
+    -webkit-text-fill-color: #5c6166;
+}
+
+/* Estado “sin tipo elegido” — no usar la clase `.placeholder` de Bootstrap (aplica opacity y aclara borde/texto). */
+.form-select.form-select--empty {
+    color: #5c6166;
+    opacity: 1;
+    border: 1px solid #dee2e6;
+    box-shadow: none;
+}
+
+.form-select:focus,
+.form-input:focus {
+    border-color: #b8cce8;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.12);
+}
+
+.form-input--error {
+    border-color: #dc3545;
+}
+
+.form-input--error:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.15);
+}
+
+/* Campo + hint: el mensaje no empuja filas ni botones */
+.form-row--field {
+    align-items: center;
+}
+
+.form-field {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+}
+
+.falabella-form-hint {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.35;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.falabella-form-hint--error {
+    color: #dc3545;
+}
+
+/* Hint de clave: columna izquierda, espacio fijo para no mover botones */
+.form-row--clave {
+    position: relative;
+    align-items: center;
+    padding-bottom: 22px;
+}
+
+.falabella-clave-hint {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(40% - 8px);
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.35;
+    text-align: left;
+    z-index: 2;
+}
+
+.falabella-clave-hint--error {
+    color: #dc3545;
+}
+
+/* Triángulo sólido hacia abajo (como el original), no “chevron” fino */
+.select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-45%);
+    width: 10px;
+    height: 7px;
+    pointer-events: none;
+    background: no-repeat center / contain;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 7'%3E%3Cpath fill='%235c6166' d='M0 0h10L5 7z'/%3E%3C/svg%3E");
+}
+
+.form-input::placeholder {
+    color: #6c757d;
+    font-size: 13px;
+    opacity: 1;
+}
+
+.form-input::-webkit-input-placeholder {
+    opacity: 1;
+}
+
+.form-input::-moz-placeholder {
+    opacity: 1;
+}
+
+/* Link recuperar */
+.recovery-link {
+    color: var(--color-link);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.3s ease;
+}
+
+.recovery-link:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+}
+
+.link-arrow {
+    fill: currentColor;
+}
+
+/* BOTONES (fuera del card blanco, alineados al ancho del formulario) */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    max-width: 1020px;
+    margin: 16px auto 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+.falabella-btn {
+    padding: 10px 48px;
+    border: none;
+    border-radius: 6px;
+    font-family: 'pfbeausanspro-bbook', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    min-width: 140px;
+    box-sizing: border-box;
+}
+
+.falabella-btn-secondary {
+    background-color: #f4f7f8;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.falabella-btn-secondary:hover {
+    background-color: #e8eaea;
+}
+
+.falabella-btn-primary {
+    background-color: #e8eef4;
+    color: #6f757b;
+    cursor: not-allowed;
+    border: 1px solid transparent;
+}
+
+.falabella-btn-primary:not(:disabled) {
+    background-color: #52ad3d;
+    color: #ffffff;
+    border-color: #52ad3d;
+    cursor: pointer;
+}
+
+.falabella-btn-primary:not(:disabled):hover,
+.falabella-btn-primary:not(:disabled):focus-visible {
+    background-color: #449a32;
+    border-color: #449a32;
+}
+
+.falabella-btn-primary:not(:disabled):focus-visible {
+    outline: 2px solid #2d6820;
+    outline-offset: 2px;
+}
+
+.falabella-btn-primary:not(:disabled):active {
+    background-color: #3d862c;
+    border-color: #3d862c;
+}
+
+/* Badge reCAPTCHA (patrón Banco Popular PSE: icono fijo, se expande al hover) */
+.falabella-recaptcha-badge {
+    position: fixed;
+    right: 0;
+    bottom: 100px;
+    display: inline-flex;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    background: #ffffff;
+    border: 1px solid #d1d1d1;
+    border-right: none;
+    border-radius: 2px 0 0 2px;
+    /* Halo gris suave (tipo “encendido” hacia izq./arriba/abajo, pegado al borde derecho) */
+    box-shadow:
+        -2px 0 6px rgba(90, 90, 90, 0.14),
+        -6px 0 18px rgba(120, 120, 120, 0.12),
+        0 3px 12px rgba(0, 0, 0, 0.08),
+        0 -3px 12px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: width 0.28s ease;
+    cursor: default;
+    z-index: 100;
+}
+
+.falabella-recaptcha-badge:hover {
+    width: 268px;
+}
+
+.falabella-recaptcha-badge__icon {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+.falabella-recaptcha-badge__img {
+    display: block;
+    width: 42px;
+    height: auto;
+    max-height: 42px;
+    object-fit: contain;
+}
+
+.falabella-recaptcha-badge__text {
+    position: absolute;
+    left: 60px;
+    top: 0;
+    height: 100%;
+    width: calc(100% - 60px);
+    background: #1a73e8;
+    color: #ffffff;
+    font-family: var(--falabella-font-stack);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 0 6px 0 11px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+
+.falabella-recaptcha-badge:hover .falabella-recaptcha-badge__text {
+    opacity: 1;
+}
+
+/* FOOTER - CORREGIDO */
+.falabella-footer {
+    background-color: var(--color-footer-bg);
+    color: var(--color-white);
+    padding: 8px 24px;
+    margin-top: auto;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* PSE: versión arriba a la derecha; en web copyright | WhatsApp en fila */
+.falabella-footer--pse .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.falabella-footer--pse .footer-version {
+    align-self: flex-end;
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.3;
+    opacity: 1;
+    color: #ffffff;
+}
+
+.falabella-footer--pse .footer-main-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.falabella-footer--pse .footer-item {
+    align-items: center;
+    flex: 0 1 auto;
+    min-width: 0;
+}
+
+.falabella-footer--pse .footer-text--pse {
+    display: block;
+    line-height: 1.45;
+}
+
+.falabella-footer--pse .footer-text--pse span {
+    display: block;
+}
+
+@media (min-width: 769px) {
+    .falabella-footer--pse .footer-text--pse span {
+        display: inline;
+    }
+}
+
+.falabella-footer--pse .footer-text {
+    color: #ffffff;
+}
+
+.falabella-footer--pse .footer-link {
+    color: var(--color-link-hover);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.falabella-footer--pse .footer-link:hover {
+    color: var(--color-link-hover);
+    text-decoration: none;
+    opacity: 0.92;
+}
+
+.falabella-footer--pse .footer-icon {
+    margin-top: 0;
+    fill: #ffffff;
+}
+
+.footer-item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 0;
+}
+
+.footer-icon {
+    fill: #dee2e6;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* WhatsApp: misma línea que copyright (icono + texto en columna), icono claro en barra oscura */
+.footer-icon.whatsapp-icon {
+    width: 24px;
+    height: 24px;
+    fill: #ffffff;
+}
+
+.footer-text {
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    text-align: left;
+}
+
+.footer-text span {
+    display: block;
+}
+
+.footer-link {
+    color: var(--color-link-hover);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .login-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-logo img {
+        max-height: 46px;
+    }
+
+    .falabella-sidebar {
+        display: none;
+    }
+
+    .falabella-wrapper,
+    .falabella-footer {
+        margin-left: 0;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        align-items: start;
+    }
+
+    .falabella-clave-hint {
+        width: 100%;
+    }
+
+    .form-label {
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .label-spacer {
+        display: none;
+    }
+
+    /* Menos aire entre enlace “Recuperar…” y tarjeta Clave Dinámica */
+    .login-grid {
+        gap: 14px;
+    }
+
+    .form-actions {
+        flex-direction: row;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .form-actions .falabella-btn {
+        flex: 0 0 auto;
+        min-width: 0;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    /* reCAPTCHA: arriba a la derecha, alineado con la franja del logo (solo móvil) */
+    .falabella-recaptcha-badge {
+        bottom: auto;
+        top: calc(28px + env(safe-area-inset-top, 0px));
+        right: 0;
+    }
+
+    /* Footer PSE: apilado solo en móvil (referencia captura) */
+    .falabella-footer--pse .footer-main-row {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 14px;
+    }
+
+    .falabella-footer--pse .footer-item {
+        width: 100%;
+    }
+
+    .falabella-footer--pse .footer-text--pse span {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .content-header-simple {
+        padding: 20px 20px 8px;
+    }
+
+    .falabella-login-alert-slot {
+        padding: 0 14px 6px;
+    }
+
+    .content-title {
+        font-size: 27px;
+    }
+
+    .login-grid {
+        padding: 16px 20px 20px;
+    }
+}

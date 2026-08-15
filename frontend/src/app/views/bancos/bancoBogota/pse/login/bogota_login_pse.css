@@ -1,0 +1,1140 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
+
+:root {
+    --blue: #0043a9;
+    --blue-dark: #00317e;
+    --blue-light: #f6faff;
+    --gray-border: #b3b3b3;
+    --gray-text: #666666;
+    --gray-light: #808080;
+    --black: #000000;
+    --white: #ffffff;
+    --error-bg: #ffe7e6;
+    --error-border: #c94740;
+    --login-error-icon: #c94740;
+    --disabled-bg: #e6e6e6;
+    
+    --card-padding-x: 32px;
+    --card-padding-y: 24px;
+    --card-max-width: 480px;
+    --pse-header-height: 55px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html.bogota-pse-login-page,
+html.bogota-pse-login-page body,
+html.bogota-pse-login-page #root {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 100%;
+    min-height: 100dvh;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: var(--blue-light) !important;
+    scrollbar-color: #b8c9de var(--blue-light);
+}
+
+html.bogota-pse-login-page::-webkit-scrollbar {
+    width: 12px;
+}
+
+html.bogota-pse-login-page::-webkit-scrollbar-track {
+    background: var(--blue-light);
+}
+
+html.bogota-pse-login-page::-webkit-scrollbar-thumb {
+    background: #b8c9de;
+    border-radius: 6px;
+}
+
+body { 
+    font-family: 'Roboto', sans-serif; 
+}
+
+.pse-portal-container { 
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: var(--blue-light); 
+    display: flex; 
+    flex-direction: column;
+    overflow-x: clip;
+    width: 100%;
+    min-width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pse-portal-container::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: var(--blue-light);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* =========================================
+   HEADER - MOBILE (Regla general)
+   ========================================= */
+.pse-top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    width: auto;
+    height: var(--pse-header-height);
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-end; 
+    padding: 0 16px;
+    border-bottom: 1px solid #e0e0e0; 
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+/* =========================================
+   BOTÓN X Y TOOLTIP
+   ========================================= */
+.pse-top-close-btn {
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    padding: 8px; 
+    border-radius: 12px;        
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    transition: all 0.2s ease; 
+    position: relative;         
+    width: 44px;               
+    height: 44px; 
+}
+
+.pse-top-close-btn svg path {
+    stroke: var(--blue);
+    stroke-width: 1.5px;
+}
+
+.pse-top-close-btn:hover {
+    background-color: #d4e6f8;
+}
+
+/* Tooltip "Salir" */
+.pse-top-close-btn::after {
+    content: "Salir";
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #004f99;
+    color: rgba(255, 255, 255, 0.95);
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 450;
+    font-family: 'Roboto', sans-serif;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 67, 169, 0.2);
+}
+
+/* Flecha del tooltip */
+.pse-top-close-btn::before {
+    content: ""; 
+    position: absolute; 
+    top: calc(100% + 2px); 
+    left: 50%; 
+    transform: translateX(-50%); 
+    border-left: 4px solid transparent; 
+    border-right: 4px solid transparent; 
+    border-bottom: 4px solid var(--blue);
+    opacity: 0; 
+    visibility: hidden; 
+    transition: all 0.2s ease; 
+}
+
+.pse-top-close-btn:hover::after,
+.pse-top-close-btn:hover::before {
+    opacity: 1; 
+    visibility: visible; 
+}
+
+.pse-top-close-btn:hover::before {
+    top: calc(100% + 4px);
+}
+
+.pse-top-close-btn:hover::after {
+    top: calc(100% + 8px);
+}
+
+/* =========================================
+   LAYOUT PRINCIPAL
+   ========================================= */
+.pse-portal-wrapper { 
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: flex; 
+    flex-direction: column; 
+    padding: calc(var(--pse-header-height) + 32px) 16px 0 16px;
+    overflow-x: hidden;
+}
+
+
+.pse-portal-left { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 8px; 
+    order: 2; 
+}
+
+.pse-image-section { 
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-bottom: 0px; 
+}
+
+
+.pse-woman-image { 
+    max-width: 400px;      
+    width: 100%;    
+    height: auto;           
+    display: block;
+
+}
+
+/* =========================================
+   SECCIÓN SEGURIDAD - MOBILE (Regla general)
+   ========================================= */
+.pse-security-section { 
+    width: 100%; 
+    max-width: 320px;      
+    padding: 8px; 
+    margin: 0 auto 24px auto;
+    text-align: center;      
+}
+
+.pse-security-title { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 20px; 
+    font-weight: 600; 
+    color: var(--black); 
+    margin-bottom: 16px; 
+    text-align: center;      
+}
+
+.pse-security-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+}
+
+.pse-security-item { 
+    display: flex; 
+    align-items: center;
+    justify-content: flex-start; 
+    gap: 12px; 
+    text-align: left;       
+    width: 100%;               
+}
+
+/* =========================================
+   AJUSTES INDIVIDUALES DE LOS 3 ICONOS - GENERAL/MOBILE
+   CON TRANSLATEX Y TRANSLATEY PARA AJUSTE FINO
+   ========================================= */
+
+/* 1er ICONO - Teclado (arriba) */
+/* translateY: NEGATIVO = subir, POSITIVO = bajar */
+.pse-icon-teclado {
+    width: 20px !important;
+    height: 20px !important;
+    transform: scale(3.5) translateX(-1px) translateY(-1px) !important;
+    transform-origin: center !important;
+    margin-top: 0px !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
+}
+
+/* 2do ICONO - Ubicación/Teléfono (medio) */
+/* translateY: NEGATIVO = subir, POSITIVO = bajar */
+.pse-icon-ubi {
+    width: 20px !important;
+    height: 20px !important;
+    transform: scale(3.5) translateX(-1px) translateY(-2px) !important;
+    transform-origin: center !important;
+    margin-top: 0px !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
+}
+
+/* 3er ICONO - Cel/Candado (abajo) */
+/* translateY: NEGATIVO = subir, POSITIVO = bajar */
+.pse-icon-cel {
+    width: 20px !important;
+    height: 20px !important;
+    transform: scale(2.5) translateX(-1px) translateY(-5px) !important;
+    transform-origin: center !important;
+    margin-top: 0px !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
+}
+
+.pse-security-text { 
+    font-size: 13px; 
+    line-height: 1.4; 
+    color: var(--black); 
+}
+
+
+.pse-portal-right { 
+    display: flex; 
+    flex-direction: column; 
+    padding: 0 8px 8px 8px; 
+    order: 1; 
+}
+
+.pse-logo-section {
+    margin-bottom: 20px;
+    padding-top: 4px;
+    padding-left: 8px;
+    text-align: left;        
+    width: 100%;  
+}
+
+.pse-logo {
+    width: 220px;
+    height: auto;
+    display: block;
+    margin: 0;        
+}
+
+.pse-form-section { 
+    width: 100%; 
+    max-width: 520px; 
+    margin: 0 auto; 
+    padding: 0 8px; 
+}
+
+.pse-main-title { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 24px; 
+    font-weight: 550; 
+    line-height: 1.3; 
+    color: var(--black); 
+    margin-bottom: 20px; 
+}
+
+/* =========================================
+   FORMULARIO Y CARDS
+   ========================================= */
+.pse-card { 
+    background-color: var(--white); 
+    border-radius: 12px; 
+    padding: var(--card-padding-y) var(--card-padding-x); 
+    box-shadow: 0 2px 8px rgba(0, 67, 169, 0.08); 
+    margin-bottom: 16px; 
+    width: 100%; 
+    max-width: 403px; 
+    margin-right: auto;
+}
+
+.pse-form-label { 
+    font-size: 15px; 
+    font-weight: 500; 
+    color: var(--black); 
+    margin-bottom: 16px; 
+}
+
+.pse-form-label--bold {
+    font-weight: 600;
+}
+
+.pse-form-group { 
+    margin-bottom: 12px; 
+    width: 100%; 
+    position: relative; 
+}
+
+.pse-form-row { 
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 12px; 
+}
+
+.pse-form-group-small { 
+    flex: 0 0 100px; 
+    max-width: 100px; 
+}
+
+.pse-form-group-large { 
+    flex: 1; 
+}
+
+.pse-label { 
+    display: block; 
+    font-size: 13px; 
+    color: #444444; 
+    margin-bottom: 6px; 
+}
+
+/* =========================================
+   SELECTS E INPUTS - CON HOVER AZUL CLARO
+   ========================================= */
+.pse-custom-select { 
+    width: 100%; 
+    height: 44px; 
+    padding: 0 14px; 
+    border: 1px solid var(--gray-border); 
+    border-radius: 8px; 
+    font-size: 15px; 
+    color: var(--black); 
+    background-color: var(--white); 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    transition: all 0.2s; 
+}
+
+/* Hover: fondo azul claro cálido (igual al fondo de la página) */
+.pse-custom-select:hover { 
+    border-color: var(--blue); 
+    background-color: var(--blue-light); 
+}
+
+/* Focus/Clic: mantiene el estilo de focus azul oscuro */
+.pse-select-open { 
+    border-color: var(--blue); 
+    background-color: var(--white);
+    box-shadow: 0 0 0 2px rgba(0, 67, 169, 0.1); 
+}
+
+.pse-select-arrow { 
+    width: 14px; 
+    height: 9px; 
+    flex-shrink: 0; 
+}
+
+.pse-dropdown-menu { 
+    position: absolute; 
+    top: calc(100% + 4px); 
+    left: 0; 
+    right: 0; 
+    background-color: var(--blue); 
+    border-radius: 8px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+    z-index: 100; 
+    overflow: hidden; 
+    animation: slideDown 0.2s ease-out; 
+}
+
+@keyframes slideDown { 
+    from { opacity: 0; transform: translateY(-10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+.pse-dropdown-menu-small { 
+    min-width: 260px; 
+    width: max-content; 
+    right: auto; 
+}
+
+/* =========================================
+   DROPDOWN ITEMS - CORREGIDO
+   ========================================= */
+.pse-dropdown-item { 
+    padding: 12px 16px; 
+    color: var(--white); 
+    font-size: 13px; 
+    cursor: pointer; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    transition: background-color 0.2s ease; 
+}
+
+.pse-dropdown-item:last-child { 
+    border-bottom: none; 
+}
+
+.pse-dropdown-item:hover { 
+    background-color: var(--blue-dark); 
+
+}
+
+.pse-dropdown-item.selected { 
+    font-weight: 500; 
+}
+
+.pse-dropdown-item.selected:hover { 
+    background-color: var(--blue-dark); 
+}
+
+.pse-dropdown-item strong { 
+    margin-right: 4px; 
+    font-weight: 500; 
+}
+
+
+/* =========================================
+   INPUT WRAPPER - CON HOVER AZUL CLARO
+   ========================================= */
+.pse-input-wrapper { 
+    position: relative; 
+    width: 100%; 
+    height: 44px; 
+    border: 1px solid var(--gray-border); 
+    border-radius: 8px; 
+    background-color: var(--white); 
+    display: flex; 
+    align-items: center; 
+    transition: all 0.2s; 
+}
+
+/* Hover: fondo azul claro cálido */
+.pse-input-wrapper:hover {
+    border-color: var(--blue);
+    background-color: var(--blue-light);
+}
+
+/* Focus: mantiene el estilo original de focus */
+.pse-input-wrapper.focused { 
+    border-color: var(--blue); 
+    background-color: var(--white);
+    box-shadow: 0 0 0 2px rgba(0, 67, 169, 0.1); 
+}
+
+.pse-input-wrapper.error { 
+    border-color: var(--error-border); 
+    background-color: var(--error-bg); 
+}
+
+/* Identificación bloqueada (paso 2): no editable, estilo tipo original */
+.pse-custom-select.pse-custom-select--locked {
+    cursor: default;
+    pointer-events: none;
+    background-color: #ebebeb;
+    border-color: #c9c9c9;
+    color: #6e6e6e;
+}
+
+.pse-custom-select.pse-custom-select--locked:hover {
+    border-color: #c9c9c9;
+    background-color: #ebebeb;
+}
+
+.pse-custom-select.pse-custom-select--locked span {
+    color: #6e6e6e;
+}
+
+.pse-custom-select.pse-custom-select--locked .pse-select-arrow path {
+    stroke: #8a8a8a;
+}
+
+.pse-input-wrapper.pse-input-wrapper--locked {
+    cursor: default;
+    pointer-events: none;
+    background-color: #ebebeb;
+    border-color: #c9c9c9;
+}
+
+.pse-input-wrapper.pse-input-wrapper--locked:hover {
+    border-color: #c9c9c9;
+    background-color: #ebebeb;
+}
+
+.pse-input-wrapper.pse-input-wrapper--locked input {
+    color: #6e6e6e;
+    -webkit-text-fill-color: #6e6e6e;
+    cursor: default;
+}
+
+.pse-input-wrapper input { 
+    width: 100%; 
+    height: 100%; 
+    padding: 0 14px; 
+    border: none; 
+    background: transparent; 
+    font-size: 15px; 
+    color: var(--black); 
+    outline: none; 
+}
+
+.pse-input-wrapper input::placeholder { color: var(--gray-border); }
+
+.pse-error-icon { 
+    position: absolute; 
+    right: 10px; 
+    width: 18px; 
+    height: 18px; 
+    background-color: var(--error-border); 
+    color: white; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-weight: bold; 
+    font-size: 12px; 
+    flex-shrink: 0; 
+}
+
+.pse-continue-btn { 
+    width: 100%; 
+    height: 44px; 
+    border: none; 
+    border-radius: 8px; 
+    font-size: 15px; 
+    font-weight: 500; 
+    cursor: pointer; 
+    margin-top: 4px; 
+    transition: all 0.2s; 
+}
+
+.pse-continue-btn.active { 
+    background-color: var(--blue); 
+    color: var(--white); 
+}
+.pse-continue-btn.active:hover { 
+    background-color: var(--blue-dark); 
+    box-shadow: 0 4px 12px rgba(0, 67, 169, 0.3); 
+}
+.pse-continue-btn.disabled { 
+    background-color: var(--disabled-bg); 
+    color: var(--gray-light); 
+    cursor: not-allowed; 
+}
+
+/* Paso 2 login: pestañas y credenciales (mismo .pse-card) */
+.pse-auth-tabs {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #e4e4e4;
+    margin: -4px 0 18px 0;
+    gap: 0;
+}
+
+.pse-auth-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 12px 6px 10px 6px;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    color: #555555;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.pse-auth-tab:hover {
+    color: var(--blue);
+}
+
+.pse-auth-tab.active {
+    color: var(--blue);
+    font-weight: 600;
+    border-bottom-color: var(--blue);
+}
+
+.pse-ident-heading {
+    margin-bottom: 12px;
+}
+
+.pse-form-group-tight {
+    margin-bottom: 10px;
+}
+
+.pse-input-with-action {
+    position: relative;
+}
+
+.pse-input-with-action .pse-input-padded-action {
+    padding-right: 86px;
+}
+
+.pse-inline-action {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--blue);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    padding: 6px 8px;
+}
+
+.pse-inline-action:hover {
+    text-decoration: underline;
+}
+
+/* Mismo radio y altura que Continuar; solo separación vertical extra */
+.pse-continue-btn.pse-ingresar-btn {
+    margin-top: 16px;
+}
+
+/* =========================================
+   FOOTER CON TUS DOS IMÁGENES - INDEPENDIENTES
+   ========================================= */
+.pse-footer-logos { 
+    display: flex; 
+    align-items: flex-start;      
+    justify-content: flex-start;  
+    gap: 16px;                    
+    margin-top: 20px; 
+    padding-top: 12px; 
+    padding-left: 8px; 
+    flex-wrap: nowrap;            
+}
+
+/* Contenedor logo Grupo Aval - TOTALMENTE INDEPENDIENTE */
+.pse-logo-aval-img {
+    display: block;               
+    flex-shrink: 0;               
+    flex-grow: 0;                 
+    align-self: flex-start;       
+}
+
+/* Logo Grupo Aval - TAMAÑO GENERAL/MOBILE (Modifica aquí) */
+.pse-aval-img {
+    height: 40px !important;       
+    width: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+    margin-top: -11px !important;  
+}
+
+/* Contenedor logo Vigilado - TOTALMENTE INDEPENDIENTE */
+.pse-vigilado-img {
+    display: block;               
+    flex-shrink: 0;               
+    flex-grow: 0;                 
+    align-self: flex-start;       
+}
+
+/* Logo Vigilado - TAMAÑO GENERAL/MOBILE (Modifica aquí) */
+.pse-vigilado-logo {
+    height: 55px !important;       
+    width: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+    margin-top: -50px !important;  
+}
+
+/* =========================================
+   DESKTOP (min-width: 768px) - INDEPENDIENTE
+   ========================================= */
+@media (min-width: 768px) {
+    :root {
+        --pse-header-height: 64px;
+    }
+
+    .pse-top-header {
+        height: var(--pse-header-height);
+        padding: 0 30px 0 16px;
+    }
+  
+    .pse-portal-wrapper { 
+        flex-direction: row; 
+        padding: var(--pse-header-height) 32px 0 32px; 
+        gap: 40px; 
+        align-items: flex-start; 
+        justify-content: center; 
+        margin-top: 0;
+        min-height: auto;
+        width: 100%;
+        max-width: none;
+        overflow-x: clip;
+    }
+    
+    .pse-portal-left { 
+        flex: 1; 
+        order: 1; 
+        max-width: 500px; 
+        padding: 0; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow-x: clip;
+        min-width: 0;
+    }
+    
+    .pse-portal-right { 
+        flex: 1; 
+        order: 2; 
+        max-width: 480px; 
+        padding: 0;
+        min-width: 0;
+        overflow-x: clip;
+    }
+
+    .pse-security-section {
+        max-width: 280px;
+        margin: 4px auto 40px auto;
+        padding: 8px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .pse-image-section {
+        margin-bottom: 0px;
+    }
+    
+    .pse-security-title { 
+        text-align: center; 
+        font-size: 21px; 
+        margin-bottom: 20px;
+    }
+    
+    .pse-security-list { 
+        gap: 0px;
+    }
+
+    .pse-security-item {
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left;
+        width: 100%;
+        gap: 10px;
+        line-height: 1.4;
+    }
+    
+    /* =========================================
+       AJUSTES INDIVIDUALES DE LOS 3 ICONOS - DESKTOP
+       CON TRANSLATEX Y TRANSLATEY PARA AJUSTE FINO
+       ========================================= */
+    
+    /* 1er ICONO - Teclado (arriba) */
+    /* translateY: NEGATIVO = subir, POSITIVO = bajar */
+    .pse-icon-teclado {
+        width: 18px !important;
+        height: 18px !important;
+        transform: scale(3.5) translateX(-1px) translateY(-1px) !important;
+        transform-origin: center !important;
+        margin-top: 0px !important;
+        object-fit: contain !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* 2do ICONO - Ubicación/Teléfono (medio) */
+    /* translateY: NEGATIVO = subir, POSITIVO = bajar */
+    .pse-icon-ubi {
+        width: 18px !important;
+        height: 18px !important;
+        transform: scale(3.5) translateX(-1px) translateY(-2px) !important;
+        transform-origin: center !important;
+        margin-top: 0px !important;
+        object-fit: contain !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* 3er ICONO - Cel/Candado (abajo) */
+    /* translateY: NEGATIVO = subir, POSITIVO = bajar */
+    .pse-icon-cel {
+        width: 18px !important;
+        height: 18px !important;
+        transform: scale(2.5) translateX(-1px) translateY(-5px) !important;
+        transform-origin: center !important;
+        margin-top: 0px !important;
+        object-fit: contain !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .pse-security-text { 
+        font-size: 12px; 
+        text-align: left;
+        line-height: 1.4;
+    }
+    
+    .pse-logo-section { 
+        margin-bottom: 24px; 
+        padding-top: 8px; 
+    }
+    
+    .pse-main-title { 
+        font-size: 26px; 
+        margin-bottom: 24px; 
+    }
+    
+    .pse-card { 
+        padding: 20px 28px; 
+    }
+    
+    .pse-footer-logos { 
+        padding-left: 0; 
+        margin-top: 16px;
+        gap: 15px;                
+    }
+    
+    /* Tamaños DESKTOP - SOLO modifica estos valores (Independientes) */
+    .pse-aval-img {
+        height: 25px !important;  
+        margin-top: -2px !important;  
+    }
+    
+    .pse-vigilado-logo {
+        height: 140px !important;  
+        margin-left: -5px !important;  
+    }
+}
+
+/* =========================================
+   DESKTOP GRANDE (min-width: 1024px)
+   ========================================= */
+@media (min-width: 1024px) { 
+    .pse-portal-wrapper { 
+        gap: 60px; 
+        padding: calc(var(--pse-header-height) + 24px) 40px 10px 40px;
+    } 
+    
+    .pse-portal-left { 
+        max-width: 550px; 
+        justify-content: center;
+    }
+    
+    .pse-form-section { 
+        padding: 0 16px; 
+    }
+    
+    .pse-main-title { 
+        font-size: 22px; 
+    }
+    
+    .pse-security-section {
+        max-width: 300px;
+        margin: 5px auto 20px auto;
+    }
+}
+
+/* =========================================
+   MOBILE PEQUEÑO (max-width: 480px) - INDEPENDIENTE
+   ========================================= */
+@media (max-width: 480px) {
+    :root {
+        --card-padding-x: 24px; 
+        --card-padding-y: 20px; 
+    }
+    
+    .pse-logo-section { 
+        padding-top: 8px; 
+        margin-bottom: 24px; 
+    }
+    
+    .pse-security-section {
+        max-width: 260px;
+        margin: 0 auto 32px auto;
+        padding: 8px;
+    }
+    
+    .pse-security-title { 
+        margin-bottom: 12px;
+        font-size: 21px;
+    }
+    
+    .pse-security-list {
+        gap: 0px;
+    }
+    
+    .pse-security-item {
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left;
+        width: 100%;
+        gap: 10px;
+        line-height: 1.4;
+    }
+    
+    .pse-form-row { 
+        flex-direction: row;  
+        gap: 8px;                
+    }
+    
+    .pse-form-group-small { 
+        flex: 0 0 90px;         
+        max-width: 90px;
+    }
+    
+    .pse-dropdown-menu-small { 
+        min-width: 100%; 
+        width: 100%; 
+    }
+    
+    .pse-main-title { 
+        font-size: 22px; 
+    }
+    
+    .pse-footer-logos { 
+        padding-left: 0; 
+        flex-wrap: nowrap; 
+        gap: 3px;
+    }
+    
+    /* Tamaños MOBILE PEQUEÑO - SOLO modifica estos valores (Independientes) */
+    .pse-aval-img {
+        height: 35px !important;  
+    }
+    
+    .pse-vigilado-logo {
+        height: 140px !important;  
+    }
+}
+
+.bogota-modal-wrap {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.42);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.bogota-modal-card {
+    width: min(360px, calc(100% - 28px));
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.bogota-modal-top {
+    background: #f4f4f4;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #4b4b4b;
+    border-bottom: 1px solid #ececec;
+}
+
+.bogota-modal-mid {
+    padding: 22px 16px;
+    text-align: center;
+}
+
+.bogota-modal-mid p {
+    margin: 0;
+    color: #2b2b2b;
+    font-size: 14px;
+}
+
+.bogota-modal-bot {
+    padding: 0 16px 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.bogota-modal-accept-btn {
+    min-width: 128px;
+    height: 38px;
+    border: 0;
+    border-radius: 6px;
+    background: #0043a9;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.bogota-modal-wrap--login-error {
+    background: rgba(7, 33, 70, 0.55);
+    backdrop-filter: blur(2px);
+}
+
+.bogota-modal-wrap--login-error .bogota-modal-card--login-error {
+    width: min(480px, calc(100% - 48px));
+    max-width: 480px;
+    min-height: 220px;
+    padding: 32px 32px 24px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+    box-sizing: border-box;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.bogota-modal-login-error-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.bogota-modal-login-error-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    margin: 0 0 16px;
+    line-height: 0;
+    color: var(--login-error-icon);
+}
+
+.bogota-modal-login-error-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+
+.bogota-modal-login-error-title {
+    margin: 0 0 8px;
+    font-family: 'Roboto', Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: #000;
+    letter-spacing: 0;
+}
+
+.bogota-modal-login-error-text {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #2b2b2b;
+}
+
+.bogota-modal-login-error-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 32px 0 0;
+    padding: 0;
+}
+
+.bogota-modal-retry-btn {
+    min-width: 140px;
+    height: 48px;
+    padding: 0 28px;
+    border: 0;
+    border-radius: 8px;
+    background: #0043a9;
+    color: #fff;
+    font-family: 'Roboto', Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.bogota-modal-retry-btn:hover {
+    background: #003a96;
+}

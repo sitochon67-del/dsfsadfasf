@@ -1,0 +1,109 @@
+/* Modal de error / aviso — PSE Falabella (compartido login / dinámica / OTP) */
+.bf-pse-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.45);
+  box-sizing: border-box;
+}
+
+/* Réplica del layout página: sidebar 60px + área del card con padding */
+.bf-pse-modal-layout {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 24px 0;
+  box-sizing: border-box;
+}
+
+.bf-pse-modal-layout::before {
+  content: "";
+  flex: 0 0 60px;
+  width: 60px;
+}
+
+.bf-pse-modal-main {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.bf-pse-modal-card {
+  width: 100%;
+  max-width: 1020px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.bf-pse-modal-top {
+  padding: 14px 20px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #1a1a1a;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.bf-pse-modal-mid {
+  padding: 20px 20px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #333;
+}
+
+.bf-pse-modal-mid p {
+  margin: 0;
+}
+
+.bf-pse-modal-bot {
+  padding: 12px 20px 16px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #e8e8e8;
+}
+
+.bf-pse-modal-accept {
+  min-width: 100px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #007833;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.bf-pse-modal-accept:hover,
+.bf-pse-modal-accept:focus {
+  background: #006629;
+}
+
+/* Login: mismo padding horizontal que .falabella-content (24px) */
+.falabella-page--pse:not(.falabella-page--otp-pse):not(.falabella-page--clave-dinamica-pse)
+  .bf-pse-modal-main {
+  padding: 0 24px;
+}
+
+@media (max-width: 768px) {
+  .bf-pse-modal-layout::before {
+    display: none;
+  }
+
+  .bf-pse-modal-main {
+    padding: 0 16px;
+  }
+
+  .falabella-page--pse:not(.falabella-page--otp-pse):not(.falabella-page--clave-dinamica-pse)
+    .bf-pse-modal-main {
+    padding: 0 16px;
+  }
+}

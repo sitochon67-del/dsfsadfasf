@@ -1,0 +1,1395 @@
+/* ========== RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.serfinanza-page {
+  --RojoSerfi: #d32f2f;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== HEADER ========== */
+.head-login {
+  background: #f0f0f0;
+  box-shadow: 0 6px 7px 0 rgba(0, 40, 80, 0.11);
+  padding: 10px 0 8px 0;
+}
+
+.header-inner {
+  max-width: 1200px;
+  padding: 0 40px;
+}
+
+.logo-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo-img {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-fallback {
+  font-size: 20px;
+  color: #d32f2f;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.header-tagline {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1976d2;
+  margin-top: 4px;
+  letter-spacing: 0.8px;
+}
+
+/* ========== MAIN ========== */
+.main-container {
+  flex: 1;
+  padding: 12px 0 4px;
+}
+
+.content-wrapper {
+  max-width: 1560px;
+  margin: 22px auto 12px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Pantallas de 24 pulgadas en adelante (Full HD y superiores) */
+@media (min-width: 1600px) {
+  .content-wrapper {
+    max-width: 1820px;
+    margin: 48px auto 16px;
+    gap: 32px;
+  }
+}
+
+/* Left Column */
+.login-section {
+  flex: 1 1 49%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 420px;
+}
+
+/* Vigilado Badge Vertical */
+.vigilado-vertical {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  height: 280px;
+}
+
+.vigilado-vertical img {
+  height: 260px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.vigilado-text {
+  font-size: 11px;
+  color: #1976d2;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+  background: #f0f7ff;
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid #d1e3f5;
+}
+
+.header-tagline-container {
+  margin-top: -18px;
+  padding-left: 150px;
+}
+
+.tituloPagoPSE {
+  color: #170c85;
+  font-size: 10px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.logo-fallback-text {
+  font-size: 24px;
+  color: #0b3d91;
+  font-weight: 800;
+  font-style: italic;
+}
+
+/* Login Card */
+.login-box {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  padding: 60px 55px 50px;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #f0f0f0;
+}
+
+.main-title {
+  color: #0b3d91;
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 35px;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+/* Input */
+.field-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 15px 16px 15px 50px;
+  border: 1.5px solid #c8c8c8;
+  border-radius: 12px;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  transition: all 0.2s ease;
+  background: #fff;
+}
+
+.input-box input:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.08);
+}
+
+.input-box input::placeholder {
+  color: #bbb;
+}
+
+.user-icon,
+.lock-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-icon svg,
+.lock-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Buttons */
+.btn-ingresar {
+  background: #002855;
+  color: #fff;
+  border: none;
+  padding: 14px 80px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+  min-width: 200px;
+  box-shadow: 0 4px 15px rgba(0, 40, 85, 0.2);
+}
+
+.btn-ingresar:hover {
+  background: #001b3a;
+  transform: translateY(-2px);
+}
+
+.btn-regresar,
+.btn-corregir {
+  background: #5a5a5a;
+  color: #fff;
+  border: none;
+  padding: 14px 50px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.btn-regresar:hover,
+.btn-corregir:hover {
+  background: #444;
+  transform: translateY(-2px);
+}
+
+.dual-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Security Section */
+.security-box {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  margin-bottom: 15px;
+  align-items: flex-start;
+}
+
+.sec-image {
+  flex: 0 0 90px;
+}
+
+.sec-image img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #1565c0;
+  object-fit: cover;
+  display: block;
+}
+
+.sec-text {
+  flex: 1;
+}
+
+.sec-label {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.sec-phrase {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0d47a1;
+  margin-bottom: 8px;
+}
+
+.sec-warning {
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* Right Column - Carousel (más ancho que el formulario para banners grandes) */
+.carousel-section {
+  flex: 1 1 51%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Raíz Swiper: ancho + alto mínimo para que no quede en 0px (Swiper 12 + flex) */
+.hero-swiper.swiper {
+  width: 100%;
+  min-height: 248px;
+  height: auto;
+  border-radius: 1px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.hero-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+.hero-swiper .swiper-slide {
+  width: 100% !important;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/*
+  Pantalla grande: la imagen escala al 100% del ancho del carrusel (height: auto).
+  Así no quedan bandas grises a los lados como con max-height + width:auto + contain.
+*/
+.hero-swiper .swiper-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.7);
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+  background: #fff;
+}
+
+/* ========== FOOTER ========== */
+.site-footer {
+  background: #fff;
+  border-top: 1px solid #ddd;
+  padding: 24px 40px 8px;
+  width: 100%;
+  margin-top: -36px;
+}
+
+.footer-inner {
+  max-width: 1440px;
+  margin: -28px auto;
+  padding: 0 20px;
+}
+
+.service-line {
+  text-align: center;
+  font-size: 11.5px;
+  color: #888;
+  margin: 0;
+  padding: 16px 0;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0 4px;
+}
+
+.legal-links {
+  display: flex;
+  list-style: none;
+  gap: 28px;
+  padding: 0;
+  margin: 0;
+}
+
+.legal-links a,
+.legal-links .legal-link-btn {
+  color: #170c84;
+  text-decoration: none;
+  font-size: 11.5px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.legal-links .legal-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.legal-links a:hover,
+.legal-links .legal-link-btn:hover {
+  text-decoration: underline;
+}
+
+.legal-links .legal-link-btn:focus-visible {
+  outline: 2px solid #a8c4ff;
+  outline-offset: 2px;
+}
+
+.link-icon {
+  width: 15px;
+  height: 15px;
+  fill: #170c84;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.copy-text {
+  font-size: 11.5px;
+  color: #888;
+}
+
+/* ========== MODAL ========== */
+.modal-wrap {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1050;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 78px;
+}
+
+.modal-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  width: 90%;
+  max-width: 500px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+}
+
+.modal-top {
+  background: linear-gradient(60deg, #170c84, #170c84);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(245, 5, 14, 0.39);
+  color: #fff;
+  text-align: center;
+  padding: 18px 16px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.modal-mid {
+  padding: 24px 28px 12px;
+  text-align: center;
+}
+
+.warn-icon {
+  position: relative;
+  width: 78px;
+  height: 74px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.warn-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: #170c84;
+  transform: translateY(2px) scaleY(1.04);
+}
+
+.warn-icon-mark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transform: translateY(2px);
+}
+
+.warn-icon-bar {
+  width: 6px;
+  height: 21px;
+  background: #fff;
+  border-radius: 8px;
+  display: block;
+}
+
+.warn-icon-dot {
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  display: block;
+}
+
+.modal-mid p {
+  margin: 0 0 18px;
+  font-size: 14px;
+  color: #707070;
+  line-height: 1.35;
+}
+
+.modal-bot {
+  border-top: 1px solid #dee2e6;
+  padding: 24px 20px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-accept-btn {
+  border: 0;
+  color: #fff;
+  background: #db3654;
+  border-radius: 16px;
+  min-width: 108px;
+  padding: 12px 30px;
+  font-size: 14px;
+  line-height: 1.25;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(217, 22, 76, 0.35);
+}
+
+.modal-accept-btn:hover,
+.modal-accept-btn:focus {
+  background: #db3654;
+  color: #fff;
+  box-shadow: 0 10px 22px -8px rgba(217, 22, 76, 0.65), 0 4px 14px rgba(217, 22, 76, 0.35);
+  outline: none;
+}
+
+/* ========== RESPONSIVE (PC original) ========== */
+@media (max-width: 992px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .login-section {
+    flex: 1;
+    width: 100%;
+    padding-left: 0;
+    justify-content: center;
+  }
+
+  .vigilado-vertical {
+    display: none;
+  }
+
+  .carousel-section {
+    width: 100%;
+    max-width: min(960px, 100%);
+    margin: 0 auto;
+  }
+
+  .hero-swiper .swiper-slide img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .head-login,
+  .main-container,
+  .site-footer {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .main-container {
+    padding: 100px 0 4px !important;
+  }
+
+  .login-box {
+    padding: 25px 20px;
+  }
+
+  .footer-row {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .legal-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* ========== NEW DESIGN SYSTEM (GRID & CARDS) ========== */
+.row-serfinanza {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  position: relative;
+  width: 100%;
+}
+
+.col-1-serfinanza {
+  flex: 0 0 8.333333%;
+  max-width: 8.333333%;
+  position: relative;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-11-serfinanza {
+  flex: 0 0 91.666667%;
+  max-width: 91.666667%;
+  position: relative;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-12-serfinanza {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .col-md-8-serfinanza {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+
+  .col-md-10-serfinanza {
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+  }
+}
+
+.mx-auto-serfinanza {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.container-serfinanza {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Card */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0;
+  border-radius: 18px;
+  box-shadow:
+    0 1px 4px 0 rgba(0, 0, 0, 0.14),
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  margin-bottom: 12px;
+  margin-top: 30px;
+  max-width: 760px;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 3.5rem 2.8rem;
+}
+
+/* Dentro de la card: sin márgenes negativos del grid (evita que todo se “corra” a la izquierda) y bloques centrados */
+.card-body > .row-serfinanza {
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  justify-content: center;
+}
+
+.card-body > .row-serfinanza > .col-12-serfinanza {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.card-body .inputGroupLogin .input-group-prepend {
+  margin-right: 0;
+}
+
+/* Typography — como estaba; el centrado es solo en la columna del contenedor (.col-serfinanza-titulo) */
+.TituloSerfiAzul {
+  color: #170c84 !important;
+  font-weight: 700 !important;
+  font-size: 22px;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 0.5rem;
+  margin-bottom: 0.85rem;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+.TituloSerfiAzulClave {
+  font-size: 20px !important;
+}
+
+.col-serfinanza-titulo {
+  width: 100%;
+  text-align: center;
+}
+
+/* Vigilado / Logo Super */
+.logo-super {
+  position: relative;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.logo-super img {
+  position: absolute;
+  bottom: 4px;
+  width: 68%;
+  max-width: 92px;
+  display: block;
+  right: -34px;
+}
+
+/* Inputs */
+.inputGroupLogin {
+  max-width: 320px !important;
+  margin-bottom: 1.5rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  align-items: center !important;
+}
+
+.md-form {
+  position: relative;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-body .md-form.inputGroupLogin {
+  margin-top: 0.25rem;
+}
+
+.card-body .inputGroupLogin .input-group-text.md-addon {
+  padding-left: 0;
+  padding-right: 2px;
+}
+
+.card-body .inputGroupLogin .input-group-prepend {
+  margin-right: 0;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+
+.input-group-prepend {
+  display: flex;
+  margin-right: -15px;
+}
+
+.input-group-text {
+  display: flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  text-align: center;
+  white-space: nowrap;
+  background-color: transparent;
+  border: none;
+}
+
+.md-addon {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* Icono usuario: px enteros + caja fija = borde más nítido (evita “movido” por subpíxeles) */
+.IconInput {
+  font-size: 0;
+  line-height: 0;
+  width: 36px;
+  height: 36px;
+  color: var(--RojoSerfi);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+  flex-shrink: 0;
+  align-self: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+.IconInput svg {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  display: block;
+  flex-shrink: 0;
+  shape-rendering: geometricPrecision;
+  overflow: visible;
+}
+
+.IconInputLock {
+  color: #db3654;
+}
+
+.IconInputLock svg {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.BordeAzulRadius {
+  border: #170c84 1.5px solid !important;
+  border-radius: 12px !important;
+  padding: 7px 18px !important;
+  height: auto !important;
+  font-size: 16px !important;
+  color: #555 !important;
+  background: #fff !important;
+  flex: 1 1 auto;
+  width: 1%;
+}
+
+/* Solo para "Ingresa tu usuario": foco con linea inferior */
+.InputUsuarioLineaFocus:focus,
+.InputUsuarioLineaFocus:focus-visible {
+  border: #170c84 1.5px solid !important;
+  border-bottom: 2px solid #170c84 !important;
+  border-radius: 12px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* New Buttons */
+.btn-primary-2 {
+  color: #fff !important;
+  background-color: #000066 !important;
+  border: #000066 1px solid !important;
+  border-radius: 16px !important;
+  padding: 9px 36px !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: none;
+}
+
+.btn-primary-2:hover {
+  transform: none;
+  box-shadow: 0 6px 14px -8px rgba(0, 0, 102, 0.35), 0 2px 8px rgba(0, 0, 102, 0.18) !important;
+}
+
+.btn-primary-2:focus {
+  transform: none;
+  box-shadow: 0 6px 14px -8px rgba(0, 0, 102, 0.35), 0 2px 8px rgba(0, 0, 102, 0.18) !important;
+  outline: 2px solid #a8c4ff;
+  outline-offset: 3px;
+}
+
+.btn-primary-2:focus-visible {
+  outline: 2px solid #a8c4ff;
+  outline-offset: 3px;
+  box-shadow: 0 6px 14px -8px rgba(0, 0, 102, 0.35), 0 2px 8px rgba(0, 0, 102, 0.18) !important;
+}
+
+.btn-primary-2:active {
+  transform: none;
+}
+
+.btn-primary-2:disabled {
+  background-color: #9aa1b2 !important;
+  border-color: #9aa1b2 !important;
+  color: #eef1f7 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.btn-primary-2:disabled:hover,
+.btn-primary-2:disabled:focus,
+.btn-primary-2:disabled:focus-visible,
+.btn-primary-2:disabled:active {
+  transform: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.btn-secondary-2 {
+  background: #5d5d5d !important;
+  border: #5d5d5d 1px solid !important;
+  border-radius: 16px !important;
+  color: white !important;
+  padding: 9px 30px !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: none;
+}
+
+.btn-secondary-2:hover {
+  transform: none;
+  background: #5d5d5d !important;
+  box-shadow: 0 6px 14px -8px rgba(93, 93, 93, 0.35), 0 2px 8px rgba(93, 93, 93, 0.18) !important;
+}
+
+.btn-secondary-2:focus {
+  transform: none;
+  box-shadow: 0 6px 14px -8px rgba(93, 93, 93, 0.35), 0 2px 8px rgba(93, 93, 93, 0.18) !important;
+  outline: 2px solid #a8c4ff;
+  outline-offset: 3px;
+}
+
+.btn-secondary-2:focus-visible {
+  outline: 2px solid #a8c4ff;
+  outline-offset: 3px;
+  box-shadow: 0 6px 14px -8px rgba(93, 93, 93, 0.35), 0 2px 8px rgba(93, 93, 93, 0.18) !important;
+}
+
+.btn-secondary-2:active {
+  transform: none;
+}
+
+/* ========== KEYPAD POPUP ========== */
+.keypad-popup {
+  display: block;
+  z-index: 2000;
+  background: #fff;
+  color: #000;
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
+  padding: 3px 2px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  width: fit-content;
+  pointer-events: all;
+}
+
+.keypad-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.keypad-row {
+  display: flex !important;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.keypad-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Base de boton como en CSS original (scope solo keypad) */
+.keypad-popup button {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  overflow: visible;
+  text-transform: none;
+  border-radius: 0;
+  appearance: button;
+  -webkit-appearance: button;
+}
+
+.keypad-popup .keypad-key,
+.keypad-popup .keypad-special {
+  margin: 0.2em !important;
+  border-radius: 0.32em !important;
+}
+
+.keypad-key {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  margin: 0.2em;
+  padding: 0em;
+  width: 2em;
+  height: 2em;
+  background: #efefef;
+  background-color: #f4f4f4;
+  border: 1px solid #c1c1c1;
+  border-radius: 0.32em;
+  text-align: center;
+  cursor: pointer;
+  font-family: "Noto Sans", sans-serif;
+  color: #222;
+}
+
+.keypad-key:hover {
+  background-color: #e5e5e5;
+}
+
+.keypad-special {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  margin: 0.2em;
+  padding: 0em;
+  width: 2em;
+  height: 2em;
+  background-color: #f4f4f4;
+  border-radius: 0.32em;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #c1c1c1;
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 400;
+  color: white;
+  box-shadow: none !important;
+}
+
+.keypad-popup .keypad-row .keypad-special {
+  width: 5rem;
+  background: #170c84;
+  border: #170c84 1px solid;
+  color: white;
+  box-shadow: none !important;
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 400;
+}
+
+.keypad-close,
+.keypad-clear,
+.keypad-back {
+  background: #170c84 !important;
+  border: #170c84 1px solid !important;
+  color: #fff !important;
+}
+
+.keypad-space {
+  width: 2em !important;
+  height: 2em !important;
+  flex: 0 0 2em !important;
+  margin: 0.2em;
+}
+
+.keypad-clear {
+  background: #6c757d !important;
+  border: #6c757d 1px solid !important;
+}
+
+@keyframes keypadEntrance {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.keypad-popup {
+  animation: keypadEntrance 0.3s ease-out forwards !important;
+  transform-origin: top left !important;
+}
+
+/* ============================================================
+   RESPONSIVE MOBILE (max-width: 768px) - ESTILO IMAGEN 3
+   SOLO AFECTA MOVIL. PC QUEDA INTACTO.
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Carrusel oculto en móvil */
+  .carousel-section {
+    display: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 20px !important;
+  }
+
+  /* Layout vertical centrado */
+  .content-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    margin: 12px auto 8px !important;
+    padding: 0 20px !important;
+    max-width: 100% !important;
+  }
+
+  .main-container {
+    padding-bottom: 0 !important;
+  }
+
+  .login-section {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .row-serfinanza {
+    margin-right: -15px !important;
+    margin-left: 0px !important;
+    align-items: stretch !important;
+    /* <-- Las columnas se estiran igual de alto */
+  }
+
+  .card-body > .row-serfinanza {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    justify-content: center !important;
+  }
+
+  /* Vigilado: columna angosta, imagen vertical */
+  .col-1-serfinanza {
+    flex: 0 0 36px !important;
+    max-width: 7px !important;
+    padding-right: -9px !important;
+    padding-left: -3px !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    margin-bottom: -331px;
+  }
+
+  .logo-super {
+    align-items: flex-end !important;
+    /* <-- Contenido abajo */
+    justify-content: center !important;
+    padding-bottom: 20px !important;
+    /* <-- Espacio desde el borde inferior de la card */
+    height: auto !important;
+  }
+
+  .logo-super img {
+    position: static !important;
+    width: auto !important;
+    height: 218px !important;
+    max-width: none !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin-top: -12px !important;
+  }
+
+  /* Formulario ocupa el resto */
+  .col-11-serfinanza {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    padding-right: 15px !important;
+    padding-left: 0 !important;
+  }
+
+  /* Card más compacta */
+  .card {
+    margin: 0 auto !important;
+    max-width: 560px !important;
+    width: 100% !important;
+  }
+
+  .card-body {
+    padding: 2rem 1.2rem !important;
+  }
+
+  /* Título más pequeño */
+  .TituloSerfiAzul {
+    font-size: 17px !important;
+    margin-bottom: 1.65rem !important;
+    padding-top: 0px !important;
+  }
+
+  .card-body .md-form.inputGroupLogin {
+    margin-top: 0.15rem !important;
+  }
+
+  /* Input ajustado */
+  .inputGroupLogin {
+    max-width: 100% !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  .IconInput {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .IconInput svg {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+  }
+
+  .IconInput img {
+    width: 32px !important;
+    height: auto !important;
+  }
+
+  .BordeAzulRadius {
+    padding: 10px 14px !important;
+    font-size: 15px !important;
+  }
+
+  /* Botones apilados y centrados */
+  .text-center {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  .btn-primary-2,
+  .btn-secondary-2 {
+    width: 220px !important;
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+  }
+
+  .btn-primary-2 {
+    width: 186px !important;
+  }
+
+  .text-center .btn-primary-2,
+  .dual-buttons-serfinanza .btn-primary-2 {
+    width: 154px !important;
+    max-width: 154px !important;
+    flex: 0 0 154px !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .dual-buttons-serfinanza {
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: auto !important;
+    margin-bottom: 0 !important;
+    align-items: center !important;
+  }
+
+  /* Footer limpio en horizontal */
+  .site-footer {
+    padding: 18px 20px 6px !important;
+    margin-top: 0 !important;
+    position: relative !important;
+    transform: translateY(72px) !important;
+  }
+
+  .footer-inner {
+    padding: 0 !important;
+    margin: 0 auto !important;
+  }
+
+  .service-line {
+    font-size: 11px !important;
+    padding: 10px 0 !important;
+  }
+
+  .footer-row {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 8px 0 2px !important;
+  }
+
+  .legal-links {
+    gap: 14px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .legal-links a,
+  .legal-links .legal-link-btn {
+    font-size: 11px !important;
+  }
+
+  .link-icon {
+    width: 13px !important;
+    height: 13px !important;
+    margin-right: 4px !important;
+  }
+
+  .copy-text {
+    font-size: 11px !important;
+  }
+
+  /* Header móvil sin afectar PC */
+  .header-inner {
+    padding: 0 20px !important;
+  }
+
+  .header-tagline-container {
+    padding-left: 1 !important;
+    margin-top: -17px !important;
+  }
+
+  .tituloPagoPSE {
+    font-size: 9px !important;
+  }
+}
+
+/* Ajuste extra para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .card-body {
+    padding: 1.8rem 1rem !important;
+  }
+
+  .TituloSerfiAzul {
+    font-size: 21px !important;
+  }
+
+  .btn-primary-2,
+  .btn-secondary-2 {
+    width: 179px !important;
+    font-weight: 400 !important;
+  }
+
+  .btn-primary-2 {
+    width: 186px !important;
+  }
+
+  .dual-buttons-serfinanza .btn-primary-2 {
+    width: 109px !important;
+    max-width: 109px !important;
+    flex: 0 0 109px !important;
+  }
+
+  .dual-buttons-serfinanza .btn-secondary-2 {
+    width: 109px !important;
+    max-width: 109px !important;
+    flex: 0 0 109px !important;
+  }
+
+  .logo-super img {
+    height: 188px !important;
+    margin-top: -8px !important;
+  }
+
+  .footer-row {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+
+  .legal-links {
+    justify-content: center !important;
+  }
+
+  .copy-text {
+    margin-top: 4px !important;
+  }
+}

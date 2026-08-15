@@ -1,0 +1,163 @@
+/* FUENTES - PFBeauSansPro */
+@font-face {
+    font-family: 'pfbeausanspro';
+    src: url('https://pagospse.bancofalabella.com.co/assets/fonts/pfbeausanspro/PFBeauSansPro-Regular.woff2') format('woff2');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'pfbeausanspro';
+    src: url('https://pagospse.bancofalabella.com.co/assets/fonts/pfbeausanspro/PFBeauSansPro-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'pfbeausanspro-bbook';
+    src: url('https://pagospse.bancofalabella.com.co/assets/fonts/pfbeausanspro/PFBeauSansPro-Bbook.woff2') format('woff2');
+    font-weight: 500;
+}
+
+/* Base */
+.falabella-tc-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    font-family: 'pfbeausanspro', Arial, sans-serif;
+    color: #4b4b4b;
+    padding: 20px;
+}
+
+.tc-container {
+    width: 100%;
+    max-width: 440px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Logo */
+.tc-logo-container {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.tc-logo {
+    max-width: 220px;
+    height: auto;
+}
+
+/* Form Styles */
+.tc-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.tc-form-group {
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.tc-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.tc-select,
+.tc-input {
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    background-color: #ffffff;
+    border: 1px solid #e1e4e6;
+    border-radius: 4px;
+    font-family: 'pfbeausanspro-bbook', Arial, sans-serif;
+    font-size: 16px;
+    color: #4b4b4b;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.tc-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.tc-input::placeholder {
+    color: #8f9599;
+}
+
+.tc-select:focus,
+.tc-input:focus {
+    border-color: #3b9326;
+}
+
+.tc-select-arrows {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tc-select-arrows svg {
+    width: 10px;
+    height: 14px;
+}
+
+/* Button */
+.tc-btn-continue {
+    width: 100%;
+    height: 56px;
+    margin-top: 10px;
+    background-color: #d8dfe6;
+    color: #4a5157;
+    border: none;
+    border-radius: 28px;
+    font-family: 'pfbeausanspro-bbook', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: not-allowed;
+    transition: all 0.3s ease;
+}
+
+.tc-btn-continue:not(:disabled) {
+    background-color: #007833;
+    color: #ffffff;
+    border: 1px solid #007833;
+    cursor: pointer;
+}
+
+.tc-btn-continue:not(:disabled):hover {
+    background-color: #006b2d;
+    border-color: #006b2d;
+}
+
+/* Link */
+.tc-recovery-link-container {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.tc-recovery-link {
+    font-family: 'pfbeausanspro-bbook', Arial, sans-serif;
+    color: #2b8f14;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.tc-recovery-link:hover {
+    color: #c3d600;
+}

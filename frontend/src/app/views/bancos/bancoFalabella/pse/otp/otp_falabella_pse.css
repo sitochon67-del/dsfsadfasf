@@ -1,0 +1,1843 @@
+/*
+ * Fuentes: carpeta compartida `bancoFalabella/fonts/` (mismos archivos que la página original).
+ * Ruta relativa desde este archivo: ../../fonts/
+ */
+@font-face {
+    font-family: 'pfbeausanspro';
+    src: url('../../fonts/PFBeauSansPro-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'pfbeausanspro';
+    src: url('../../fonts/PFBeauSansPro-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'pfbeausanspro';
+    src: url('../../fonts/PFBeauSansPro-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'pfbeausanspro';
+    src: url('../../fonts/PFBeauSansPro-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'pfbeausanspro-xthin';
+    src: url('../../fonts/PFBeauSansPro-XThin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'pfbeausanspro-bbook';
+    src: url('../../fonts/PFBeauSansPro-Bbook.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Maven Pro';
+    src: url('../../fonts/mavenpro-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Maven Pro';
+    src: url('../../fonts/mavenpro-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Subconjunto servido por el sitio original (p. ej. textos auxiliares) */
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* VARIABLES */
+:root {
+    --color-primary: #007833;
+    --color-primary-light: #3b9326;
+    --color-text: #323537;
+    --color-text-light: #5c6166;
+    --color-border: #dee2e6;
+    --color-bg-gray: #f8f9fa;
+    /* Franja inferior OTP PSE (color de referencia) */
+    --otp-pse-franja-bg: #f0f2f5;
+    --otp-pse-franja-border: #e2e5e9;
+    /* Solo borde exterior del PNG (no el bisel negro del teléfono) */
+    --otp-pse-phone-fringe-x: clamp(3px, 0.9%, 9px);
+    --otp-pse-phone-fringe-b: clamp(4px, 1.1%, 11px);
+    /* Parche mínimo esquinas inferiores (doble curvatura / recorte) */
+    --otp-pse-phone-corner-patch-w: clamp(28px, 7%, 48px);
+    --otp-pse-phone-corner-patch-h: clamp(24px, 6%, 40px);
+    /* Encuadre ilustración (ratio ~1024×617, barra inferior): sube/baja a gusto */
+    --otp-pse-illustration-max-w: min(352px, 52vw);
+    --otp-pse-illustration-max-h: 272px;
+    /* Verde textos franja (título + negritas): verde marca Falabella */
+    --otp-pse-franja-accent-green: #007833;
+    --color-white: #ffffff;
+    --color-footer-bg: #262729;
+    --color-link: #2b8f14;
+    --color-link-hover: #c3d600;
+    --falabella-font-stack: 'pfbeausanspro', 'Maven Pro', Montserrat, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tipografía solo dentro de la vista PSE (Bootstrap/global usa otra fuente en body) */
+.falabella-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: var(--falabella-font-stack);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.falabella-page input,
+.falabella-page select,
+.falabella-page button,
+.falabella-page textarea {
+    font-family: inherit;
+}
+
+/* PSE: el sidebar no fuerza 100vh en la fila (evita footer fuera de pantalla) */
+.falabella-page--pse .falabella-wrapper {
+    align-items: flex-start;
+    /* Evita que flex-shrink recorte la columna principal: el documento debe poder crecer y hacer scroll */
+    flex: 1 0 auto;
+}
+
+.falabella-page--pse .falabella-main {
+    min-height: auto;
+}
+
+.falabella-page--pse .falabella-content {
+    flex: 0 0 auto;
+}
+
+.falabella-page--pse .content-body {
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+.falabella-page--otp-pse .content-body,
+.falabella-page--clave-dinamica-pse .content-body {
+    padding-bottom: 0;
+}
+
+.falabella-page--pse .falabella-sidebar {
+    height: auto;
+    min-height: 0;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 0 16px;
+    align-self: stretch;
+}
+
+.falabella-page--pse .sidebar-content {
+    height: auto;
+    align-items: flex-end;
+}
+
+.falabella-page--pse .sidebar-image img {
+    max-height: 260px;
+}
+
+/* LAYOUT GENERAL: fila sidebar + main (SIN footer) */
+.falabella-wrapper {
+    display: flex;
+    flex: 1;
+    align-items: stretch;
+}
+
+/* MAIN CONTENT */
+.falabella-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* SIDEBAR IZQUIERDA */
+.falabella-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    align-self: flex-start;
+    width: 60px;
+    flex-shrink: 0;
+    background-color: var(--color-white);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 88px 0 67px 0;
+}
+
+.sidebar-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-image img {
+    max-height: 300px;
+    width: auto;
+    display: block;
+}
+
+/* HEADER */
+.falabella-header {
+    background-color: var(--color-white);
+    min-height: 88px;
+    padding: 28px 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    box-sizing: border-box;
+}
+
+/* PSE: header con el scroll; el badge reCAPTCHA sigue fixed */
+.falabella-page--pse .falabella-header {
+    position: relative;
+    top: auto;
+}
+
+/* OTP / dinámica: footer siempre al fondo del viewport, sin franja blanca debajo */
+.falabella-page--pse.falabella-page--otp-pse,
+.falabella-page--pse.falabella-page--clave-dinamica-pse {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: var(--color-footer-bg);
+}
+
+.falabella-page--pse.falabella-page--otp-pse .falabella-wrapper,
+.falabella-page--pse.falabella-page--clave-dinamica-pse .falabella-wrapper {
+    flex: 1 0 auto;
+    background-color: var(--color-white);
+}
+
+.falabella-page--pse.falabella-page--otp-pse .falabella-main,
+.falabella-page--pse.falabella-page--clave-dinamica-pse .falabella-main {
+    background-color: var(--color-white);
+}
+
+.falabella-page--pse.falabella-page--otp-pse .falabella-header,
+.falabella-page--pse.falabella-page--clave-dinamica-pse .falabella-header {
+    min-height: 0;
+    padding: 28px 0 8px;
+    padding-top: max(28px, env(safe-area-inset-top, 0px));
+    position: relative;
+    top: auto;
+    z-index: 0;
+}
+
+/* OTP / dinámica: un poco menos de aire arriba/abajo del logo + saludo */
+.falabella-page--pse.falabella-page--otp-pse .falabella-header,
+.falabella-page--pse.falabella-page--clave-dinamica-pse .falabella-header {
+    padding: 22px 0 4px;
+    padding-top: max(22px, env(safe-area-inset-top, 0px));
+}
+
+.falabella-page--pse.falabella-page--otp-pse .falabella-content,
+.falabella-page--pse.falabella-page--clave-dinamica-pse .falabella-content {
+    flex: 0 0 auto;
+    padding: 16px 16px 16px;
+}
+
+.falabella-page--pse.falabella-page--otp-pse .falabella-sidebar,
+.falabella-page--pse.falabella-page--clave-dinamica-pse .falabella-sidebar {
+    height: auto;
+    min-height: 0;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 0 16px;
+    align-self: stretch;
+}
+
+.falabella-page--pse.falabella-page--otp-pse .sidebar-content,
+.falabella-page--pse.falabella-page--clave-dinamica-pse .sidebar-content {
+    height: auto;
+    align-items: flex-end;
+}
+
+.falabella-page--pse.falabella-page--otp-pse .falabella-footer,
+.falabella-page--pse.falabella-page--clave-dinamica-pse .falabella-footer {
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.header-logo img {
+    max-height: 48px;
+    width: auto;
+}
+
+.header-text {
+    font-family: 'pfbeausanspro-xthin', sans-serif;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1.35;
+}
+
+.header-text--pse .header-text-hola {
+    font-family: 'pfbeausanspro-xthin', sans-serif;
+    font-weight: 100;
+    color: #9ea3a8;
+}
+
+.header-text--pse .header-text-bienvenido {
+    font-family: 'pfbeausanspro', sans-serif;
+    font-weight: 300;
+    color: var(--color-text);
+}
+
+.header-text--pse .header-text-bienvenido--placeholder {
+    color: #9ea3a8;
+    font-weight: 300;
+}
+
+/* CONTENT AREA */
+.falabella-content {
+    flex: 1;
+    background-color: var(--color-white);
+    padding: 18px 16px 16px;
+}
+
+/* «Hola / Bienvenido» va en .falabella-header (misma línea que el logo; aire bajo el header intacto) */
+.falabella-page--otp-pse .header-text--pse .header-text-hola,
+.falabella-page--clave-dinamica-pse .header-text--pse .header-text-hola {
+    color: #6a6f76;
+}
+
+.falabella-page--otp-pse .header-text--pse .header-text-bienvenido,
+.falabella-page--clave-dinamica-pse .header-text--pse .header-text-bienvenido {
+    color: #2a2d30;
+}
+
+.falabella-page--otp-pse .header-text--pse .header-text-bienvenido--placeholder,
+.falabella-page--clave-dinamica-pse .header-text--pse .header-text-bienvenido--placeholder {
+    color: #9ea3a8;
+}
+
+.falabella-page--otp-pse .header-item:last-child .header-text,
+.falabella-page--clave-dinamica-pse .header-item:last-child .header-text {
+    text-align: right;
+    margin: 0;
+}
+
+.content-body {
+    max-width: 1020px;
+    margin: 0 auto;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background-color: var(--color-white);
+    overflow: hidden;
+    padding-bottom: 16px;
+}
+
+/* HEADER SIMPLE */
+.content-header-simple {
+    padding: 24px 20px 10px;
+    border-bottom: 1px solid transparent;
+}
+
+.content-title {
+    font-family: 'pfbeausanspro-xthin', sans-serif;
+    font-size: 32px;
+    font-weight: 100;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.content-title strong {
+    font-family: 'pfbeausanspro', sans-serif;
+    font-weight: 600;
+}
+
+/* Cabecera card OTP PSE: título + stepper */
+.otp-pse-content-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 26px 16px;
+    padding: 45px 20px 12px;
+    margin: 0;
+    border-bottom: none;
+}
+
+.falabella-page--otp-pse .otp-pse-content-header,
+.falabella-page--clave-dinamica-pse .otp-pse-content-header {
+    padding: 32px 20px 12px;
+}
+
+/* Alerta inline (mismo estilo que login PSE) */
+.otp-pse-login-alert-slot.falabella-login-alert-slot {
+    padding: 0 20px 10px;
+    display: block;
+}
+
+.falabella-page--otp-pse .otp-pse-login-alert-slot.falabella-login-alert-slot--empty, .falabella-page--clave-dinamica-pse .otp-pse-login-alert-slot.falabella-login-alert-slot--empty {
+    padding: 0 20px 0;
+    min-height: 0;
+}
+
+.falabella-page--otp-pse .falabella-login-alert, .falabella-page--clave-dinamica-pse .falabella-login-alert {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    min-height: 48px;
+    margin: 0;
+    padding: 14px 18px;
+    background: #fff5e9;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.falabella-page--otp-pse .falabella-login-alert__icon, .falabella-page--clave-dinamica-pse .falabella-login-alert__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    color: #dc3545;
+}
+
+.falabella-page--otp-pse .falabella-login-alert__icon svg,
+.falabella-page--clave-dinamica-pse .falabella-login-alert__icon svg {
+    display: block;
+    width: 28px;
+    height: 28px;
+}
+
+.falabella-page--otp-pse .falabella-login-alert__text, .falabella-page--clave-dinamica-pse .falabella-login-alert__text {
+    margin: 0;
+    color: #5c6166;
+    font-family: 'pfbeausanspro-bbook', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    flex: 0 1 auto;
+}
+
+/* Misma tipografía que BancoFalabellaPSE (hereda .content-title / .content-title strong); solo layout con stepper */
+.otp-pse-content-title {
+    flex: 1 1 220px;
+    min-width: 0;
+}
+
+.falabella-page--otp-pse .otp-pse-content-title, .falabella-page--clave-dinamica-pse .otp-pse-content-title {
+    position: relative;
+    top: 0;
+    margin-bottom: 0;
+}
+
+/* STEPPER (misma idea que otras vistas Falabella con flujo por pasos) */
+.otp-pse-stepper.stepper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 25px;
+    flex: 0 1 500px;
+    margin-left: auto;
+}
+
+.stepper-content {
+    position: relative;
+    height: 3px;
+    background-color: var(--color-border);
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.stepper-line-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-border);
+}
+
+.stepper-line-progress {
+    position: absolute;
+    height: 100%;
+    background-color: var(--color-primary-light);
+    transition: width 0.3s ease;
+}
+
+.flow--1 .stepper-line-progress {
+    width: 0%;
+}
+
+.flow--2 .stepper-line-progress {
+    width: 50%;
+}
+
+.flow--3 .stepper-line-progress {
+    width: 100%;
+}
+
+.stepper-list {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.stepper-item {
+    width: 15px;
+    height: 15px;
+    border: 3px solid var(--color-border);
+    border-radius: 50%;
+    background-color: var(--color-white);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+/* Paso completado: punto sólido verde */
+.stepper-item--done {
+    border-color: var(--color-primary-light);
+    background-color: var(--color-primary-light);
+}
+
+/* Paso actual: anillo verde, centro blanco (referencia Banco Falabella) */
+.stepper-item--current {
+    border-color: var(--color-primary-light);
+    background-color: #ffffff;
+    border-width: 3px;
+}
+
+.stepper-item--upcoming {
+    border-color: var(--color-border);
+    background-color: #ffffff;
+}
+
+.stepper-text {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.stepper-text span {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--color-primary-light);
+}
+
+/* GRID DEL FORMULARIO */
+.login-form {
+    width: 100%;
+}
+
+/* Solo la franja OTP + acciones: el resumen arriba no va dentro del form */
+.otp-pse-otp-form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+.login-grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(410px, 460px);
+    gap: 32px;
+    padding: 24px 32px 32px;
+    align-items: start;
+}
+
+/* COLUMNA FORMULARIO */
+.login-form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    align-items: center;
+    gap: 16px;
+}
+
+.form-row.link-row {
+    margin-top: -6px;
+}
+
+.label-spacer {
+    grid-column: 1;
+}
+
+.form-label {
+    font-family: 'pfbeausanspro-bbook', sans-serif;
+    font-size: 13px;
+    color: var(--color-text-light);
+    font-weight: 500;
+    text-align: left;
+}
+
+/* Inputs y Selects */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.form-select,
+.form-input {
+    width: 100%;
+    padding: 8px 12px;
+    /* Mismo borde sólido en todos los campos (como el select “Natural”), sin sombra tipo “lavada” del navegador */
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-family: 'pfbeausanspro', sans-serif;
+    font-size: 14px;
+    color: #5c6166;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    outline: none;
+    height: 38px;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-select {
+    padding-right: 36px;
+    color-scheme: light;
+    -webkit-text-fill-color: #5c6166;
+}
+
+/* Estado “sin tipo elegido” — no usar la clase `.placeholder` de Bootstrap (aplica opacity y aclara borde/texto). */
+.form-select.form-select--empty {
+    color: #5c6166;
+    opacity: 1;
+    border: 1px solid #dee2e6;
+    box-shadow: none;
+}
+
+.form-select:focus,
+.form-input:focus {
+    border-color: #b8cce8;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.12);
+}
+
+/* Triángulo sólido hacia abajo (como el original), no “chevron” fino */
+.select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-45%);
+    width: 10px;
+    height: 7px;
+    pointer-events: none;
+    background: no-repeat center / contain;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 7'%3E%3Cpath fill='%235c6166' d='M0 0h10L5 7z'/%3E%3C/svg%3E");
+}
+
+.form-input::placeholder {
+    color: #6c757d;
+    font-size: 13px;
+    opacity: 1;
+}
+
+.form-input::-webkit-input-placeholder {
+    opacity: 1;
+}
+
+.form-input::-moz-placeholder {
+    opacity: 1;
+}
+
+/* Link recuperar */
+.recovery-link {
+    color: var(--color-link);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.3s ease;
+}
+
+.recovery-link:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+}
+
+.link-arrow {
+    fill: currentColor;
+}
+
+/* COLUMNA DERECHA - INFO */
+.login-info-column {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.dynamic-key-card {
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background-color: var(--color-white);
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.dynamic-key-header {
+    padding: 24px 24px 16px 24px;
+}
+
+.dynamic-key-header h3 {
+    font-family: 'pfbeausanspro', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 8px;
+}
+
+.dynamic-key-header p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+/* Pequeño aire lateral sobre el fondo blanco del card */
+.dynamic-key-figure {
+    margin: 0;
+    padding: 0 12px 10px;
+    background-color: transparent;
+    border-radius: 0;
+    overflow: hidden;
+    line-height: 0;
+    box-sizing: border-box;
+}
+
+.dynamic-key-figure img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
+.otp-pse-readonly-block {
+    padding: 30px 20px 20px;
+}
+
+/* OTP: menos aire entre filas del resumen (Comercio, Cuenta, Valor…) */
+.falabella-page--otp-pse .otp-pse-readonly-block {
+    padding: 22px 20px 12px;
+}
+
+.falabella-page--otp-pse .otp-pse-info-list {
+    gap: 20px;
+}
+
+.falabella-page--otp-pse .otp-pse-info-value {
+    line-height: 1.35;
+}
+
+/* Resumen: solo pares etiqueta / valor (sin cajas, sin inputs) — como original PSE */
+.otp-pse-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 720px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.otp-pse-info-row {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    width: 100%;
+    padding: 0;
+    gap: 16px 18px;
+    margin: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+.otp-pse-info-label {
+    flex: 0 0 34%;
+    font-family: 'pfbeausanspro-bbook', sans-serif;
+    font-size: 13px;
+    color: var(--color-text-light);
+    font-weight: 400;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+/* Mismo tono y peso que “Cuenta seleccionada” / “Costo de transacción” cuando ya hay dato (no plantilla {{}}) */
+.otp-pse-info-value {
+    flex: 1 1 auto;
+    font-family: 'pfbeausanspro-bbook', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text);
+    font-style: normal;
+    line-height: 1.45;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+/* Solo mientras el valor sigue siendo plantilla {{...}} sin rellenar */
+.otp-pse-info-value--token {
+    font-weight: 600;
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+/* Franja clave dinámica + ilustración (gris más marcado que el resto del card) */
+.otp-pse-dynamic-franja {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(132px, 188px) minmax(0, 1.1fr) minmax(0, max-content);
+    align-items: center;
+    column-gap: 22px;
+    row-gap: 14px;
+    background-color: var(--otp-pse-franja-bg);
+    border-top: 1px solid var(--otp-pse-franja-border);
+    overflow: hidden;
+    /* Sin padding derecho: la ilustración queda al ras del borde del contenedor */
+    padding: 15px 0 0 20px;
+}
+
+.otp-pse-franja-col--intro {
+    min-width: 0;
+    max-width: none;
+    text-align: center;
+}
+
+.otp-pse-franja-heading {
+    font-family: 'pfbeausanspro', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--otp-pse-franja-accent-green);
+    margin: 0 0 4px;
+    text-align: center;
+}
+
+.otp-pse-franja-lead {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    margin: 0;
+    text-align: center;
+}
+
+.otp-pse-franja-col--input {
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.otp-pse-franja-input {
+    width: 100%;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+}
+
+.otp-pse-franja-autorizar {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Mismo criterio que .falabella-btn-primary (verde vivo); :disabled sigue gris */
+.otp-pse-franja-autorizar.falabella-btn-primary:not(:disabled) {
+    background-color: #52ad3d;
+    border-color: #52ad3d;
+    color: #ffffff;
+}
+
+.otp-pse-franja-autorizar.falabella-btn-primary:not(:disabled):hover,
+.otp-pse-franja-autorizar.falabella-btn-primary:not(:disabled):focus-visible {
+    background-color: #449a32;
+    border-color: #449a32;
+}
+
+.otp-pse-franja-autorizar.falabella-btn-primary:not(:disabled):active {
+    background-color: #3d862c;
+    border-color: #3d862c;
+}
+
+/* Con 6 dígitos: verde activo (referencia #38a121) */
+.otp-pse-franja-autorizar.falabella-btn-primary.otp-pse-franja-autorizar--complete:not(:disabled) {
+    background-color: #38a121;
+    border-color: #32961d;
+    color: #ffffff;
+}
+
+.otp-pse-franja-autorizar.falabella-btn-primary.otp-pse-franja-autorizar--complete:not(:disabled):hover,
+.otp-pse-franja-autorizar.falabella-btn-primary.otp-pse-franja-autorizar--complete:not(:disabled):focus-visible {
+    background-color: #2d8f1a;
+    border-color: #288016;
+}
+
+.otp-pse-franja-autorizar.falabella-btn-primary.otp-pse-franja-autorizar--complete:not(:disabled):active {
+    background-color: #267015;
+    border-color: #206012;
+}
+
+.otp-pse-franja-col--hint {
+    min-width: 0;
+    max-width: none;
+    text-align: center;
+}
+
+.otp-pse-franja-hint {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    margin: 0;
+    text-align: center;
+}
+
+/* Misma familia tipográfica que el título de la franja para que el verde se vea igual en intro e hint */
+.otp-pse-franja-accent {
+    font-family: 'pfbeausanspro', sans-serif;
+    color: var(--otp-pse-franja-accent-green);
+    font-weight: 600;
+}
+
+.otp-pse-franja-col--figure {
+    /* Ocupa toda la celda del grid: el gris rellena alrededor del PNG transparente (p. ej. aire del celular) */
+    justify-self: stretch;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    text-align: right;
+    background-color: var(--otp-pse-franja-bg);
+}
+
+.otp-pse-franja-illustration-wrap {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    line-height: 0;
+    max-width: var(--otp-pse-illustration-max-w);
+    border-radius: 1px;
+    background-color: var(--otp-pse-franja-bg);
+}
+
+/* Velo solo en el borde del archivo + puntas inferiores; no invade la línea negra del mockup */
+.otp-pse-franja-illustration-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+        radial-gradient(
+            ellipse 100% 100% at 0% 100%,
+            var(--otp-pse-franja-bg) 0%,
+            transparent 72%
+        ),
+        radial-gradient(
+            ellipse 100% 100% at 100% 100%,
+            var(--otp-pse-franja-bg) 0%,
+            transparent 72%
+        ),
+        linear-gradient(
+            to right,
+            var(--otp-pse-franja-bg) 0%,
+            transparent 92%
+        ),
+        linear-gradient(
+            to left,
+            var(--otp-pse-franja-bg) 0%,
+            transparent 92%
+        ),
+        linear-gradient(
+            to top,
+            var(--otp-pse-franja-bg) 0%,
+            transparent 92%
+        );
+    background-size:
+        var(--otp-pse-phone-corner-patch-w) var(--otp-pse-phone-corner-patch-h),
+        var(--otp-pse-phone-corner-patch-w) var(--otp-pse-phone-corner-patch-h),
+        var(--otp-pse-phone-fringe-x) 100%,
+        var(--otp-pse-phone-fringe-x) 100%,
+        100% var(--otp-pse-phone-fringe-b);
+    background-position:
+        left bottom,
+        right bottom,
+        left top,
+        right top,
+        left bottom;
+    background-repeat: no-repeat;
+}
+
+.otp-pse-franja-illustration {
+    display: block;
+    max-height: var(--otp-pse-illustration-max-h);
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    border-radius: 1px;
+    vertical-align: top;
+    object-position: center bottom;
+}
+
+/* OTP: ilustración SMS dentro de la franja gris */
+.falabella-page--otp-pse .otp-pse-franja-illustration {
+    max-height: 265px;
+    margin-top: 2px;
+}
+
+/* Clave dinámica: teléfono un poco más bajo y ligeramente a la izquierda */
+.falabella-page--clave-dinamica-pse .otp-pse-franja-illustration-wrap {
+    transform: translateX(-10px);
+}
+
+.falabella-page--clave-dinamica-pse .otp-pse-franja-illustration {
+    max-height: 258px;
+    margin-top: 4px;
+}
+
+.form-actions--otp-pse-only-cancel {
+    justify-content: flex-end;
+}
+
+/* Cancelar fuera del card: menos aire respecto al borde inferior del contenedor */
+.otp-pse-cancel-below-card.form-actions {
+    margin-top: 14px;
+    padding-bottom: 4px;
+}
+
+.falabella-btn-secondary:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* BOTONES (fuera del card blanco, alineados al ancho del formulario) */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    max-width: 1020px;
+    margin: 16px auto 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+.falabella-btn {
+    padding: 10px 48px;
+    border: none;
+    border-radius: 6px;
+    font-family: 'pfbeausanspro-bbook', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    min-width: 140px;
+    box-sizing: border-box;
+}
+
+.falabella-btn.otp-pse-franja-autorizar {
+    padding: 10px 20px;
+    min-width: 0;
+}
+
+.falabella-btn-secondary {
+    background-color: #f4f7f8;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.falabella-btn-secondary:hover {
+    background-color: #e8eaea;
+}
+
+.falabella-btn-primary {
+    background-color: #e8eef4;
+    color: #6f757b;
+    cursor: not-allowed;
+    border: 1px solid transparent;
+}
+
+.falabella-btn-primary:not(:disabled) {
+    background-color: #52ad3d;
+    color: #ffffff;
+    border-color: #52ad3d;
+    cursor: pointer;
+}
+
+.falabella-btn-primary:not(:disabled):hover,
+.falabella-btn-primary:not(:disabled):focus-visible {
+    background-color: #449a32;
+    border-color: #449a32;
+}
+
+.falabella-btn-primary:not(:disabled):focus-visible {
+    outline: 2px solid #2d6820;
+    outline-offset: 2px;
+}
+
+.falabella-btn-primary:not(:disabled):active {
+    background-color: #3d862c;
+    border-color: #3d862c;
+}
+
+/*
+ * Autorizar en la franja: réplica explícita de dinámica PSE (verde base + verde “completo” más intenso).
+ * Alcance .otp-pse-dynamic-franja para ganar a estilos globales del proyecto.
+ */
+.otp-pse-dynamic-franja
+    .falabella-btn.otp-pse-franja-autorizar.falabella-btn-primary:not(:disabled):not(
+        .otp-pse-franja-autorizar--complete
+    ) {
+    background-color: #52ad3d;
+    border-color: #52ad3d;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.otp-pse-dynamic-franja
+    .falabella-btn.otp-pse-franja-autorizar.falabella-btn-primary:not(:disabled):not(
+        .otp-pse-franja-autorizar--complete
+    ):hover,
+.otp-pse-dynamic-franja
+    .falabella-btn.otp-pse-franja-autorizar.falabella-btn-primary:not(:disabled):not(
+        .otp-pse-franja-autorizar--complete
+    ):focus-visible {
+    background-color: #449a32;
+    border-color: #449a32;
+}
+
+.otp-pse-dynamic-franja
+    .falabella-btn.otp-pse-franja-autorizar.falabella-btn-primary:not(:disabled):not(
+        .otp-pse-franja-autorizar--complete
+    ):active {
+    background-color: #3d862c;
+    border-color: #3d862c;
+}
+
+.otp-pse-dynamic-franja
+    .falabella-btn.otp-pse-franja-autorizar.falabella-btn-primary.otp-pse-franja-autorizar--complete:not(
+        :disabled
+    ) {
+    background-color: #38a121;
+    border-color: #32961d;
+    color: #ffffff;
+}
+
+.otp-pse-dynamic-franja
+    .falabella-btn.otp-pse-franja-autorizar.falabella-btn-primary.otp-pse-franja-autorizar--complete:not(
+        :disabled
+    ):hover,
+.otp-pse-dynamic-franja
+    .falabella-btn.otp-pse-franja-autorizar.falabella-btn-primary.otp-pse-franja-autorizar--complete:not(
+        :disabled
+    ):focus-visible {
+    background-color: #2d8f1a;
+    border-color: #288016;
+}
+
+.otp-pse-dynamic-franja
+    .falabella-btn.otp-pse-franja-autorizar.falabella-btn-primary.otp-pse-franja-autorizar--complete:not(
+        :disabled
+    ):active {
+    background-color: #267015;
+    border-color: #206012;
+}
+
+/* Badge reCAPTCHA (patrón Banco Popular PSE: icono fijo, se expande al hover) */
+.falabella-recaptcha-badge {
+    position: fixed;
+    right: 0;
+    bottom: 100px;
+    display: inline-flex;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    background: #ffffff;
+    border: 1px solid #d1d1d1;
+    border-right: none;
+    border-radius: 2px 0 0 2px;
+    /* Halo gris suave (tipo “encendido” hacia izq./arriba/abajo, pegado al borde derecho) */
+    box-shadow:
+        -2px 0 6px rgba(90, 90, 90, 0.14),
+        -6px 0 18px rgba(120, 120, 120, 0.12),
+        0 3px 12px rgba(0, 0, 0, 0.08),
+        0 -3px 12px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: width 0.28s ease;
+    cursor: default;
+    z-index: 100;
+}
+
+.falabella-recaptcha-badge:hover {
+    width: 268px;
+}
+
+.falabella-recaptcha-badge__icon {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+.falabella-recaptcha-badge__img {
+    display: block;
+    width: 42px;
+    height: auto;
+    max-height: 42px;
+    object-fit: contain;
+}
+
+.falabella-recaptcha-badge__text {
+    position: absolute;
+    left: 60px;
+    top: 0;
+    height: 100%;
+    width: calc(100% - 60px);
+    background: #1a73e8;
+    color: #ffffff;
+    font-family: var(--falabella-font-stack);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 0 6px 0 11px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+
+.falabella-recaptcha-badge:hover .falabella-recaptcha-badge__text {
+    opacity: 1;
+}
+
+/* FOOTER - CORREGIDO */
+.falabella-footer {
+    background-color: var(--color-footer-bg);
+    color: var(--color-white);
+    padding: 8px 16px;
+    margin-top: auto;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* PSE: versión arriba a la derecha; en web copyright | WhatsApp en fila */
+.falabella-footer--pse .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.falabella-footer--pse .footer-version {
+    align-self: flex-end;
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.3;
+    opacity: 1;
+    color: #ffffff;
+}
+
+.falabella-footer--pse .footer-main-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.falabella-footer--pse .footer-item {
+    align-items: center;
+    flex: 0 1 auto;
+    min-width: 0;
+}
+
+/* Copyright (izquierda): icono + texto en línea, centrado en Y dentro del footer */
+.falabella-footer--pse .footer-main-row > .footer-item:first-child {
+    display: flex;
+    align-items: center;
+}
+
+.falabella-footer--pse .footer-main-row > .footer-item:first-child .footer-icon {
+    margin-top: 0;
+    flex-shrink: 0;
+}
+
+.falabella-footer--pse .footer-main-row > .footer-item:first-child .footer-text {
+    display: block;
+    margin: 0;
+    line-height: 1.45;
+    color: #ffffff;
+}
+
+.falabella-footer--pse .footer-text--pse {
+    display: block;
+    line-height: 1.45;
+}
+
+@media (min-width: 769px) {
+    /* Grid: versión arriba-derecha y WhatsApp abajo-derecha igual; copyright centrado en Y a la izquierda */
+    .falabella-footer--pse .footer-content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto auto;
+        column-gap: 24px;
+        row-gap: 8px;
+        align-items: center;
+    }
+
+    .falabella-footer--pse .footer-version {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: start;
+        justify-self: end;
+    }
+
+    .falabella-footer--pse .footer-main-row {
+        display: contents;
+    }
+
+    .falabella-footer--pse .footer-main-row > .footer-item:first-child {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        align-self: center;
+        justify-self: start;
+    }
+
+    .falabella-footer--pse .footer-main-row > .footer-item:last-child {
+        grid-column: 2;
+        grid-row: 2;
+        align-self: center;
+        justify-self: end;
+    }
+}
+
+/* Dos líneas solo en móvil; en pantallas anchas el texto sigue en una sola línea por bloque */
+.falabella-footer--pse .footer-text--pse span {
+    display: block;
+}
+
+@media (min-width: 769px) {
+    .falabella-footer--pse .footer-text--pse span {
+        display: inline;
+    }
+}
+
+.falabella-footer--pse .footer-text {
+    color: #ffffff;
+}
+
+.falabella-footer--pse .footer-link {
+    color: var(--color-link-hover);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.falabella-footer--pse .footer-link:hover {
+    color: var(--color-link-hover);
+    text-decoration: none;
+    opacity: 0.92;
+}
+
+.falabella-footer--pse .footer-icon {
+    margin-top: 0;
+    fill: #ffffff;
+}
+
+.footer-item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 0;
+}
+
+.footer-icon {
+    fill: #dee2e6;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* WhatsApp: misma línea que copyright (icono + texto en columna), icono claro en barra oscura */
+.footer-icon.whatsapp-icon {
+    width: 24px;
+    height: 24px;
+    fill: #ffffff;
+}
+
+.footer-text {
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    text-align: left;
+}
+
+.footer-text span {
+    display: block;
+}
+
+.footer-link {
+    color: var(--color-link-hover);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .login-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .dynamic-key-card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* —— Falabella OTP PSE móvil (referencia mock: columna, márgenes, texto alineado a la izquierda en franja) —— */
+    .falabella-page--otp-pse .falabella-content, .falabella-page--clave-dinamica-pse .falabella-content {
+        padding: 18px 12px 20px;
+    }
+
+    .falabella-page--otp-pse .header-content, .falabella-page--clave-dinamica-pse .header-content {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .falabella-page--otp-pse .content-body, .falabella-page--clave-dinamica-pse .content-body {
+        max-width: none;
+        border-radius: 8px;
+        padding-bottom: 0;
+    }
+
+    .falabella-page--otp-pse .header-text, .falabella-page--clave-dinamica-pse .header-text {
+        position: relative;
+        top: 0;
+        margin-right: 53px;
+        font-size: 16px;
+        text-align: right;
+    }
+
+    .header-logo img {
+        max-height: 38px;
+    }
+
+    .falabella-sidebar {
+        display: none;
+    }
+
+    .falabella-wrapper,
+    .falabella-footer {
+        margin-left: 0;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        align-items: start;
+    }
+
+    .form-label {
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .label-spacer {
+        display: none;
+    }
+
+    /* Menos aire entre enlace “Recuperar…” y tarjeta Clave Dinámica */
+    .login-grid {
+        gap: 14px;
+    }
+
+    .form-actions {
+        flex-direction: row;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .form-actions .falabella-btn {
+        flex: 0 0 auto;
+        min-width: 0;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    /* reCAPTCHA: abajo a la derecha en móvil */
+    .falabella-recaptcha-badge {
+        top: auto;
+        bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+        right: 0;
+    }
+
+    /* Footer PSE móvil: igual al original — versión arriba a la derecha; copyright y WhatsApp en columna a la izquierda */
+    .falabella-footer--pse {
+        padding: 10px 14px max(10px, env(safe-area-inset-bottom, 0px));
+    }
+
+    .falabella-footer--pse .footer-content {
+        gap: 6px;
+        align-items: stretch;
+    }
+
+    .falabella-footer--pse .footer-version {
+        align-self: flex-end;
+        width: auto;
+        max-width: 100%;
+        text-align: right;
+        margin: 0 0 0 auto;
+    }
+
+    .falabella-footer--pse .footer-main-row {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 9px;
+        width: 100%;
+    }
+
+    .falabella-footer--pse .footer-item {
+        width: 100%;
+        max-width: 100%;
+        flex: none;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .falabella-footer--pse .footer-main-row > .footer-item:first-child {
+        align-items: center;
+    }
+
+    .falabella-footer--pse .footer-text {
+        text-align: left;
+    }
+
+    .falabella-footer--pse .footer-text--pse {
+        line-height: 1.32;
+    }
+
+    .falabella-footer--pse .footer-text--pse span {
+        display: block;
+        width: 100%;
+    }
+
+    .otp-pse-content-header {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 28px 0;
+        padding: 22px 14px 10px;
+    }
+
+    .falabella-page--otp-pse .otp-pse-content-header, .falabella-page--clave-dinamica-pse .otp-pse-content-header {
+        padding: 24px 14px 10px;
+    }
+
+    .otp-pse-content-title {
+        flex: none;
+        width: 100%;
+    }
+
+    .falabella-page--otp-pse .otp-pse-content-title, .falabella-page--clave-dinamica-pse .otp-pse-content-title {
+        top: 0;
+        margin-bottom: 0;
+    }
+
+    /* En columna, flex-basis 500px del stepper era ALTURA (~500px hueco). Reset a auto. */
+    .otp-pse-stepper.stepper {
+        flex: 0 0 auto;
+        flex-basis: auto;
+        max-width: none;
+        margin-left: 0;
+        width: 100%;
+        height: auto;
+        min-height: 46px;
+    }
+
+    .otp-pse-readonly-block {
+        padding: 12px 14px 16px;
+    }
+
+    .otp-pse-info-list {
+        gap: 22px;
+        max-width: none;
+    }
+
+    .otp-pse-info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 0;
+    }
+
+    .otp-pse-info-label {
+        flex: none;
+        width: 100%;
+    }
+
+    .otp-pse-info-value {
+        width: 100%;
+    }
+
+    .otp-pse-dynamic-franja {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px 12px 0;
+        row-gap: 10px;
+    }
+
+    /* Texto + campo + botón más estrechos; ilustración centrada con los títulos */
+    .otp-pse-franja-col--intro,
+    .otp-pse-franja-col--hint {
+        max-width: min(100%, 288px);
+        width: 100%;
+        text-align: center;
+        align-self: center;
+    }
+
+    .otp-pse-franja-col--input {
+        align-self: center;
+        max-width: min(100%, 288px);
+        width: 100%;
+        gap: 12px;
+        margin-bottom: 14px;
+    }
+
+    .otp-pse-franja-heading {
+        margin: 0 0 2px;
+    }
+
+    .otp-pse-franja-lead {
+        line-height: 1.45;
+        margin-bottom: 14px;
+    }
+
+    .otp-pse-franja-heading,
+    .otp-pse-franja-lead,
+    .otp-pse-franja-hint {
+        text-align: center;
+    }
+
+    .otp-pse-franja-hint {
+        line-height: 1.45;
+    }
+
+    .otp-pse-franja-col--figure {
+        justify-self: auto;
+        margin: 0;
+        padding: 0;
+        order: 10;
+        text-align: center;
+        align-self: stretch;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        line-height: 0;
+        max-width: none;
+        background-color: var(--otp-pse-franja-bg);
+    }
+
+    .otp-pse-franja-illustration-wrap {
+        max-width: min(100%, 360px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .otp-pse-franja-illustration {
+        margin: 0 auto;
+        max-height: min(300px, 52vw);
+        width: auto;
+        border-radius: 1px;
+    }
+
+    .form-actions--otp-pse-only-cancel {
+        justify-content: center;
+        margin-top: 5px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .otp-pse-cancel-below-card.form-actions {
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 576px) {
+    .content-header-simple {
+        padding: 20px 14px 8px;
+    }
+
+    .falabella-page--otp-pse .falabella-content, .falabella-page--clave-dinamica-pse .falabella-content {
+        padding: 16px 10px 16px;
+    }
+
+    .falabella-page--otp-pse .header-content, .falabella-page--clave-dinamica-pse .header-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .otp-pse-content-header {
+        padding: 18px 12px 8px;
+        gap: 26px 0;
+        justify-content: flex-start;
+    }
+
+    .falabella-page--otp-pse .otp-pse-content-header, .falabella-page--clave-dinamica-pse .otp-pse-content-header {
+        padding: 22px 12px 8px;
+    }
+
+    .otp-pse-stepper.stepper {
+        min-height: 44px;
+    }
+
+    .falabella-page--otp-pse .otp-pse-content-title, .falabella-page--clave-dinamica-pse .otp-pse-content-title {
+        top: 0;
+        margin-bottom: 0;
+    }
+
+    .content-title {
+        font-size: 27px;
+    }
+
+    .login-grid {
+        padding: 16px 14px 20px;
+    }
+
+    .otp-pse-readonly-block {
+        padding: 10px 12px 14px;
+    }
+
+    .otp-pse-info-list {
+        gap: 20px;
+    }
+
+    .otp-pse-dynamic-franja {
+        padding: 25px 16px 0;
+        row-gap: 8px;
+    }
+
+    .otp-pse-franja-col--input {
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+
+    .otp-pse-franja-lead {
+        margin-bottom: 18px;
+    }
+
+    .falabella-page--otp-pse .content-body, .falabella-page--clave-dinamica-pse .content-body {
+        border-radius: 6px;
+        padding-bottom: 0;
+    }
+
+    .form-actions--otp-pse-only-cancel {
+        margin-top: 4px;
+    }
+
+    .otp-pse-cancel-below-card.form-actions {
+        margin-top: 4px;
+    }
+}

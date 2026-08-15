@@ -1,0 +1,373 @@
+/* =========================
+   FOOTER BASE
+========================= */
+
+#footer {
+    width: 100%;
+    font-family: "Open Sans", Arial, sans-serif;
+}
+
+.footer_bg_dark {
+    background-color: #2c2a29;
+    color: #ffffff;
+    padding: 113px 0;
+}
+
+.bc-container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.bc-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1.2fr 2fr;
+    gap: 48px;
+    align-items: start;
+}
+
+
+.acor-header {
+    margin-bottom: 16px;
+}
+
+.acor-header h6 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    color: #ffffff;
+}
+
+.acor-header span {
+    display: none;
+}
+
+.acor-content {
+    display: block;
+}
+
+.acor-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.acor-content li {
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* ===== LINKS - MAYOR ESPECIFICIDAD ===== */
+#footer .footer-link,
+#footer .acor-content a,
+#footer .acor-content ul li a {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+#footer .footer-link:hover,
+#footer .acor-content a:hover,
+#footer .acor-content ul li a:hover {
+    text-decoration: underline;
+    color: #ffffff !important;
+}
+
+.acor-content .bc-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+
+.acor-content li a {
+    color: #ffffff;
+}
+
+
+.footer-description p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* =========================
+   LÍNEA VERTICAL BLANCA
+========================= */
+
+.footer-description {
+    padding-left: 32px;
+    /* separa el contenido de la línea */
+    border-left: 1px solid #ffffff;
+}
+
+.vigilado {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.vigilado p {
+    font-size: 8px;
+    margin: 0;
+    color: #ffffff;
+}
+
+.social-media {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-media li {
+    width: 32px;
+    height: 32px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-media li a svg {
+    width: 14px;
+    height: 14px;
+    fill: #2c2a29;
+    /* color del icono */
+}
+
+.footer_bg_light {
+    background-color: #ffffff;
+    height: 120px !important;
+}
+
+.footer-bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px;
+}
+
+/* IZQUIERDA */
+.footer-left img {
+    width: 200px;
+    height: 55px;
+    font-size: 55px;
+    margin: 0;
+}
+
+/* DERECHA */
+.footer-right p {
+    font-size: 13px;
+    color: #2c2a29;
+    margin: 0;
+}
+
+.footer-logo p {
+    font-size: 13px;
+    color: #2c2a29;
+    margin: 0;
+}
+
+
+/* =========================
+   FOOTER DESKTOP (PC)
+========================= */
+@media (min-width: 769px) {
+
+    .acor-content {
+        display: block;
+    }
+
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* CONTENEDOR REDONDO */
+.icon-wrapper {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* ICONOS NEGROS (WhatsApp, X, IG, YT, LinkedIn) */
+.icon-wrapper.dark {
+    background-color: #ffffff;
+}
+
+.icon-wrapper.dark svg {
+    color: #000000;
+    font-size: 22px;
+    /* 👈 más pequeño desde adentro */
+}
+
+/* Aplica a todos los li EXCEPTO facebook */
+.social-media li:not(#fb-li) {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* =========================
+   FOOTER MOBILE – SIMPLE
+========================= */
+@media (max-width: 768px) {
+
+    #footer .footer-link,
+    #footer .acor-content a,
+    #footer .acor-content ul li a {
+        color: #ffffff !important;
+        text-decoration: none;
+        font-size: 10px;
+    }
+
+    /* Aplica a todos los li EXCEPTO facebook */
+    .social-media li:not(#fb-li) {
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .footer_bg_dark {
+        background-color: #2c2a29;
+        color: #ffffff;
+        padding: 15px 0;
+    }
+
+    /* Forzar que cada item sea bloque */
+    .acor-content ul li,
+    .acor-content ul li a {
+        display: block;
+        width: 100%;
+    }
+
+    /* Permitir salto de línea natural */
+    .acor-content ul li a {
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.6;
+    }
+
+    /* Grid a una sola columna */
+    .bc-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    /* Cada bloque */
+    .acors-group {
+        padding: 10px 20px;
+    }
+
+    /* Header */
+    .acor-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 10px;
+        border-top: 1.5px solid #ffffff;
+    }
+
+    .acor-header h6 {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    /* Flecha decorativa */
+    .acor-header::after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+        transform: rotate(45deg);
+    }
+
+    /* Contenido SIEMPRE visible */
+    .acor-content {
+        display: block;
+        padding-bottom: 16px;
+        margin-left: 30px;
+    }
+
+    .acor-content li {
+        margin-bottom: 12px;
+        font-size: 14px;
+    }
+
+    /* Quitar línea vertical del texto final */
+    .footer-description {
+        border-left: none;
+        padding: 20px 20px;
+    }
+
+    .social-media li {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* =========================
+   FIX LEGALES – MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  /* Forzar Legales a una sola columna */
+  .acor-content .bc-row {
+    grid-template-columns: 1fr !important;
+    gap: 0;
+  }
+
+  /* Asegurar que cada columna ocupe todo el ancho */
+  .acor-content .bc-col-12,
+  .acor-content .bc-col-lg-6 {
+    width: 100%;
+  }
+
+  .vigilado {
+    gap: 40px;
+  }
+
+  .vigilado p {
+    font-size: 8px;
+  }
+}
+
+/* =========================
+   CENTRAR REDES SOCIALES – MOBILE
+========================= */
+@media (max-width: 768px) {
+  .social-media {
+    justify-content: center;   /* 👈 centra horizontal */
+    margin-top: 35px;          /* aire visual */
+  }
+}

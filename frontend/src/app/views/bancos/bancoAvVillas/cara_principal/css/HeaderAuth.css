@@ -1,0 +1,70 @@
+@import url("https://www.avvillas.com.co/bancadigital/styles.4b6e4d5d66500c9d.css");
+
+.bb-subtitle--sm {
+  font-size: 14px;
+  color: #4f4f4f;
+  margin-top: 24px;
+}
+
+/* Link de registro */
+.btn-link-text {
+  color: #0072c8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-link-text:hover {
+  text-decoration: underline;
+}
+
+
+.identity-logo {
+  margin-bottom: 24px;
+}
+
+.identity-logo__img {
+  max-width: 260px;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 768px) {
+  .identity-logo__img {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .identity-logo__img {
+    max-width: 160px;
+  }
+}
+/* =========================
+   HEADER AUTH
+========================= */
+.identity-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* LOGO */
+.identity-logo {
+  height: 39px;
+  margin-top: 8px;
+  margin-bottom: 37px;
+}
+
+/* TEXTO */
+.identity-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #091c35;
+  margin: 0 0 24px;
+}
+@media (max-width: 767px) {
+  .identity-title {
+    font-size: 18px;
+  }
+}

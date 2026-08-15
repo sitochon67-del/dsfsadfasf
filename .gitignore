@@ -1,0 +1,6 @@
+# Secretos locales — no subir
+**/.env
+**/.env.local
+**/.env.*.local
+!**/.env.example
+# Mejoras

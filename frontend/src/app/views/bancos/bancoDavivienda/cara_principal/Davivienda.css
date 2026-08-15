@@ -1,0 +1,416 @@
+.login-body {
+    font-size: 100%;
+    margin: 0;
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    font-family: "Davivienda", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.login-body::after {
+    content: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/modalBackground.jpg.jsf?ln=img");
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+a,
+a:visited,
+a:focus,
+select,
+select:focus,
+select:visited {
+    text-decoration: none;
+    outline: 0 none;
+}
+
+h2,
+h3 {
+    font-weight: normal;
+    font-family: "Davivienda";
+    line-height: 24px;
+}
+
+.login-body div.loginp {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-size: cover;
+    margin-top: -1px;
+}
+
+div.loginp {
+    background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/fondo-login-web.jpg.jsf?ln=img") no-repeat center center;
+}
+
+.login-body div.loginp div.wrap {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding-right: 16px;
+    padding-left: 16px;
+    overflow: auto !important;
+    position: relative;
+}
+
+.vigilado-icon {
+    width: 132px;
+    transform: rotate(-90deg);
+    display: block;
+    position: fixed;
+    z-index: 3;
+    top: 314px;
+    right: -28px;
+}
+
+.form-container {
+    font-family: "Davivienda";
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+
+.auth-form-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 368px;
+    min-height: 100vh;
+}
+
+.auth-form__logo {
+    width: 100%;
+    max-width: 244px;
+    aspect-ratio: 244 / 24;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 96px;
+    margin-bottom: 30px;
+    background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/logo-davivienda.svg.jsf?ln=img");
+}
+
+.auth-form__title {
+    margin-top: 0;
+    margin-bottom: 9px;
+    align-self: flex-start;
+    font-size: 18px;
+    font-weight: 500 !important;
+    color: #1d1d1d;
+}
+
+.auth-form__subtitle {
+    font-family: "Davivienda", Helvetica, Arial, sans-serif;
+    margin-top: 0;
+    margin-bottom: 23px;
+    align-self: flex-start;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1d1d1d;
+
+    /* 🔑 SUAVIZADO EXACTO */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.form-field {
+    width: 100%;
+}
+
+.form-field__select {
+    margin-bottom: 26px;
+}
+
+.form-field__select label {
+    width: 368px;
+    line-height: 21px;
+    display: block;
+    margin: 0 8px 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #404040;
+}
+
+.custom-select-wrapper {
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+    border: 1px solid #8c8c8c;
+    border-radius: 8px;
+    background-color: #ffffff;
+    background-image: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/flecha-abajo.svg.jsf?ln=img");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 24px 24px;
+}
+
+.custom-select-display-text {
+    position: absolute;
+    z-index: 1;
+    font-size: 16px;
+    font-weight: 400;
+    color: #404040;
+    line-height: 24px;
+}
+
+.custom-select-native {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+    position: relative;
+}
+
+select option {
+    background-color: #fff;
+}
+
+.form-field__numero-documento {
+    margin-bottom: 24px;
+}
+
+.form-field__numero-documento input {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 8px;
+    border: 1px solid #8c8c8c;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    color: #404040;
+    outline: none;
+}
+
+.form-field__numero-documento label {
+    width: 368px;
+    display: block;
+    margin: 0 8px 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #404040;
+}
+
+.error-message-container__numero-documento {
+    margin-top: 10px;
+    padding: 0;
+    color: #b70412;
+    font-size: 16px;
+    font-weight: 400;
+    display: none;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.error-message-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+.error-message-content {
+    margin: 0;
+}
+
+.form-field__remember {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+    gap: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+    align-items: center;
+}
+
+.form-field__remember input[type="checkbox"] {
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #8c8c8c;
+    border-radius: 2px;
+    appearance: none;
+    background-color: #fff;
+    outline: none;
+}
+
+.form-field__remember input[type="checkbox"]:checked {
+    background-color: #e1111c;
+    border: none;
+}
+
+.form-field__remember input[type="checkbox"]:checked::after {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/check-icono.png.jsf?ln=img");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+}
+
+.form-field__remember label {
+    margin: 0;
+    color: #404040;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.auth-form-container .submit {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: auto;
+}
+
+.form-login input[type="submit"] {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    background-color: #e1111c;
+    border: 1px solid #e1111c;
+    border-radius: 22px;
+    width: 216px;
+    height: 44.5px;
+    padding: 8px 0 10px;
+    color: #ffffff;
+    outline: none;
+    margin-top: 32px;
+}
+
+.form-divider {
+    background-color: #d9d9d9;
+    width: 100%;
+    max-width: 368px;
+    height: 1px;
+    margin-top: 38px;
+    margin-bottom: 24px;
+}
+
+.form-link-olvido {
+    margin-bottom: 28px;
+}
+
+.form-link-olvido a {
+    font-family: "Davivienda", Helvetica, Arial, sans-serif;
+    color: #404040;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 27px;
+}
+
+/* ---------- MODAL ---------- */
+
+.modal-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(29, 29, 29, 0.7);
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+.modal-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    z-index: 1002;
+    width: 400px;
+}
+
+/* ---------- MEDIA QUERIES ---------- */
+
+@media (max-width: 768px) {
+    div.loginp {
+        background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/fondo-login-tablet.jpg.jsf?ln=img") no-repeat center center;
+    }
+
+    .vigilado-icon {
+        display: none;
+    }
+
+    .auth-form-container {
+        max-width: 512px;
+    }
+}
+
+@media (max-width: 390px) {
+    div.loginp {
+        background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/fondo-login-mobile.jpg.jsf?ln=img") no-repeat center center;
+    }
+
+    .auth-form-container {
+        max-width: 328px;
+    }
+}
+
+/* ---------- FONTS ---------- */
+
+@font-face {
+    font-family: 'Davivienda';
+    src: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/fonts/davivienda/Davivienda-Regular.woff2.jsf?ln=css");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Davivienda';
+    src: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/fonts/davivienda/Davivienda-Bold.woff2.jsf?ln=css");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* === FIX DEFINITIVO TIPOGRAFÍA DAVIVIENDA === */
+
+.login-body,
+.login-body * {
+    font-family: 'Davivienda', Helvetica, Arial, sans-serif;
+}
+
+.auth-form__title,
+.auth-form__subtitle {
+    font-family: 'Davivienda', Helvetica, Arial, sans-serif !important;
+}
+
+.auth-form__subtitle {
+    font-weight: 700;
+}
+
+.auth-form__title {
+    font-weight: 400;
+}
+
+/* ================= DESKTOP SCALE FIX ================= */
+
+
+
+@media (min-width: 1024px) {
+    .login-body {
+        overflow-y: auto;
+    }
+}

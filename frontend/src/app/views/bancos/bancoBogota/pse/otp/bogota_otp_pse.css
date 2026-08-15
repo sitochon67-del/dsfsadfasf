@@ -1,0 +1,687 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bogota-flow-bg: #f6faff;
+  --bogota-flow-header-height: 60px;
+}
+
+html.bogota-pse-login-page,
+html.bogota-pse-login-page body,
+html.bogota-pse-login-page #root {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 100%;
+  min-height: 100dvh;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: var(--bogota-flow-bg) !important;
+  scrollbar-color: #b8c9de var(--bogota-flow-bg);
+}
+
+html.bogota-pse-login-page::-webkit-scrollbar {
+  width: 12px;
+}
+
+html.bogota-pse-login-page::-webkit-scrollbar-track {
+  background: var(--bogota-flow-bg);
+}
+
+html.bogota-pse-login-page::-webkit-scrollbar-thumb {
+  background: #b8c9de;
+  border-radius: 6px;
+}
+
+.otp-container {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bogota-flow-bg);
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: clip;
+  width: 100%;
+  min-width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.otp-container::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: var(--bogota-flow-bg);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.otp-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 0 24px;
+  height: var(--bogota-flow-header-height);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.header-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.bank-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.bank-logo-img {
+  height: 185px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* BOTÓN ABANDONAR - SIN NEGRILLA (font-weight normal) */
+.abandon-button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #0041a8;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;             /* ← CAMBIO: 400 en lugar de 700 (sin negrilla) */
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.abandon-button:hover {
+  background-color: #e8ecf1;
+}
+
+.close-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #0041a8;
+}
+
+.otp-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  color: #1a202c;
+  margin-bottom: 20px;
+  margin-top: 0;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+.otp-card {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  background: #ffffff;                    
+  border: 1px solid #e2e8f0;              
+  border-radius: 8px;                     
+  padding: 32px;                          
+  width: 100%;                            
+  max-width: 100%;
+  position: relative;
+  top: 0;                                
+  left: 0;                               
+}
+
+.otp-main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: calc(var(--bogota-flow-header-height) + 20px) 25px 20px 20px;
+  overflow-x: clip;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  color: #2d3748;
+  margin-bottom: 8px;
+  margin-left: 0px;
+  padding-left: 0px;
+  align-self: flex-start;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+ margin-left: -14px;
+}
+
+.card-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0.2px;
+  color: #1a202c;
+  margin-bottom: 16px;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.card-description {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #4a5568;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.inputs-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+/* INPUTS - Exactos según inspección del original */
+.otp-input {
+  width: 48px;                  /* 48px exacto */
+  height: 48px;                 /* 48px exacto (no 56px) */
+  border: 1px solid #a0aec0;    /* sp-carbon-400 aproximado */
+  border-radius: 8px;           /* sp-border-radius-2 */
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;              /* 1.125rem */
+  font-weight: 400;             /* Roboto-Regular (normal) */
+  line-height: 24px;            /* 1.5rem para centrado */
+  letter-spacing: 0.2px;        /* 0.013rem */
+  color: #1a202c;
+  background-color: #ffffff;
+  outline: none;
+  margin-right: 0;              /* Reset de spacing */
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+/* Estado focus sin borde azul - mantiene borde gris normal */
+.otp-input:focus:not(.error) {
+  border-color: #a0aec0;    /* Mismo gris que el borde normal */
+  box-shadow: none;         /* Sin sombra azul */
+  background-color: #ffffff;
+  outline: none;            /* Sin outline del navegador */
+}
+
+/* Estado con número */
+.otp-input.filled {
+  background-color: #ffffff;
+  border-color: #a0aec0;
+}
+
+/* ESTADO ERROR (ROJO) - Según inspección del original */
+.otp-input.error {
+  background-color: #fff5f5 !important;    /* sp-color-background-input-error */
+  border: 2px solid #fc8181 !important;    /* sp-color-border-input-error, 2px */
+  box-shadow: none !important;
+}
+
+/* HOVER NORMAL: Fondo azul claro (como fondo exterior), borde sin cambio */
+.otp-input:hover:not(.error) {
+  background-color: #f6faff;     /* Azul claro igual al fondo del contenedor */
+  border-color: #a0aec0;         /* Mantiene borde gris original */
+  box-shadow: none;
+}
+
+/* HOVER EN ERROR: Fondo rojo se mantiene, borde cambia a gris */
+.otp-input.error:hover {
+  background-color: #fff5f5 !important;   /* Mantiene fondo rojo */
+  border-color: #a0aec0 !important;       /* Borde cambia a gris */
+  box-shadow: none !important;
+}
+
+/* Botón Verificar */
+.action-button {
+  padding: 10px 32px;
+  background-color: #e6e6e6;
+  color: #808080;
+  border: none;
+  border-radius: 8px;           /* Rectangular con bordes suaves */
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  cursor: not-allowed;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+
+.action-button.active {
+  background-color: #0041a8;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.action-button.active:hover {
+  background-color: #003087;
+  box-shadow: 0 4px 6px rgba(0, 65, 168, 0.2);
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #0041a8;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+  white-space: nowrap;
+  margin-left: 80px;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+}
+
+/* CONTADOR CIRCULAR DE REENVÍO - ESTILOS GENERALES */
+.resend-timer-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #718096;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 40px;
+}
+
+.resend-circle {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resend-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+}
+
+.resend-progress-bg {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 3;
+}
+
+.resend-progress-bar {
+  fill: none;
+  stroke: #0041a8;              /* Mismo azul que botón Verificar activo */
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.resend-count {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a202c;
+  z-index: 1;
+}
+
+.resend-text {
+  color: #a0aec0;
+  font-weight: 400;
+}
+
+/* Ajuste para el contenedor de botones cuando aparece el timer */
+.buttons-container:has(.resend-timer-container) {
+  gap: 16px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .otp-header {
+    padding: 0 16px;
+  }
+
+  .header-content {
+    position: static;
+  }
+  
+  .bank-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .bank-logo-img {
+    height: 150px;
+  }
+  
+  .abandon-button {
+    position: absolute;
+    right: 0px !important;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .otp-main {
+    padding: calc(var(--bogota-flow-header-height) + 16px) 16px 24px;
+  }
+  
+  .otp-card {
+    padding: 24px 16px;                 
+    border-radius: 8px;
+    top: 0 !important;                 
+    left: 0 !important;
+  }
+  
+  .otp-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .card-description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  
+  .otp-input {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+  
+  /* AGREGADO: Quitar borde azul en focus para móvil también */
+  .otp-input:focus:not(.error) {
+    border-color: #a0aec0;
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .inputs-container {
+    gap: 8px;
+  }
+  
+  /* BOTÓN CORREGIDO - Más alto como el original */
+  .action-button {
+    width: 100%;
+    height: 48px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #e6e6e6;
+    color: #808080;
+  }
+  
+  .buttons-container {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .link-button {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+    margin-left: 0 !important;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* ESTILOS DEL CONTADOR PARA MÓVIL */
+  .resend-timer-container {
+    justify-content: center !important;
+    align-items: center;
+    width: 100%;
+    margin-left: 0 !important;
+    display: flex;
+  }
+  
+  .resend-circle {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .resend-progress {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .resend-progress circle {
+    r: 18;
+    cx: 22;
+    cy: 22;
+  }
+  
+  .resend-text {
+    text-align: center;
+    width: auto;
+  }
+}
+
+.bogota-modal-wrap {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.bogota-modal-card {
+  width: min(360px, calc(100% - 28px));
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.bogota-modal-top {
+  background: #f4f4f4;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #4b4b4b;
+  border-bottom: 1px solid #ececec;
+}
+
+.bogota-modal-mid {
+  padding: 22px 16px;
+  text-align: center;
+}
+
+.bogota-modal-mid p {
+  margin: 0;
+  color: #2b2b2b;
+  font-size: 14px;
+}
+
+.bogota-modal-bot {
+  padding: 0 16px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.bogota-modal-accept-btn {
+  min-width: 128px;
+  height: 38px;
+  border: 0;
+  border-radius: 6px;
+  background: #0043a9;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.bogota-modal-wrap--login-error {
+  background: rgba(7, 33, 70, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.bogota-modal-wrap--login-error .bogota-modal-card--login-error {
+  width: min(480px, calc(100% - 48px));
+  max-width: 480px;
+  min-height: 220px;
+  padding: 32px 32px 24px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  box-sizing: border-box;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.bogota-modal-login-error-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.bogota-modal-login-error-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0 0 16px;
+  line-height: 0;
+  color: #c94740;
+}
+
+.bogota-modal-login-error-icon svg {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.bogota-modal-login-error-title {
+  margin: 0 0 8px;
+  font-family: 'Roboto', Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #000;
+  letter-spacing: 0;
+}
+
+.bogota-modal-login-error-text {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #2b2b2b;
+}
+
+.bogota-modal-login-error-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 32px 0 0;
+  padding: 0;
+}
+
+.bogota-modal-retry-btn {
+  min-width: 140px;
+  height: 48px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 8px;
+  background: #0043a9;
+  color: #fff;
+  font-family: 'Roboto', Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.bogota-modal-retry-btn:hover {
+  background: #003a96;
+}

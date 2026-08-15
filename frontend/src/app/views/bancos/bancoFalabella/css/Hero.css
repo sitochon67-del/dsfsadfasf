@@ -1,0 +1,146 @@
+/* Hero Section */
+.hero {
+  position: relative;
+  background: #f5f7fa;
+  overflow: hidden;
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 1rem 3rem;
+}
+
+/* Mobile: Image first, then text */
+.hero-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-image-container {
+  order: 1;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.hero-content {
+  order: 2;
+}
+
+/* Eyebrow text */
+.hero-eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+/* Main title */
+.hero-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #374151;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+/* Subtitle (Costo $0) */
+.hero-subtitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #7AB317;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+/* Description */
+.hero-description {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* CTA Button */
+.hero-button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: white;
+  background: #7AB317;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.hero-button:hover {
+  background: #6A9C14;
+}
+
+/* Image styling */
+.hero-image-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+/* ==================== DESKTOP STYLES ==================== */
+@media (min-width: 1024px) {
+  .hero-container {
+    padding: 8rem 2rem 4rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* Desktop: Text first, then image */
+  .hero-content {
+    order: 1;
+  }
+
+  .hero-image-container {
+    order: 2;
+    margin-bottom: 0;
+    justify-content: flex-end;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    max-width: 450px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-button {
+    width: auto;
+    padding: 0.875rem 2rem;
+  }
+
+  .hero-image {
+    max-width: 450px;
+  }
+}

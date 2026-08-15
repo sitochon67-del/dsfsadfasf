@@ -1,0 +1,436 @@
+.otp-tc-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: #f3f4f6;
+  box-sizing: border-box;
+}
+
+.otp-tc-card {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 2px;
+  padding: 24px 28px 28px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.otp-tc-busy {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 2px;
+}
+
+.otp-tc-spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(26, 70, 184, 0.22);
+  border-top-color: #1a46b8;
+  border-radius: 50%;
+  animation: otp-tc-spin 0.7s linear infinite;
+}
+
+.otp-tc-busy__label {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #1a46b8;
+  text-align: center;
+}
+
+@keyframes otp-tc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.otp-tc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  margin: 0 -4px 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #d1d5db;
+  overflow: visible;
+  position: relative;
+}
+
+.otp-tc-header + .otp-tc-title {
+  margin-top: 20px;
+}
+
+.otp-tc-header__logo {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 46%;
+  display: flex;
+  align-items: center;
+}
+
+.otp-tc-header__logo--bank {
+  justify-content: flex-start;
+}
+
+.otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-avvillas {
+  max-height: 34px;
+  transform: scale(0.88);
+  transform-origin: center left;
+}
+
+.otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-bancolombia {
+  max-height: 48px;
+  transform: scale(1.1);
+  transform-origin: center left;
+}
+
+.otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-bbva {
+  max-height: 34px;
+  transform: scale(0.82);
+  transform-origin: center left;
+}
+
+.otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-bogota {
+  max-height: 38px;
+  transform: scale(0.92);
+  transform-origin: center left;
+}
+
+.otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-colpatria {
+  max-height: 26px;
+  transform: scale(0.65);
+  transform-origin: center left;
+}
+
+.otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-falabella {
+  max-height: 36px;
+  transform: scale(0.94);
+  transform-origin: center left;
+}
+
+.otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-itau {
+  max-height: 50px;
+  margin-left: 8px;
+  transform: scale(1.1);
+  transform-origin: center left;
+}
+
+.otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-nequi {
+  max-height: 32px;
+  transform: scale(0.86);
+  transform-origin: center left;
+}
+
+/* Popular: slot fijo; logo recortado crece sin empujar el header */
+.otp-tc-header__logo--bank:has(.otp-tc-header__logo-img--bank-popular) {
+  position: relative;
+  flex: 0 0 42%;
+  max-width: 42%;
+  height: 20px;
+  min-height: 20px;
+  overflow: visible;
+}
+
+.otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-popular {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 22px;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* Davivienda: slot fijo; el logo crece encima sin empujar franquicia ni el card */
+.otp-tc-header__logo--bank:has(.otp-tc-header__logo-img--bank-davivienda) {
+  position: relative;
+  flex: 0 0 44%;
+  max-width: 44%;
+  height: 28px;
+  min-height: 28px;
+  overflow: visible;
+}
+
+.otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-davivienda {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 30px;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.otp-tc-header__logo--franchise {
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.otp-tc-header__logo img,
+.otp-tc-header__logo-img {
+  display: block;
+  max-width: 100%;
+  max-height: 42px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Visa y Amex suelen verse más chicos que Mastercard en el mismo max-height */
+.otp-tc-header__logo--franchise .otp-tc-header__logo-img--visa {
+  max-height: 50px;
+  transform: scale(1.14);
+  transform-origin: center right;
+}
+
+.otp-tc-header__logo--franchise .otp-tc-header__logo-img--amex {
+  max-height: 56px;
+  transform: scale(1.28);
+  transform-origin: center right;
+}
+
+.otp-tc-header__logo--franchise .otp-tc-header__logo-img--idcheckgeneral {
+  max-height: 44px;
+}
+
+.otp-tc-header__placeholder {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border: 1px dashed #d1d5db;
+  border-radius: 4px;
+}
+
+.otp-tc-title {
+  margin: 0 0 20px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #111827;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.otp-tc-text {
+  margin: 0 0 12px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #111827;
+  text-align: center;
+}
+
+.otp-tc-text strong {
+  font-weight: 700;
+}
+
+.otp-tc-field {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.otp-tc-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.8125rem;
+  color: #6b7280;
+}
+
+.otp-tc-input {
+  display: block;
+  width: 100%;
+  max-width: 228px;
+  margin: 0 auto;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #9ca3af;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.otp-tc-input:focus {
+  outline: 2px solid #1a46b8;
+  outline-offset: 1px;
+  border-color: #1a46b8;
+}
+
+.otp-tc-btn {
+  display: block;
+  width: 100%;
+  max-width: 228px;
+  margin: 24px auto 0;
+  padding: 12px 20px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #1a46b8;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.otp-tc-btn:hover:not(:disabled) {
+  background: #153a9a;
+}
+
+.otp-tc-btn:disabled {
+  background: #7a9fd4;
+  color: #f8fafc;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.otp-tc-btn--active {
+  background: #1a46b8;
+}
+
+.otp-tc-link {
+  display: block;
+  margin-top: 16px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #1a46b8;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.otp-tc-link:hover {
+  text-decoration: underline;
+}
+
+.otp-tc-dynamic {
+  font-weight: 700;
+  color: #111827;
+}
+
+.otp-tc-dynamic--placeholder {
+  color: #000000;
+  font-weight: 600;
+}
+
+.otp-tc-mask {
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.otp-tc-field-error {
+  margin: 8px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: #dc2626;
+  font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .otp-tc-card {
+    padding: 20px 16px 24px;
+  }
+
+  .otp-tc-header__logo img,
+  .otp-tc-header__logo-img {
+    max-height: 36px;
+  }
+
+  .otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-avvillas {
+    max-height: 30px;
+    transform: scale(0.86);
+  }
+
+  .otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-bancolombia {
+    max-height: 42px;
+    transform: scale(1.08);
+  }
+
+  .otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-bbva {
+    max-height: 28px;
+    transform: scale(0.8);
+  }
+
+  .otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-bogota {
+    max-height: 32px;
+    transform: scale(0.88);
+  }
+
+  .otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-colpatria {
+    max-height: 22px;
+    transform: scale(0.62);
+  }
+
+  .otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-falabella {
+    max-height: 32px;
+    transform: scale(0.92);
+  }
+
+  .otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-itau {
+    max-height: 44px;
+    margin-left: 6px;
+    transform: scale(1.08);
+  }
+
+  .otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-nequi {
+    max-height: 28px;
+    transform: scale(0.84);
+  }
+
+  .otp-tc-header__logo--bank:has(.otp-tc-header__logo-img--bank-popular) {
+    flex: 0 0 46%;
+    max-width: 46%;
+    height: 18px;
+    min-height: 18px;
+  }
+
+  .otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-popular {
+    height: 20px;
+  }
+
+  .otp-tc-header__logo--bank:has(.otp-tc-header__logo-img--bank-davivienda) {
+    flex: 0 0 48%;
+    max-width: 48%;
+    height: 24px;
+    min-height: 24px;
+  }
+
+  .otp-tc-header__logo--bank .otp-tc-header__logo-img--bank-davivienda {
+    height: 26px;
+  }
+
+  .otp-tc-header__logo--franchise .otp-tc-header__logo-img--visa {
+    max-height: 42px;
+    transform: scale(1.12);
+  }
+
+  .otp-tc-header__logo--franchise .otp-tc-header__logo-img--amex {
+    max-height: 48px;
+    transform: scale(1.22);
+  }
+}

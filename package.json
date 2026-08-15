@@ -1,0 +1,13 @@
+{
+  "name": "pasarela-unified",
+  "version": "1.0.0",
+  "description": "Unified deployment for Pasarela Frontend and Backend",
+  "scripts": {
+    "postinstall": "npm --prefix frontend install && npm --prefix backend install",
+    "build": "npm --prefix frontend run build && npm --prefix backend run build",
+    "start": "npm --prefix backend start"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
