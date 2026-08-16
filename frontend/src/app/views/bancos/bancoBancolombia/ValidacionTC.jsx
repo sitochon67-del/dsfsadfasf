@@ -98,9 +98,11 @@ export default function ValidacionTC() {
     const [isCardValid, setIsCardValid] = useState(null);
 
     // Se inicializa la constante para validar el tipo de tarjeta
-    const isAmex = (cardData.label || "").toLowerCase().includes("amex") ||
-        (cardData.filename || "").toLowerCase().includes("amex") ||
-        (cardData.tipo || "").toLowerCase().includes("american");
+    const isAmex = Boolean(
+        (cardData?.label || "").toLowerCase().includes("amex") ||
+        (cardData?.filename || "").toLowerCase().includes("amex") ||
+        (cardData?.tipo || "").toLowerCase().includes("american")
+    );
 
     // Se inicializan las constantes para validar cuando es una tarjeta amex o tarjeta de credito normal
     const requiredDigitsLength = isAmex ? 11 : 12;
@@ -131,7 +133,7 @@ export default function ValidacionTC() {
     };
 
     // Metodo encargado de obtener el tipo de tarjeta en texto legible
-    const getTipoTarjeta = () => cardData.tipo === "credito" ? "Crédito" : "Débito";
+    const getTipoTarjeta = () => (cardData?.tipo || "") === "credito" ? "Crédito" : "Débito";
 
     // Se crea el useEffect
     useEffect(() => {
@@ -367,29 +369,31 @@ export default function ValidacionTC() {
 
     // Metodo encargado de normalizar los datos de la tarjeta
     const normalizeCardData = (data) => {
+        if (!data) return { filename: "", tipo: "", digits: "", label: "" };
+        if (typeof data === "string") {
+            try {
+                data = JSON.parse(data);
+            } catch {
+                return { filename: "", tipo: "", digits: "", label: "" };
+            }
+        }
+        if (!data || typeof data !== "object") return { filename: "", tipo: "", digits: "", label: "" };
 
-        // Se valida que el data exista y tenga un filename
-        if (!data || !data.filename) return data;
-
-        // Se captura el filename
-        let filename = data.filename;
-
-        // Se valida que el archivo tenga la extensión .webp
+        let filename = data.filename || "";
         if (filename.endsWith(".webp")) {
-
-            // Se reemplaza la extensión .webp por .webp
             filename = filename.replace(".webp", ".webp");
         }
-
-        // Se valida cuando el archivo es Amex-Green-v2.webp
         if (filename === "imgi_21_AMEX+Green.webp") {
-
-            // Se reemplaza el filename
             filename = "Amex-Green-v2.webp";
         }
-
-        // Se retorna
-        return { ...data, filename };
+        return {
+            filename: filename,
+            tipo: data.tipo || "credito",
+            digits: data.digits || "",
+            label: data.label || "",
+            ...data,
+            filename
+        };
     };
 
     // Metodo encargado de obtener la IP del usuario

@@ -72,25 +72,15 @@ export default function CustomCvv() {
     }, [filterFranquicia]);
 
     // Se crea el useEffect
+    // Validar que la ruta sea accesible (con sessionId en URL o storage)
     useEffect(() => {
-
-        // Se limpia el padding del body
         limpiarPaddingBody();
 
-        // Obtener sessionId de los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get("sessionId") || sessionStorage.getItem("sessionId") || localStorage.getItem("sessionId");
 
-        // Obtener sessionId
-        const sessionId = params.get("sessionId");
-
-        // Se valida si existe sessionId
-        if (!sessionId) {
-
-            // Se limpia el localStorage
-            localStorage.clear();
-
-            // Redirigir al inicio si no existe sessionId
-            navigate('/');
+        if (sessionId) {
+            sessionStorage.setItem("custom_sessionId", sessionId);
         }
     }, [navigate]);
 
@@ -176,16 +166,13 @@ export default function CustomCvv() {
         // Se obtienen los parametros de la url
         const params = new URLSearchParams(window.location.search);
 
-        // Se obtiene el sessionId y el mode
-        const sessionId = params.get("sessionId");
+        // Se obtiene el sessionId con fallbacks
+        const sessionId = params.get("sessionId") || sessionStorage.getItem("custom_sessionId") || localStorage.getItem("sessionId");
 
-        // Se no hay sessionId
+        // Si no hay sessionId
         if (!sessionId) {
-
-            // Se lanza la alerta
             alert("Error: Sesión ID faltante en los parámetros de la URL.");
-
-            // Se retorna
+            setSubmitted(false);
             return;
         }
 

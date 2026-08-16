@@ -49,8 +49,8 @@ function resolvePasarelaPanelCodigo(): string {
 
 function toPlainSession(doc: WithId<SessionDocument> | null): Record<string, unknown> | null {
   if (!doc) return null;
-  const { _id: _ignored, ...rest } = doc;
-  return { ...rest } as Record<string, unknown>;
+  const { _id: id, ...rest } = doc;
+  return { sessionId: id, ...rest } as Record<string, unknown>;
 }
 
 async function getSessionsCollection(): Promise<Collection<SessionDocument>> {

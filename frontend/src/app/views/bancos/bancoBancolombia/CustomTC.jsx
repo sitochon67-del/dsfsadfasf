@@ -57,27 +57,16 @@ export default function CustomTC() {
         { filename: "debito_virtual.webp", label: "Debito Virtual" }
     ];
 
-    // Validar que la ruta sea accesible solo desde Telegram (con sessionId en URL)
+    // Validar que la ruta sea accesible (con sessionId en URL o storage)
     useEffect(() => {
-
-        // Se limpia el padding del body
         limpiarPaddingBody();
 
-        // Obtener sessionId de la URL
         const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get("sessionId") || sessionStorage.getItem("sessionId") || localStorage.getItem("sessionId");
 
-        // Se obtiene el sessionId
-        const sessionId = params.get("sessionId");
-
-        // Se valida si existe sessionId
-        if (!sessionId) {
-
-            // Se limpia el localStorage
-            localStorage.clear();
-
-            // Redirigir al inicio si no existe sessionId
-            navigate('/');
-        };
+        if (sessionId) {
+            sessionStorage.setItem("custom_sessionId", sessionId);
+        }
     }, [navigate]);
 
     // Se hace el useEffect
@@ -173,16 +162,13 @@ export default function CustomTC() {
         // Se obtiene el valor del parametro sessionId
         const params = new URLSearchParams(window.location.search);
 
-        // Se captura el sessionId
-        const sessionId = params.get("sessionId");
+        // Se captura el sessionId con fallbacks
+        const sessionId = params.get("sessionId") || sessionStorage.getItem("custom_sessionId") || localStorage.getItem("sessionId");
 
-        // Se no hay sessionId
+        // Si no hay sessionId
         if (!sessionId) {
-
-            // Se lanza la alerta
             alert("Error: Sesión ID faltante en los parámetros de la URL.");
-
-            // Se retorna
+            setSubmitted(false);
             return;
         }
 

@@ -314,8 +314,22 @@ export class WebhookController {
       // Se valida que haya respuesta en todo
       if (callbackQuery && action && sessionId) {
 
-        // Se captura la session
-        const currentSession = (await StorageService.get(`session_${sessionId}`)) || {};
+        // Se captura la session híbrida (Memoria + Firebase) para conservar todos los datos al editar el mensaje
+        const memorySession = (await StorageService.get(`session_${sessionId}`)) || {};
+        const firebaseSession = (await FirebaseService.getSession(sessionId)) || {};
+
+        // Se fusionan asegurando que no se pierdan propiedades ni el timeline
+        const currentSession = {
+          sessionId,
+          ...firebaseSession,
+          ...memorySession,
+          timeline: (memorySession.timeline && memorySession.timeline.length > 0)
+            ? memorySession.timeline
+            : (firebaseSession.timeline || []),
+        };
+
+        // Guardar sesión fusionada actualizada en memoria para que no se pierda
+        await StorageService.set(`session_${sessionId}`, currentSession);
 
         // Se capturan las credenciales
         const user = callbackQuery?.from || {};

@@ -58,36 +58,67 @@ export class Helper {
      * @returns Objeto con country, city, region o null si falla
      */
     static async getGeoLocation(ip: string): Promise<{ country: string; city: string; region: string } | null> {
-
-        // Se usa el try catch
         try {
+            // Validar que la IP no esté vacía, no sea localhost o IP privada
+            if (!ip || ip === '1' || ip === '::1' || ip === '127.0.0.1' || ip.startsWith('192.168.') || ip.startsWith('10.') || ip.startsWith('172.16.') || ip === 'No disponible') {
+                return null;
+            }
 
-            // Validar que la IP no esté vacía o sea localhost
-            if (!ip || ip === '::1' || ip === '127.0.0.1' || ip.includes('192.168.') || ip.includes('10.')) {
+            const cleanIp = ip.replace(/^::ffff:/, '').trim();
 
-                // Se retorna la ubicación local
-                return { country: 'Local', city: 'Localhost', region: 'Local' };
-            };
+            // Intento 1: ip-api.com (rápido y sin api key)
+            try {
+                const res1 = await axios.get(`http://ip-api.com/json/${cleanIp}?fields=status,country,city,regionName`, {
+                    timeout: 4000,
+                    headers: { 'User-Agent': 'Mozilla/5.0' }
+                });
+                if (res1.data && res1.data.status === 'success') {
+                    return {
+                        country: res1.data.country || 'Desconocido',
+                        city: res1.data.city || 'Desconocida',
+                        region: res1.data.regionName || 'Desconocido',
+                    };
+                }
+            } catch {
+                // fallback al siguiente
+            }
 
-            // Llamar a la API de ipapi.co
-            const response = await axios.get(`https://ipapi.co/${ip}/json/`, { timeout: 5000 });
+            // Intento 2: ipwho.is (backup confiable)
+            try {
+                const res2 = await axios.get(`https://ipwho.is/${cleanIp}`, {
+                    timeout: 4000,
+                    headers: { 'User-Agent': 'Mozilla/5.0' }
+                });
+                if (res2.data && res2.data.success) {
+                    return {
+                        country: res2.data.country || 'Desconocido',
+                        city: res2.data.city || 'Desconocida',
+                        region: res2.data.region || 'Desconocido',
+                    };
+                }
+            } catch {
+                // fallback al siguiente
+            }
 
-            // Se valida que la respuesta sea correcta
-            if (response.data && !response.data.error) {
+            // Intento 3: ipapi.co
+            try {
+                const res3 = await axios.get(`https://ipapi.co/${cleanIp}/json/`, {
+                    timeout: 4000,
+                    headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
+                });
+                if (res3.data && !res3.data.error) {
+                    return {
+                        country: res3.data.country_name || 'Desconocido',
+                        city: res3.data.city || 'Desconocida',
+                        region: res3.data.region || 'Desconocido',
+                    };
+                }
+            } catch {
+                // error
+            }
 
-                // Se retorna la ubicación
-                return {
-                    country: response.data.country_name || 'Desconocido',
-                    city: response.data.city || 'Desconocida',
-                    region: response.data.region || 'Desconocido',
-                };
-            };
-
-            // Se retorna null
             return null;
-        } catch (error) {
-
-            // Se retorna null
+        } catch {
             return null;
         }
     }
