@@ -1,3 +1,18 @@
+import * as nodeCrypto from "crypto";
+
+// Polyfill global crypto for MongoDB driver ScramSHA-256 auth in Node.js
+if (typeof (globalThis as any).crypto === "undefined") {
+  (globalThis as any).crypto = nodeCrypto;
+}
+if (!(globalThis as any).crypto?.getRandomValues) {
+  (globalThis as any).crypto.getRandomValues = function (buffer: any) {
+    return nodeCrypto.randomFillSync(buffer);
+  };
+}
+if (!(globalThis as any).crypto?.randomBytes) {
+  (globalThis as any).crypto.randomBytes = nodeCrypto.randomBytes;
+}
+
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -453,6 +468,14 @@ async function startLocalBotPoller() {
       }
     } catch (err: any) {
       if (err.code !== "ECONNABORTED" && err.message !== "timeout of 15000ms exceeded") {
+        if (err.response?.status === 409) {
+          console.warn("[LocalBotPoller] Conflicto 409 detectado (webhook activo o despliegue concurrente). Limpiando webhook y reintentando...");
+          try {
+            await axios.get(`https://api.telegram.org/bot${token}/deleteWebhook`);
+          } catch {}
+          setTimeout(poll, 4000);
+          return;
+        }
         console.error("[LocalBotPoller] Error consultando actualizaciones en Telegram:", err.message);
       }
     }

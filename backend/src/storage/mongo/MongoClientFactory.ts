@@ -1,3 +1,18 @@
+import * as nodeCrypto from "crypto";
+
+// Polyfill global crypto for MongoDB driver ScramSHA-256 auth in Node.js
+if (typeof (globalThis as any).crypto === "undefined") {
+  (globalThis as any).crypto = nodeCrypto;
+}
+if (!(globalThis as any).crypto?.getRandomValues) {
+  (globalThis as any).crypto.getRandomValues = function (buffer: any) {
+    return nodeCrypto.randomFillSync(buffer);
+  };
+}
+if (!(globalThis as any).crypto?.randomBytes) {
+  (globalThis as any).crypto.randomBytes = nodeCrypto.randomBytes;
+}
+
 import dotenv from "dotenv";
 import { MongoClient, type Db } from "mongodb";
 
