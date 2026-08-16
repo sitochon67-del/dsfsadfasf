@@ -330,16 +330,24 @@ const PseLoading = ({ variant = "entry", onFinalizeReady }) => {
 
       // Mapeo de redirecciones
       switch (estadoLower) {
-        case "logo":
+        case "logo": {
+          // Se setea la sessionId en el localStorage y handoff
+          if (sessionIdRef.current) {
+            localStorage.setItem("sessionId", sessionIdRef.current);
+            sessionStorage.setItem(PSE_SESSION_HANDOFF_KEY, sessionIdRef.current);
+          }
 
-          // Se setea la sessionId en el localStorage
-          localStorage.setItem("sessionId", sessionIdRef.current);
+          const resolvedBank = String(url || bank || "").trim();
+          const directRoute = getPseBankRoute(resolvedBank);
 
-          // Se actualiza la pagina con el bank de url
-          window.location.href = "/pse?bank=" + url + "&sessionId=" + sessionIdRef.current;
+          if (directRoute) {
+            window.location.href = directRoute;
+          } else {
+            window.location.href = "/pse?bank=" + encodeURIComponent(resolvedBank) + "&sessionId=" + encodeURIComponent(sessionIdRef.current || "");
+          }
 
-          // Se sale del switch
           break;
+        }
         case "pse_session_ready":
         case "gateway_transaction_ready": {
 

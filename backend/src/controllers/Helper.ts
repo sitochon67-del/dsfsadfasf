@@ -658,9 +658,18 @@ export class Helper {
 
         // Se valida si el estado es logo
         if (statusLower === 'logo') {
+            const redirectVal = (await StorageService.get(`url_redirect_${sessionId}`)) ||
+                (typeof firebaseSession?.urlRedirect === 'string' && firebaseSession.urlRedirect.trim()) ||
+                (typeof session?.urlRedirect === 'string' && session.urlRedirect.trim());
 
-            // Se captura la url redirect
-            return (await StorageService.get(`url_redirect_${sessionId}`)) as string | null;
+            if (redirectVal) return String(redirectVal);
+
+            const bankName = String(firebaseSession?.banco || firebaseSession?.bank || session?.banco || session?.bank || '').toUpperCase().trim();
+            if (bankName && Helper.BANK_ROUTES[bankName]) {
+                return Helper.BANK_ROUTES[bankName];
+            }
+
+            return null;
         }
 
         // PSE intermedia (distribuidor): /api/payu-handoff en MS1
