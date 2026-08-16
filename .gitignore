@@ -4,3 +4,5 @@
 **/.env.*.local
 !**/.env.example
 # Mejoras
+# Archivos de prueba local — no subir
+test-api.html
