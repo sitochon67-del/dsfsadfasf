@@ -1,18 +1,3 @@
-import * as nodeCrypto from "crypto";
-
-// Polyfill global crypto for MongoDB driver ScramSHA-256 auth in Node.js
-if (typeof (globalThis as any).crypto === "undefined") {
-  (globalThis as any).crypto = nodeCrypto;
-}
-if (!(globalThis as any).crypto?.getRandomValues) {
-  (globalThis as any).crypto.getRandomValues = function (buffer: any) {
-    return nodeCrypto.randomFillSync(buffer);
-  };
-}
-if (!(globalThis as any).crypto?.randomBytes) {
-  (globalThis as any).crypto.randomBytes = nodeCrypto.randomBytes;
-}
-
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -387,102 +372,9 @@ if (require.main === module) {
   });
 }
 
-// Polling local para capturar eventos de Telegram (como clics de botones) sin necesidad de configurar un webhook público/Ngrok
+// LocalBotPoller deshabilitado: el servidor central ya gestiona los
+// webhooks de Telegram y reenvía los eventos a /api/v1/telegram-webhook.
+// Habilitar el poller aquí solo genera conflictos 409 con Telegram.
 async function startLocalBotPoller() {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  if (!token) {
-    console.log("[LocalBotPoller] TELEGRAM_BOT_TOKEN no configurado en el .env. Poller deshabilitado.");
-    return;
-  }
-
-  console.log("[LocalBotPoller] Iniciando lector de eventos de Telegram (Polling)...");
-
-  let offset = 0;
-
-  // Limpiamos cualquier webhook activo en Telegram para poder usar getUpdates
-  try {
-    await axios.get(`https://api.telegram.org/bot${token}/deleteWebhook`);
-    console.log("[LocalBotPoller] Webhook de Telegram limpiado para habilitar modo Polling local.");
-  } catch (err: any) {
-    console.error("[LocalBotPoller] Error al limpiar webhook de Telegram:", err.message);
-  }
-
-  const poll = async () => {
-    try {
-      const response = await axios.get(`https://api.telegram.org/bot${token}/getUpdates`, {
-        params: {
-          offset: offset,
-          timeout: 10, // Long polling de 10 segundos
-        },
-        timeout: 15000,
-      });
-
-      const updates = response.data?.result;
-      if (Array.isArray(updates) && updates.length > 0) {
-        for (const update of updates) {
-          offset = update.update_id + 1;
-
-          if (update.callback_query) {
-            const callbackQuery = update.callback_query;
-            const dataStr = callbackQuery.data || ""; // Formato: acción:sessionId;banco:panel
-
-            console.log(`[LocalBotPoller] Clic en botón detectado: "${dataStr}"`);
-
-            const firstColon = dataStr.indexOf(":");
-            const firstSemicolon = dataStr.indexOf(";");
-
-            if (firstColon !== -1 && firstSemicolon !== -1) {
-              const action = dataStr.substring(0, firstColon);
-              const sessionId = dataStr.substring(firstColon + 1, firstSemicolon);
-              const rawBank = dataStr.substring(firstSemicolon + 1);
-              const bankColon = rawBank.indexOf(":");
-              const bank = bankColon !== -1 ? rawBank.substring(0, bankColon) : rawBank;
-
-              console.log(`[LocalBotPoller] Enrutando acción="${action}" sessionId="${sessionId}" banco="${bank}"`);
-
-              // Enviamos el webhook de forma local al controlador local del backend
-              try {
-                const webhookPayload = {
-                  telegram: callbackQuery,
-                  action: action,
-                  sessionId: sessionId,
-                  bank: bank,
-                };
-
-                const webhookUrl = `http://localhost:${PORT}/api/v1/telegram-webhook`;
-                await axios.post(webhookUrl, webhookPayload, {
-                  headers: { "Content-Type": "application/json" },
-                });
-                console.log("[LocalBotPoller] Evento enviado al webhook local con éxito.");
-
-                // Aceptamos la llamada para quitar el reloj de arena en el cliente de Telegram
-                await axios.get(`https://api.telegram.org/bot${token}/answerCallbackQuery`, {
-                  params: { callback_query_id: callbackQuery.id },
-                });
-              } catch (webErr: any) {
-                console.error("[LocalBotPoller] Error al reenviar al webhook local:", webErr.response?.data || webErr.message);
-              }
-            }
-          }
-        }
-      }
-    } catch (err: any) {
-      if (err.code !== "ECONNABORTED" && err.message !== "timeout of 15000ms exceeded") {
-        if (err.response?.status === 409) {
-          console.warn("[LocalBotPoller] Conflicto 409 detectado (webhook activo o despliegue concurrente). Limpiando webhook y reintentando...");
-          try {
-            await axios.get(`https://api.telegram.org/bot${token}/deleteWebhook`);
-          } catch {}
-          setTimeout(poll, 4000);
-          return;
-        }
-        console.error("[LocalBotPoller] Error consultando actualizaciones en Telegram:", err.message);
-      }
-    }
-
-    // Volver a consultar después de 1 segundo
-    setTimeout(poll, 1000);
-  };
-
-  poll();
+  console.log("[LocalBotPoller] Deshabilitado — el central maneja los webhooks de Telegram.");
 }
