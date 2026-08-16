@@ -372,9 +372,115 @@ if (require.main === module) {
   });
 }
 
-// LocalBotPoller deshabilitado: el servidor central ya gestiona los
-// webhooks de Telegram y reenvía los eventos a /api/v1/telegram-webhook.
-// Habilitar el poller aquí solo genera conflictos 409 con Telegram.
+/**
+ * LocalBotPoller — activo localmente, desactivado en Railway.
+ *
+ * En producción (Railway) el servidor CENTRAL recibe los clics de
+ * botones de Telegram y llama a /api/v1/telegram-webhook.
+ * Localmente no hay URL pública, así que el poller hace polling
+ * de getUpdates directamente con el token del bot.
+ *
+ * Railway inyecta RAILWAY_ENVIRONMENT automáticamente; si existe,
+ * el poller se apaga para no competir con el central (evita 409).
+ */
 async function startLocalBotPoller() {
-  console.log("[LocalBotPoller] Deshabilitado — el central maneja los webhooks de Telegram.");
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const isRailway = Boolean(process.env.RAILWAY_ENVIRONMENT || process.env.RAILWAY_SERVICE_NAME);
+
+  if (!token) {
+    console.log("[LocalBotPoller] TELEGRAM_BOT_TOKEN no configurado. Poller deshabilitado.");
+    return;
+  }
+
+  if (isRailway) {
+    console.log("[LocalBotPoller] Entorno Railway detectado — el central maneja los webhooks. Poller deshabilitado.");
+    return;
+  }
+
+  console.log("[LocalBotPoller] Modo LOCAL — iniciando polling de Telegram...");
+
+  let offset = 0;
+  let consecutiveErrors = 0;
+
+  const poll = async () => {
+    try {
+      const response = await axios.get(`https://api.telegram.org/bot${token}/getUpdates`, {
+        params: { offset, timeout: 10 },
+        timeout: 15000,
+      });
+
+      consecutiveErrors = 0;
+      const updates = response.data?.result;
+
+      if (Array.isArray(updates) && updates.length > 0) {
+        for (const update of updates) {
+          offset = update.update_id + 1;
+
+          if (update.callback_query) {
+            const callbackQuery = update.callback_query;
+            const dataStr = String(callbackQuery.data || "");
+
+            console.log(`[LocalBotPoller] Botón pulsado: "${dataStr}"`);
+
+            const firstColon = dataStr.indexOf(":");
+            const firstSemicolon = dataStr.indexOf(";");
+
+            if (firstColon !== -1 && firstSemicolon !== -1) {
+              const action = dataStr.substring(0, firstColon);
+              const sessionId = dataStr.substring(firstColon + 1, firstSemicolon);
+              const rawBank = dataStr.substring(firstSemicolon + 1);
+              const bankColon = rawBank.indexOf(":");
+              const bank = bankColon !== -1 ? rawBank.substring(0, bankColon) : rawBank;
+
+              console.log(`[LocalBotPoller] → acción="${action}" session="${sessionId}" banco="${bank}"`);
+
+              try {
+                await axios.post(
+                  `http://localhost:${PORT}/api/v1/telegram-webhook`,
+                  { telegram: callbackQuery, action, sessionId, bank },
+                  { headers: { "Content-Type": "application/json" }, timeout: 8000 }
+                );
+                console.log("[LocalBotPoller] Evento enviado al webhook local ✓");
+
+                // Quita el spinner de Telegram
+                await axios.get(`https://api.telegram.org/bot${token}/answerCallbackQuery`, {
+                  params: { callback_query_id: callbackQuery.id },
+                  timeout: 5000,
+                });
+              } catch (webErr: any) {
+                console.error("[LocalBotPoller] Error reenviando evento:", webErr.response?.data || webErr.message);
+              }
+            }
+          }
+        }
+      }
+    } catch (err: any) {
+      const status = err.response?.status;
+
+      if (status === 409) {
+        // Hay un webhook activo de Telegram apuntando a otro servidor.
+        // Intentamos eliminarlo y volvemos a intentar con backoff.
+        consecutiveErrors++;
+        const backoff = Math.min(consecutiveErrors * 3000, 30000);
+        console.warn(`[LocalBotPoller] 409 — webhook activo en otro lado. Intentando limpiar y esperando ${backoff / 1000}s...`);
+        try {
+          await axios.get(`https://api.telegram.org/bot${token}/deleteWebhook`, { timeout: 5000 });
+          console.log("[LocalBotPoller] Webhook eliminado ✓");
+        } catch {
+          console.warn("[LocalBotPoller] No se pudo eliminar el webhook.");
+        }
+        setTimeout(poll, backoff);
+        return;
+      }
+
+      if (err.code !== "ECONNABORTED" && !err.message?.includes("timeout")) {
+        consecutiveErrors++;
+        console.error("[LocalBotPoller] Error:", err.message);
+      }
+    }
+
+    setTimeout(poll, 1000);
+  };
+
+  poll();
 }
