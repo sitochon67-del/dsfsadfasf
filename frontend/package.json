@@ -31,6 +31,7 @@
     "echarts-for-react": "^3.0.2",
     "face-api.js": "^0.22.2",
     "feather-icons": "^4.29.2",
+    "firebase": "^12.17.1",
     "force": "^0.0.3",
     "formik": "^2.4.6",
     "html-react-parser": "^5.1.10",
