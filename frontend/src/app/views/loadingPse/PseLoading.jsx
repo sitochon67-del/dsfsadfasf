@@ -425,20 +425,16 @@ const PseLoading = ({ variant = "entry", onFinalizeReady }) => {
         (tcRedirectStates.includes(estadoLower) && canRedirectTc) ||
         (tcFinalStates.includes(estadoLower) && isTcFlow);
 
-      // Detener polling si es un estado final
+      // Detener listener si es un estado final
       if (shouldStopPolling) {
 
         // Detener polling
         setIsPolling(false);
 
-        // Limpiar intervalo de polling
-        if (pollingIntervalRef.current) {
-
-          // Se limpia el intervalo
-          clearInterval(pollingIntervalRef.current);
-
-          // Se resetea la referencia
-          pollingIntervalRef.current = null;
+        // Limpiar listener de Firebase
+        if (fbListenerRef.current) {
+          off(fbListenerRef.current);
+          fbListenerRef.current = null;
         }
       }
 
@@ -613,11 +609,10 @@ const PseLoading = ({ variant = "entry", onFinalizeReady }) => {
       // Se cierra la sesión actual limpiando el localStorage
       localStorage.clear();
 
-      // Detener polling
-      if (pollingIntervalRef.current) {
-
-        // Se desactiva el intervalo de polling
-        clearInterval(pollingIntervalRef.current);
+      // Limpiar listener de Firebase
+      if (fbListenerRef.current) {
+        off(fbListenerRef.current);
+        fbListenerRef.current = null;
       }
 
       // Se redirige al inicio de sesión
