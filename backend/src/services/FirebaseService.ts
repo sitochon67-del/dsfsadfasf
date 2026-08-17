@@ -79,21 +79,21 @@ export class FirebaseService {
       updatedAt: new Date().toISOString(),
     };
 
-    // Actualizar caché local inmediatamente
+    // Actualizar caché local inmediatamente (solo sirve dentro del mismo proceso)
     memCache[sessionId] = { ...(memCache[sessionId] ?? {}), ...patch };
 
-    // Persistir en Firebase RTDB de forma asíncrona (no bloqueante)
-    rtdbPatch(sessionUrl(sessionId), patch).catch(() => {});
+    // Persistir en Firebase RTDB — fuente de verdad compartida entre replicas
+    await rtdbPatch(sessionUrl(sessionId), patch);
   }
 
   static async getSession(sessionId: string): Promise<any> {
-    // Intentar caché local primero
-    if (memCache[sessionId]) return memCache[sessionId];
-
-    // Leer desde Firebase RTDB
+    // SIEMPRE leer desde Firebase RTDB (fuente de verdad).
+    // No usar memCache para getSession porque Railway puede tener múltiples
+    // replicas: el webhook escribe en replica A, verify-state llega a replica B
+    // con memCache vacío → siempre iría a Firebase de todos modos.
     const data = await rtdbGet(sessionUrl(sessionId));
     if (data) {
-      memCache[sessionId] = data;
+      memCache[sessionId] = data; // actualizar caché local como optimización futura
     }
     return data;
   }
