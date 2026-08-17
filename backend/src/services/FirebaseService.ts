@@ -34,9 +34,12 @@ function sessionUrl(sessionId: string) {
 
 async function rtdbGet<T = any>(url: string): Promise<T | null> {
   try {
-    const res = await axios.get<T>(url, { params: authParams(), timeout: 5000 });
+    const res = await axios.get<T>(url, { params: authParams(), timeout: 8000 });
     return res.data ?? null;
-  } catch {
+  } catch (err: any) {
+    const status = err?.response?.status;
+    const msg = err?.response?.data || err?.message;
+    console.error(`[RTDB] GET error (${status}): ${url.slice(url.indexOf('/pasarela'))} →`, msg);
     return null;
   }
 }
